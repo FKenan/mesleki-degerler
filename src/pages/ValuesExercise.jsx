@@ -1,5 +1,7 @@
 import { Box, Button, Step, StepLabel, Stepper } from "@mui/material";
 import { useState } from "react";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
 
@@ -13,7 +15,6 @@ export default function ValuesExercisePage() {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
   const handleReset = () => {
     setActiveStep(0);
   };
@@ -31,7 +32,8 @@ export default function ValuesExercisePage() {
       </Stepper>
       <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
         <Button
-          color="inherit"
+          startIcon={<ArrowBackIcon />}
+          variant="contained"
           disabled={activeStep === 0}
           onClick={handleBack}
           sx={{ mr: 1 }}
@@ -40,7 +42,13 @@ export default function ValuesExercisePage() {
         </Button>
         <Box sx={{ flex: "1 1 auto" }} />
         {activeStep !== steps.length - 1 && (
-          <Button onClick={handleNext}>İleri</Button>
+          <Button
+            endIcon={<ArrowForwardIcon />}
+            variant="contained"
+            onClick={handleNext}
+          >
+            İleri
+          </Button>
         )}
       </Box>
     </Box>
