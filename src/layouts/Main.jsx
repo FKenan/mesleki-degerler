@@ -1,5 +1,6 @@
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import ValuesPile from "../components/ValuesPile";
 import ValuesDeck from "../components/ValueStack";
 import HomePage from "../pages/Home";
 import ValuesExercisePage from "../pages/ValuesExercise";
@@ -10,7 +11,8 @@ export default function MainLayout() {
       {/* <Navbar /> */}
       {/* <HomePage /> */}
       {/* <ValuesExercisePage /> */}
-      <ValuesDeck />
+      {/* <ValuesDeck /> */}
+      <ValuesPile />
       {/* <Footer /> */}
     </>
   );
