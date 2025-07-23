@@ -2,7 +2,6 @@ import {
   AppBar,
   Box,
   Button,
-  Container,
   Grid,
   Stack,
   Step,
@@ -35,7 +34,7 @@ export default function ValuesExercisePage() {
   };
 
   return (
-    <Box height="100%" width="100%">
+    <Box height="100%" sx={{ mx: 2 }}>
       <AppBar
         position="static"
         sx={{ background: "transparent", boxShadow: "none" }}
@@ -97,12 +96,12 @@ export default function ValuesExercisePage() {
               Geri
             </Button>
             <Box justifyItems="center" alignItems="center">
-              <Typography variant="h4">Değerleriniz</Typography>
-              <Typography variant="h6">
+              <Typography variant="h5">Değerleriniz</Typography>
+              <Typography variant="subtitle2">
                 Destedeki değerleri 2 kutuya ayırınız.
               </Typography>
-              <Typography variant="body1">
-                size uyanlar bir tarafa, uymayanlar diğer tarafa
+              <Typography variant="body2">
+                Size uyanlar bir tarafa, uymayanlar diğer tarafa
               </Typography>
             </Box>
             <Button
@@ -116,12 +115,18 @@ export default function ValuesExercisePage() {
           </Stack>
         </Grid>
         <Grid size={5}>
+          <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
+            Tutulacaklar Kutusu
+          </Typography>
           <ValuesPile />
         </Grid>
-        <Grid size={2}>
+        <Grid size={2} px={2}>
           <ValueStack />
         </Grid>
         <Grid size={5}>
+          <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
+            Atılacaklar Kutusu
+          </Typography>
           <ValuesPile />
         </Grid>
       </Grid>

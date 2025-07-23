@@ -12,7 +12,7 @@ export default function Value() {
           borderColor: "primary.light",
         }}
       >
-        <CardActionArea sx={{ p: 2, height: "100%" }}>
+        <CardActionArea sx={{ p: 1, height: "100%" }}>
           <Typography
             variant="body2"
             fontWeight="bold"

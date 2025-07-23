@@ -13,7 +13,7 @@ export default function ValueStack() {
         sx={{
           minHeight: 250,
           borderRadius: 5,
-          my: 2,
+          mb: 2,
           textAlign: "center",
           position: "relative",
         }}
@@ -38,7 +38,7 @@ export default function ValueStack() {
             ":hover": { bgcolor: "success.main", opacity: 0.6 },
           }}
         ></CardActionArea>
-        <Typography variant="h5" fontWeight="bold" marginTop={2}>
+        <Typography variant="h6" fontWeight="bold" marginTop={2}>
           Başlık
         </Typography>
         <CardContent>
@@ -49,7 +49,7 @@ export default function ValueStack() {
           </Typography>
         </CardContent>
       </Card>
-      <Typography variant="body2" align="center">
+      <Typography variant="subtitle2" align="center">
         Kalan değer adeti
       </Typography>
     </Box>
