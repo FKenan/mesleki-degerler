@@ -38,14 +38,14 @@ export default function ValueStack() {
             ":hover": { bgcolor: "success.main", opacity: 0.6 },
           }}
         ></CardActionArea>
-        <Typography variant="h6" fontWeight="bold" marginTop={2}>
+        <Typography variant="subtitle1" fontWeight="bold" marginTop={1}>
           Başlık
         </Typography>
-        <CardContent>
-          <Typography variant="body2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-            exercitationem facilis neque officia! Perspiciatis eaque nulla sequi
-            ut, facilis doloribus?
+        <CardContent sx={{ py: 0 }}>
+          <Typography variant="caption" sx={{ lineHeight: 1 }}>
+            Hakkaniyet, eşitlik ve doğru olanın peşinden gidilmesini vurgular.
+            Etik ilkeleri destekleme, sosyal eşitliği teşvik etmeve bireylere
+            adil ve tarafsız davranılmasını sağlama inancını yansıtır.
           </Typography>
         </CardContent>
       </Card>

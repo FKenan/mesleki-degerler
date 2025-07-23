@@ -1,21 +1,11 @@
-import {
-  AppBar,
-  Box,
-  Button,
-  Grid,
-  Stack,
-  Step,
-  StepLabel,
-  Stepper,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import HomeIcon from "@mui/icons-material/Home";
 import ValuesPile from "../components/ValuesPile";
 import ValueStack from "../components/ValueStack";
+import ExercisePageTypography from "../components/ExercisePageTypography";
+import Appbar from "../components/Appbar";
 
 const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
 
@@ -35,50 +25,7 @@ export default function ValuesExercisePage() {
 
   return (
     <Box height="100%" sx={{ mx: 2 }}>
-      <AppBar
-        position="static"
-        sx={{ background: "transparent", boxShadow: "none" }}
-      >
-        <Toolbar
-          disableGutters
-          sx={{
-            justifyContent: "space-between",
-            alignContent: "center",
-          }}
-        >
-          <Box display="flex" alignItems="center">
-            <HomeIcon color="primary" sx={{ display: { xs: "flex" }, mr: 1 }} />
-            <Typography
-              variant="h6"
-              noWrap
-              sx={{
-                color: "primary.main",
-                fontFamily: "monospace",
-                fontWeight: 600,
-                textDecoration: "none",
-              }}
-            >
-              Mesleki Değerler
-            </Typography>
-          </Box>
-          <Stepper activeStep={activeStep} sx={{ p: 2 }}>
-            {steps.map((label) => {
-              return (
-                <Step key={label} sx={{ px: 3 }}>
-                  <StepLabel>{label}</StepLabel>
-                </Step>
-              );
-            })}
-          </Stepper>
-          <Button
-            startIcon={<ArrowBackIcon />}
-            onClick={handleReset}
-            sx={{ mr: 1 }}
-          >
-            Baştan başla
-          </Button>
-        </Toolbar>
-      </AppBar>
+      <Appbar handleReset={handleReset} activeStep={activeStep} steps={steps} />
       <Grid container spacing={1} alignItems="center" justifyContent="center">
         <Grid size={12} sx={{ my: 2 }}>
           <Stack
@@ -95,15 +42,12 @@ export default function ValuesExercisePage() {
             >
               Geri
             </Button>
-            <Box justifyItems="center" alignItems="center">
-              <Typography variant="h5">Değerleriniz</Typography>
-              <Typography variant="subtitle2">
-                Destedeki değerleri 2 kutuya ayırınız.
-              </Typography>
-              <Typography variant="body2">
-                Size uyanlar bir tarafa, uymayanlar diğer tarafa
-              </Typography>
-            </Box>
+            <ExercisePageTypography
+              title="Değerleriniz"
+              subtitle1="Destedeki değerleri 2 kutuya ayırınız."
+              subtitle2="Size uyanlar bir tarafa, uymayanları diğer tarafa ayırınnız!"
+            />
+            {/* Typography */}
             <Button
               endIcon={<ArrowForwardIcon />}
               variant="contained"
@@ -116,7 +60,7 @@ export default function ValuesExercisePage() {
         </Grid>
         <Grid size={5}>
           <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
-            Tutulacaklar Kutusu
+            Atılacaklar Kutusu
           </Typography>
           <ValuesPile />
         </Grid>
@@ -125,14 +69,11 @@ export default function ValuesExercisePage() {
         </Grid>
         <Grid size={5}>
           <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
-            Atılacaklar Kutusu
+            Tutulacaklar Kutusu
           </Typography>
           <ValuesPile />
         </Grid>
       </Grid>
-      <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-        <Box sx={{ flex: "1 1 auto" }} />
-      </Box>
     </Box>
   );
 }
