@@ -3,13 +3,12 @@ import {
   Card,
   CardActionArea,
   CardContent,
-  Fab,
   Typography,
 } from "@mui/material";
 
 export default function ValueStack() {
   return (
-    <Box maxWidth={200}>
+    <Box>
       <Card
         sx={{
           minHeight: 250,
