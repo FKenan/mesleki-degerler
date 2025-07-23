@@ -1,16 +1,28 @@
-import { Button, Grid } from "@mui/material";
+import { Card, CardActionArea, Grid, Typography } from "@mui/material";
 
 export default function Value() {
   return (
     <Grid size={{ sm: 4, md: 3 }}>
-      <Button
+      <Card
+        square={false}
         variant="outlined"
-        size="small"
-        sx={{ fontWeight: "bold", fontSize: 12, p: 1, height: "100%" }}
+        sx={{
+          borderRadius: 3,
+          height: "100%",
+          borderColor: "primary.light",
+        }}
       >
-        Lorem ipsum dolor.
-        {/* Değer Adı */}
-      </Button>
+        <CardActionArea sx={{ p: 2, height: "100%" }}>
+          <Typography
+            variant="body2"
+            fontWeight="bold"
+            color="primary"
+            align="center"
+          >
+            Başlık
+          </Typography>
+        </CardActionArea>
+      </Card>
     </Grid>
   );
 }

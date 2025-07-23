@@ -1,5 +1,6 @@
 import { Grid, Paper } from "@mui/material";
 import Value from "./Value";
+import ValueWithDescription from "./ValueWithDescription";
 
 const data = ["", "", "", "", "", "", ""];
 
@@ -15,6 +16,7 @@ export default function ValuesPile() {
         {data.map((item, ind) => (
           <Value key={ind} />
         ))}
+        <ValueWithDescription />
       </Grid>
     </Paper>
   );
