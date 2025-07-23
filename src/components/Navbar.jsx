@@ -4,8 +4,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import HomeIcon from "@mui/icons-material/Home";
 
-const pages = [];
-
 export default function Navbar() {
   return (
     <AppBar position="static">

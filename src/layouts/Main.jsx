@@ -10,9 +10,9 @@ export default function MainLayout() {
     <>
       {/* <Navbar /> */}
       {/* <HomePage /> */}
-      {/* <ValuesExercisePage /> */}
+      <ValuesExercisePage />
       {/* <ValuesDeck /> */}
-      <ValuesPile />
+      {/* <ValuesPile /> */}
       {/* <Footer /> */}
     </>
   );
