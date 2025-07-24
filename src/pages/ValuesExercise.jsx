@@ -6,6 +6,7 @@ import ValuesPile from "../components/ValuesPile";
 import ValueStack from "../components/ValueStack";
 import ExercisePageTypography from "../components/ExercisePageTypography";
 import Appbar from "../components/Appbar";
+import ResultPage from "../components/Result";
 
 const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
 
@@ -74,6 +75,7 @@ export default function ValuesExercisePage() {
           <ValuesPile />
         </Grid>
       </Grid>
+      <ResultPage />
     </Box>
   );
 }

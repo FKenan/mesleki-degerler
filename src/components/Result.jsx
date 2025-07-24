@@ -1,3 +1,6 @@
+import { Paper } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
+
 const paginationModel = { page: 0, pageSize: 5 };
 
 const columns = [
