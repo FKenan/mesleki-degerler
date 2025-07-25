@@ -7,8 +7,22 @@ import {
   Typography,
 } from "@mui/material";
 import StartIcon from "@mui/icons-material/Start";
+import { useEffect, useState } from "react";
+import Value from "./Value";
 
 export default function HomePage() {
+  const [values, setValues] = useState([]);
+
+  useEffect(() => {
+    async function getValues() {
+      const res = await fetch("https://localhost:44316/api/Degerler/getall");
+      const data = await res.json();
+      setValues(data);
+      await console.log(data);
+    }
+    getValues();
+  }, []);
+
   return (
     <Container sx={{ mt: 5 }}>
       <Stack spacing={12} textAlign="center">
@@ -39,9 +53,10 @@ export default function HomePage() {
             şekillendiren yol gösterici ilkeler olarak hizmet eder."
           </Typography>
         </Stack>
-        <Grid container spacing={2}>
-          <Grid size={{ xs: 12, sm: 6 }}>{/* <ValuesCard /> */}</Grid>
-          <Grid size={{ xs: 12, sm: 6 }}>{/* <ValuesCard /> */}</Grid>
+        <Grid container spacing={4} justifyContent="center">
+          {values.map((value) => (
+            <Value key={value.id} value={value} />
+          ))}
         </Grid>
         <Stack
           spacing={3}
