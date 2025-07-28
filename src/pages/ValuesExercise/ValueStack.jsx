@@ -6,9 +6,9 @@ import {
   Typography,
 } from "@mui/material";
 
-export default function ValueStack() {
+export default function ValueStack({ value, index }) {
   return (
-    <Box>
+    <Box position="absolute" top={-120}>
       <Card
         sx={{
           minHeight: 250,

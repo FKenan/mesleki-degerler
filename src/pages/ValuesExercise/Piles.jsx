@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import ValuesPile from "./ValuesPile";
 import ValueStack from "./ValueStack";
 
@@ -12,10 +12,12 @@ export default function Piles({ haveValueStack, values }) {
         <ValuesPile />
       </Grid>
       {haveValueStack && (
-        <Grid size={2}>
-          {values.map((value, ind) => (
-            <ValueStack value={value} index={ind} />
-          ))}
+        <Grid size={2} position="relative">
+          <Box position="relative">
+            {values.map((value, ind) => (
+              <ValueStack value={value} index={ind} />
+            ))}
+          </Box>
         </Grid>
       )}
       <Grid size={haveValueStack ? 5 : 6} px={1}>

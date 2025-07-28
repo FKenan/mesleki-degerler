@@ -8,7 +8,13 @@ export default function ValuesPile({ values }) {
     <Paper
       square={false}
       elevation={3}
-      sx={{ borderRadius: 5, p: 2, height: "100%", minHeight: 300 }}
+      sx={{
+        borderRadius: 5,
+        p: 2,
+        height: "100%",
+        minHeight: 300,
+        position: "relative",
+      }}
     >
       <Grid container spacing={2}>
         {values &&
