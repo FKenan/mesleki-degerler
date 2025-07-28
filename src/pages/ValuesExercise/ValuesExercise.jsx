@@ -2,11 +2,10 @@ import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ValuesPile from "../components/ValuesPile";
-import ValueStack from "../components/ValueStack";
-import ExercisePageTypography from "../components/ExercisePageTypography";
-import Appbar from "../components/Appbar";
-import ResultPage from "../components/Result";
+import ValuesPile from "./ValuesPile";
+import ValueStack from "./ValueStack";
+import ExercisePageTypography from "./ExercisePageTypography";
+import Appbar from "./Appbar";
 
 const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
 
@@ -48,7 +47,6 @@ export default function ValuesExercisePage() {
               subtitle1="Destedeki değerleri 2 kutuya ayırınız."
               subtitle2="Size uyanlar bir tarafa, uymayanları diğer tarafa ayırınnız!"
             />
-            {/* Typography */}
             <Button
               endIcon={<ArrowForwardIcon />}
               variant="contained"
@@ -75,7 +73,6 @@ export default function ValuesExercisePage() {
           <ValuesPile />
         </Grid>
       </Grid>
-      <ResultPage />
     </Box>
   );
 }
