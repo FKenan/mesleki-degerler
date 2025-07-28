@@ -2,10 +2,9 @@ import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ValuesPile from "./ValuesPile";
-import ValueStack from "./ValueStack";
 import ExercisePageTypography from "./ExercisePageTypography";
 import Appbar from "./Appbar";
+import Piles from "./Piles";
 
 const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
 
@@ -57,21 +56,8 @@ export default function ValuesExercisePage() {
             </Button>
           </Stack>
         </Grid>
-        <Grid size={5}>
-          <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
-            Atılacaklar Kutusu
-          </Typography>
-          <ValuesPile />
-        </Grid>
-        <Grid size={2} px={2}>
-          <ValueStack />
-        </Grid>
-        <Grid size={5}>
-          <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
-            Tutulacaklar Kutusu
-          </Typography>
-          <ValuesPile />
-        </Grid>
+        {activeStep === 0 && <Piles haveValuesStack={true} />}
+        {activeStep === 1 && <Piles haveValuesStack={false} />}
       </Grid>
     </Box>
   );

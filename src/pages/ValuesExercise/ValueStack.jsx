@@ -13,7 +13,6 @@ export default function ValueStack() {
         sx={{
           minHeight: 250,
           borderRadius: 5,
-          mb: 2,
           textAlign: "center",
           position: "relative",
         }}
@@ -22,7 +21,7 @@ export default function ValueStack() {
           sx={{
             borderRadius: 0,
             position: "absolute",
-            width: 40,
+            width: "25%",
             height: "100%",
             left: 0,
             ":hover": { bgcolor: "error.main", opacity: 0.6 },
@@ -32,7 +31,7 @@ export default function ValueStack() {
           sx={{
             borderRadius: 0,
             position: "absolute",
-            width: 40,
+            width: "25%",
             height: "100%",
             right: 0,
             ":hover": { bgcolor: "success.main", opacity: 0.6 },
