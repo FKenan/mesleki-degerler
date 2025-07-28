@@ -1,15 +1,29 @@
-import { Box, Button, Grid, Stack, Typography } from "@mui/material";
-import { useState } from "react";
+import { Box, Button, Grid, Stack } from "@mui/material";
+import { useEffect, useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ExercisePageTypography from "./ExercisePageTypography";
 import Appbar from "./Appbar";
 import Piles from "./Piles";
+import ResultPage from "./Result";
 
 const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
 
 export default function ValuesExercisePage() {
   const [activeStep, setActiveStep] = useState(0);
+  const [values, setValues] = useState([]);
+  const [selectedValues, setSelectedValues] = useState([]);
+  const [first5Value, setFirst5Value] = useState([]);
+
+  useEffect(() => {
+    async function getValues() {
+      var res = await fetch("https://localhost:44316/api/Degerler/getall");
+      var data = await res.json();
+      setValues(data);
+    }
+
+    getValues();
+  }, []);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -41,11 +55,27 @@ export default function ValuesExercisePage() {
             >
               Geri
             </Button>
-            <ExercisePageTypography
-              title="Değerleriniz"
-              subtitle1="Destedeki değerleri 2 kutuya ayırınız."
-              subtitle2="Size uyanlar bir tarafa, uymayanları diğer tarafa ayırınnız!"
-            />
+            {activeStep === 0 && (
+              <ExercisePageTypography
+                title="Değerleriniz"
+                subtitle1="Destedeki değerleri 2 kutuya ayırınız."
+                subtitle2="Size uyanlar bir tarafa, uymayanları diğer tarafa ayırınız!"
+              />
+            )}
+            {activeStep === 1 && (
+              <ExercisePageTypography
+                title="Değerleriniz"
+                subtitle1="Size uyan ilk 5 değerinizi seçiniz."
+                subtitle2="Seçtiğiniz değerlerden öncelikli olan 5 tanesini seçiniz!"
+              />
+            )}
+            {activeStep === 2 && (
+              <ExercisePageTypography
+                title="Uygun Bölümler"
+                subtitle1="Seçimlerinize uygun bölümler aşağıda listelendi."
+                subtitle2={`Seçimleriniz: ${null}`}
+              />
+            )}
             <Button
               endIcon={<ArrowForwardIcon />}
               variant="contained"
@@ -56,8 +86,11 @@ export default function ValuesExercisePage() {
             </Button>
           </Stack>
         </Grid>
-        {activeStep === 0 && <Piles haveValuesStack={true} />}
-        {activeStep === 1 && <Piles haveValuesStack={false} />}
+        {activeStep === 0 && <Piles haveValueStack={true} values={values} />}
+        {activeStep === 1 && (
+          <Piles haveValueStack={false} values={selectedValues} />
+        )}
+        {activeStep === 2 && <ResultPage />}
       </Grid>
     </Box>
   );

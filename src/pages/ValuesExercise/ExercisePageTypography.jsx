@@ -8,7 +8,7 @@ export default function ExercisePageTypography({
   return (
     <Box justifyItems="center" alignItems="center">
       <Typography variant="h5">{title}</Typography>
-      <Typography variant="subtitle2">{subtitle1}</Typography>
+      <Typography variant="h6">{subtitle1}</Typography>
       <Typography variant="body2">{subtitle2}</Typography>
     </Box>
   );

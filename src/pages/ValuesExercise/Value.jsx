@@ -1,10 +1,9 @@
 import { Card, CardActionArea, Grid, Typography } from "@mui/material";
 
-export default function Value() {
+export default function Value({ value }) {
   return (
-    <Grid size={{ sm: 4, md: 3 }}>
+    <Grid size={{ md: 3, l: 4 }}>
       <Card
-        square={false}
         variant="outlined"
         sx={{
           borderRadius: 3,
@@ -12,14 +11,16 @@ export default function Value() {
           borderColor: "primary.light",
         }}
       >
-        <CardActionArea sx={{ p: 1, height: "100%" }}>
+        <CardActionArea sx={{ height: "100%" }}>
           <Typography
+            p={0.5}
             variant="body2"
+            fontSize={12}
             fontWeight="bold"
             color="primary"
             align="center"
           >
-            Başlık
+            {value.ad}
           </Typography>
         </CardActionArea>
       </Card>

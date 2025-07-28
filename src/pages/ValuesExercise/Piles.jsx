@@ -2,21 +2,23 @@ import { Grid, Typography } from "@mui/material";
 import ValuesPile from "./ValuesPile";
 import ValueStack from "./ValueStack";
 
-export default function Piles({ haveValuesStack }) {
+export default function Piles({ haveValueStack, values }) {
   return (
     <>
-      <Grid size={haveValuesStack ? 5 : 6} px={1}>
+      <Grid size={haveValueStack ? 5 : 6} px={1}>
         <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
           Atılacaklar Kutusu
         </Typography>
         <ValuesPile />
       </Grid>
-      {haveValuesStack && (
+      {haveValueStack && (
         <Grid size={2}>
-          <ValueStack />
+          {values.map((value, ind) => (
+            <ValueStack value={value} index={ind} />
+          ))}
         </Grid>
       )}
-      <Grid size={haveValuesStack ? 5 : 6} px={1}>
+      <Grid size={haveValueStack ? 5 : 6} px={1}>
         <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
           Tutulacaklar Kutusu
         </Typography>
