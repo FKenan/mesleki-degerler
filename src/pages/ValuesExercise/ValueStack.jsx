@@ -6,9 +6,9 @@ import {
   Typography,
 } from "@mui/material";
 
-export default function ValueStack({ value, index }) {
+export default function ValueStack({ value, addToKeepPile, addToDiscardPile }) {
   return (
-    <Box position="absolute" top={-120}>
+    <Box position="absolute" top={-140}>
       <Card
         sx={{
           minHeight: 250,
@@ -18,6 +18,7 @@ export default function ValueStack({ value, index }) {
         }}
       >
         <CardActionArea
+          onClick={() => addToDiscardPile(value)}
           sx={{
             borderRadius: 0,
             position: "absolute",
@@ -28,6 +29,7 @@ export default function ValueStack({ value, index }) {
           }}
         ></CardActionArea>
         <CardActionArea
+          onClick={() => addToKeepPile(value)}
           sx={{
             borderRadius: 0,
             position: "absolute",
@@ -38,19 +40,14 @@ export default function ValueStack({ value, index }) {
           }}
         ></CardActionArea>
         <Typography variant="subtitle1" fontWeight="bold" marginTop={1}>
-          Başlık
+          {value.ad}
         </Typography>
         <CardContent sx={{ py: 0 }}>
           <Typography variant="caption" sx={{ lineHeight: 1 }}>
-            Hakkaniyet, eşitlik ve doğru olanın peşinden gidilmesini vurgular.
-            Etik ilkeleri destekleme, sosyal eşitliği teşvik etmeve bireylere
-            adil ve tarafsız davranılmasını sağlama inancını yansıtır.
+            {value.aciklama}
           </Typography>
         </CardContent>
       </Card>
-      <Typography variant="subtitle2" align="center">
-        Kalan değer adeti
-      </Typography>
     </Box>
   );
 }

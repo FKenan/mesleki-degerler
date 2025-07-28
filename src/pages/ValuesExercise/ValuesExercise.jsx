@@ -12,7 +12,8 @@ const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
 export default function ValuesExercisePage() {
   const [activeStep, setActiveStep] = useState(0);
   const [values, setValues] = useState([]);
-  const [selectedValues, setSelectedValues] = useState([]);
+  const [keepPile, setKeepPile] = useState([]);
+  const [discardPile, setDiscardPile] = useState([]);
   const [first5Value, setFirst5Value] = useState([]);
 
   useEffect(() => {
@@ -21,9 +22,22 @@ export default function ValuesExercisePage() {
       var data = await res.json();
       setValues(data);
     }
-
     getValues();
   }, []);
+
+  const addToKeepPile = (value) => {
+    setKeepPile({ ...values, value });
+    removeValue(value);
+  };
+
+  const addToDiscardPile = (value) => {
+    setDiscardPile({ ...values, value });
+    removeValue(value);
+  };
+
+  const removeValue = (value) => {
+    setValues(values.filter((x) => value.id !== x.id));
+  };
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -39,7 +53,7 @@ export default function ValuesExercisePage() {
   return (
     <Box height="100%" sx={{ mx: 2 }}>
       <Appbar handleReset={handleReset} activeStep={activeStep} steps={steps} />
-      <Grid container spacing={1} alignItems="center" justifyContent="center">
+      <Grid container spacing={1} alignItems="center">
         <Grid size={12} sx={{ my: 2 }}>
           <Stack
             alignItems="center"
@@ -86,10 +100,15 @@ export default function ValuesExercisePage() {
             </Button>
           </Stack>
         </Grid>
-        {activeStep === 0 && <Piles haveValueStack={true} values={values} />}
-        {activeStep === 1 && (
-          <Piles haveValueStack={false} values={selectedValues} />
+        {activeStep === 0 && (
+          <Piles
+            haveValueStack={true}
+            values={values}
+            addToKeepPile={addToKeepPile}
+            addToDiscardPile={addToDiscardPile}
+          />
         )}
+        {activeStep === 1 && <Piles haveValueStack={false} />}
         {activeStep === 2 && <ResultPage />}
       </Grid>
     </Box>
