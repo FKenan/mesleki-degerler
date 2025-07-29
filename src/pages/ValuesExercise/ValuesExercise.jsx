@@ -6,6 +6,7 @@ import ExercisePageTypography from "./ExercisePageTypography";
 import Appbar from "./Appbar";
 import Piles from "./Piles";
 import ResultPage from "./Result";
+import PilesStep2 from "./PilesStep2";
 
 const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
 
@@ -28,15 +29,11 @@ export default function ValuesExercisePage() {
   const addToKeepPile = (value) => {
     setKeepPile([...keepPile, value]);
     removeValue(value);
-    console.log("eklendi");
-    console.log(keepPile);
   };
 
   const addToDiscardPile = (value) => {
     setDiscardPile([...discardPile, value]);
     removeValue(value);
-    console.log("silindi");
-    console.log(discardPile);
   };
 
   const removeValue = (value) => {
@@ -44,6 +41,9 @@ export default function ValuesExercisePage() {
   };
 
   const handleNext = () => {
+    if (activeStep === 0) {
+      setDiscardPile([]);
+    }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
@@ -106,7 +106,6 @@ export default function ValuesExercisePage() {
         </Grid>
         {activeStep === 0 && (
           <Piles
-            haveValueStack={true}
             values={values}
             addToKeepPile={addToKeepPile}
             addToDiscardPile={addToDiscardPile}
@@ -114,7 +113,14 @@ export default function ValuesExercisePage() {
             discardPile={discardPile}
           />
         )}
-        {activeStep === 1 && <Piles haveValueStack={false} />}
+        {activeStep === 1 && (
+          <PilesStep2
+            addToKeepPile={addToKeepPile}
+            addToDiscardPile={addToDiscardPile}
+            keepPile={keepPile}
+            discardPile={discardPile}
+          />
+        )}
         {activeStep === 2 && <ResultPage />}
       </Grid>
     </Box>

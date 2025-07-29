@@ -8,7 +8,7 @@ import {
 
 export default function ValueStack({ value, addToKeepPile, addToDiscardPile }) {
   return (
-    <Box position="absolute" top={-140}>
+    <Box position="absolute" top={70}>
       <Card
         sx={{
           height: 250,
