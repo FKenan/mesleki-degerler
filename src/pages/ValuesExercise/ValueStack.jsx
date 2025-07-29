@@ -11,7 +11,8 @@ export default function ValueStack({ value, addToKeepPile, addToDiscardPile }) {
     <Box position="absolute" top={-140}>
       <Card
         sx={{
-          minHeight: 250,
+          height: 250,
+          width: 215,
           borderRadius: 5,
           textAlign: "center",
           position: "relative",

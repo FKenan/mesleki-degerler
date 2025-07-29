@@ -26,13 +26,17 @@ export default function ValuesExercisePage() {
   }, []);
 
   const addToKeepPile = (value) => {
-    setKeepPile({ ...values, value });
+    setKeepPile([...keepPile, value]);
     removeValue(value);
+    console.log("eklendi");
+    console.log(keepPile);
   };
 
   const addToDiscardPile = (value) => {
-    setDiscardPile({ ...values, value });
+    setDiscardPile([...discardPile, value]);
     removeValue(value);
+    console.log("silindi");
+    console.log(discardPile);
   };
 
   const removeValue = (value) => {
@@ -106,6 +110,8 @@ export default function ValuesExercisePage() {
             values={values}
             addToKeepPile={addToKeepPile}
             addToDiscardPile={addToDiscardPile}
+            keepPile={keepPile}
+            discardPile={discardPile}
           />
         )}
         {activeStep === 1 && <Piles haveValueStack={false} />}

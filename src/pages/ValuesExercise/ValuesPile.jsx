@@ -1,8 +1,6 @@
 import { Grid, Paper } from "@mui/material";
 import Value from "./Value";
 
-const data = [];
-
 export default function ValuesPile({ values }) {
   return (
     <Paper
@@ -13,12 +11,12 @@ export default function ValuesPile({ values }) {
         p: 2,
         height: "100%",
         minHeight: 300,
-        position: "relative",
       }}
     >
       <Grid container spacing={2}>
-        {values &&
-          values.map((value, ind) => <Value key={ind} value={value} />)}
+        {values.map((value, ind) => (
+          <Value key={ind} value={value} />
+        ))}
       </Grid>
     </Paper>
   );

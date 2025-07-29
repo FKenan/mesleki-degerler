@@ -7,14 +7,16 @@ export default function Piles({
   values,
   addToKeepPile,
   addToDiscardPile,
+  keepPile,
+  discardPile,
 }) {
   return (
     <>
-      <Grid size={haveValueStack ? 5 : 6} px={1}>
+      <Grid size="grow" px={1}>
         <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
           Atılacaklar Kutusu
         </Typography>
-        <ValuesPile />
+        <ValuesPile values={discardPile} />
       </Grid>
       {haveValueStack && (
         <Grid size={2} position="relative">
@@ -28,16 +30,13 @@ export default function Piles({
               />
             ))}
           </Box>
-          <Typography variant="subtitle2" align="center">
-            Kalan değer adeti
-          </Typography>
         </Grid>
       )}
-      <Grid size={haveValueStack ? 5 : 6} px={1}>
+      <Grid size="grow" px={1}>
         <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
           Tutulacaklar Kutusu
         </Typography>
-        <ValuesPile />
+        <ValuesPile values={keepPile} />
       </Grid>
     </>
   );
