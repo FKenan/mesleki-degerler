@@ -15,7 +15,7 @@ export default function Piles({
         <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
           Atılacaklar Kutusu
         </Typography>
-        <ValuesPile values={discardPile} />
+        <ValuesPile values={discardPile} action={addToKeepPile} />
       </Grid>
       <Grid size={2} minWidth={215}>
         <Box position="relative" display="flex" height="100%">
@@ -36,7 +36,7 @@ export default function Piles({
         <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
           Tutulacaklar Kutusu
         </Typography>
-        <ValuesPile values={keepPile} />
+        <ValuesPile values={keepPile} action={addToDiscardPile} />
       </Grid>
     </Grid>
   );

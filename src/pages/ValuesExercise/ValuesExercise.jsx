@@ -29,15 +29,36 @@ export default function ValuesExercisePage() {
   const addToKeepPile = (value) => {
     setKeepPile([...keepPile, value]);
     removeValue(value);
+    removeValueFromDiscardPile(value);
+    removeValueFromFirst5Value(value);
   };
 
   const addToDiscardPile = (value) => {
     setDiscardPile([...discardPile, value]);
     removeValue(value);
+    removeValueFromKeepPile(value);
+  };
+
+  const addtoFirst5Value = (value) => {
+    setFirst5Value([...first5Value, value]);
+    removeValueFromKeepPile(value);
   };
 
   const removeValue = (value) => {
     setValues(values.filter((x) => value.id !== x.id));
+  };
+
+  const removeValueFromKeepPile = (value) => {
+    setKeepPile(keepPile.filter((x) => value.id !== x.id));
+  };
+
+  const removeValueFromDiscardPile = (value) => {
+    setDiscardPile(discardPile.filter((x) => value.id !== x.id));
+  };
+
+  const removeValueFromFirst5Value = (value) => {
+    console.log(value);
+    setFirst5Value(first5Value.filter((x) => value.id !== x.id));
   };
 
   const handleNext = () => {
@@ -116,9 +137,9 @@ export default function ValuesExercisePage() {
         {activeStep === 1 && (
           <PilesStep2
             addToKeepPile={addToKeepPile}
-            addToDiscardPile={addToDiscardPile}
+            addtoFirst5Value={addtoFirst5Value}
             keepPile={keepPile}
-            discardPile={discardPile}
+            first5Value={first5Value}
           />
         )}
         {activeStep === 2 && <ResultPage />}

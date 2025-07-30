@@ -1,6 +1,6 @@
 import { Card, CardActionArea, Grid, Typography } from "@mui/material";
 
-export default function Value({ value }) {
+export default function Value({ value, action }) {
   return (
     <Grid size={{ md: 3, l: 4 }}>
       <Card
@@ -11,7 +11,7 @@ export default function Value({ value }) {
           borderColor: "primary.light",
         }}
       >
-        <CardActionArea sx={{ height: "100%" }}>
+        <CardActionArea sx={{ height: "100%" }} onClick={() => action(value)}>
           <Typography
             p={0.5}
             variant="body2"
