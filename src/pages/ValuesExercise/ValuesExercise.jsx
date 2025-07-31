@@ -142,7 +142,7 @@ export default function ValuesExercisePage() {
             first5Value={first5Value}
           />
         )}
-        {activeStep === 2 && <ResultPage />}
+        {activeStep === 2 && <ResultPage selectedValues={first5Value} />}
       </Grid>
     </Box>
   );

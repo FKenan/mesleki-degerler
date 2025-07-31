@@ -1,5 +1,6 @@
 import { Paper } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import { useEffect } from "react";
 
 const paginationModel = { page: 0, pageSize: 5 };
 
@@ -30,7 +31,27 @@ const rows = [
   // tablo satırları
 ];
 
-export default function ResultPage() {
+export default function ResultPage({ selectedValues }) {
+  useEffect(() => {
+    const getTableData = async (values) => {
+      const ids = values.map((item) => item.id).join(",");
+      const url = `https://localhost:44316/api/Degerler/sendlist?ids=${ids}`;
+      try {
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const result = await response.json();
+        console.log(result);
+      } catch (error) {
+        console.error("API gönderim hatası:", error);
+      }
+    };
+    getTableData(selectedValues);
+  }, []);
+
   return (
     <Paper sx={{ height: 400, width: "100%" }}>
       <DataGrid
