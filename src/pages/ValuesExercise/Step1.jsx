@@ -1,23 +1,21 @@
 import { Button, Grid, Stack } from "@mui/material";
-import ResultTable from "./ResultTable";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ExercisePageTypography from "./ExercisePageTypography";
+import Piles from "./Piles";
 
-export default function ResultPage({
-  selectedValues,
-  activeStep,
-  handleBack,
+const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
+
+export default function Step1({
+  addToKeepPile,
+  addToDiscardPile,
   handleNext,
+  handleBack,
+  activeStep,
+  values,
+  keepPile,
+  discardPile,
 }) {
-  const toText = () => {
-    var text = "";
-    selectedValues.forEach((element) => {
-      text += element.ad + ", ";
-    });
-    return text.trim().slice(0, -1);
-  };
-
   return (
     <Grid container spacing={1} alignItems="center">
       <Grid size={12} sx={{ my: 2 }}>
@@ -36,21 +34,27 @@ export default function ResultPage({
             Geri
           </Button>
           <ExercisePageTypography
-            title="Uygun Bölümler"
-            subtitle1="Seçimlerinize uygun bölümler aşağıda listelendi."
-            subtitle2={`Seçimleriniz: ${toText()}`}
+            title="Değerleriniz"
+            subtitle1="Destedeki değerleri 2 kutuya ayırınız."
+            subtitle2="Size uyanlar bir tarafa, uymayanları diğer tarafa ayırınız!"
           />
           <Button
             endIcon={<ArrowForwardIcon />}
             variant="contained"
             onClick={handleNext}
-            disabled
+            disabled={activeStep === steps.length - 1 || values.length !== 0}
           >
             İleri
           </Button>
         </Stack>
       </Grid>
-      <ResultTable selectedValues={selectedValues} />
+      <Piles
+        values={values}
+        addToKeepPile={addToKeepPile}
+        addToDiscardPile={addToDiscardPile}
+        keepPile={keepPile}
+        discardPile={discardPile}
+      />
     </Grid>
   );
 }

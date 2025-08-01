@@ -1,12 +1,9 @@
-import { Box, Button, Grid, Stack } from "@mui/material";
+import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ExercisePageTypography from "./ExercisePageTypography";
 import Appbar from "./Appbar";
-import Piles from "./Piles";
 import ResultPage from "./Result";
-import PilesStep2 from "./PilesStep2";
+import Step1 from "./Step1";
+import Step2 from "./Step2";
 
 const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
 
@@ -75,83 +72,40 @@ export default function ValuesExercisePage() {
     setActiveStep(0);
   };
 
-  const toText = () => {
-    var text = "";
-    first5Value.forEach((element) => {
-      text += element.ad + ", ";
-    });
-    return text.trim().slice(0, -1);
-  };
-
   return (
     <Box height="100%" sx={{ mx: 2 }}>
       <Appbar handleReset={handleReset} activeStep={activeStep} steps={steps} />
-      <Grid container spacing={1} alignItems="center">
-        <Grid size={12} sx={{ my: 2 }}>
-          <Stack
-            alignItems="center"
-            justifyContent="center"
-            direction="row"
-            spacing={5}
-          >
-            <Button
-              startIcon={<ArrowBackIcon />}
-              variant="contained"
-              disabled={activeStep === 0}
-              onClick={handleBack}
-            >
-              Geri
-            </Button>
-            {activeStep === 0 && (
-              <ExercisePageTypography
-                title="Değerleriniz"
-                subtitle1="Destedeki değerleri 2 kutuya ayırınız."
-                subtitle2="Size uyanlar bir tarafa, uymayanları diğer tarafa ayırınız!"
-              />
-            )}
-            {activeStep === 1 && (
-              <ExercisePageTypography
-                title="Değerleriniz"
-                subtitle1="Size uyan ilk 5 değerinizi seçiniz."
-                subtitle2="Seçtiğiniz değerlerden öncelikli olan 5 tanesini seçiniz!"
-              />
-            )}
-            {activeStep === 2 && (
-              <ExercisePageTypography
-                title="Uygun Bölümler"
-                subtitle1="Seçimlerinize uygun bölümler aşağıda listelendi."
-                subtitle2={`Seçimleriniz: ${toText()}`}
-              />
-            )}
-            <Button
-              endIcon={<ArrowForwardIcon />}
-              variant="contained"
-              onClick={handleNext}
-              disabled={activeStep === steps.length - 1}
-            >
-              İleri
-            </Button>
-          </Stack>
-        </Grid>
-        {activeStep === 0 && (
-          <Piles
-            values={values}
-            addToKeepPile={addToKeepPile}
-            addToDiscardPile={addToDiscardPile}
-            keepPile={keepPile}
-            discardPile={discardPile}
-          />
-        )}
-        {activeStep === 1 && (
-          <PilesStep2
-            addToKeepPile={addToKeepPile}
-            addtoFirst5Value={addtoFirst5Value}
-            keepPile={keepPile}
-            first5Value={first5Value}
-          />
-        )}
-        {activeStep === 2 && <ResultPage selectedValues={first5Value} />}
-      </Grid>
+      {activeStep === 0 && (
+        <Step1
+          addToKeepPile={addToKeepPile}
+          addToDiscardPile={addToDiscardPile}
+          handleNext={handleNext}
+          handleBack={handleBack}
+          values={values}
+          activeStep={activeStep}
+          keepPile={keepPile}
+          discardPile={discardPile}
+        />
+      )}
+      {activeStep === 1 && (
+        <Step2
+          addToKeepPile={addToKeepPile}
+          addtoFirst5Value={addtoFirst5Value}
+          handleNext={handleNext}
+          handleBack={handleBack}
+          activeStep={activeStep}
+          keepPile={keepPile}
+          first5Value={first5Value}
+        />
+      )}
+      {activeStep === 2 && (
+        <ResultPage
+          selectedValues={first5Value}
+          activeStep={activeStep}
+          handleBack={handleBack}
+          handleNext={handleNext}
+        />
+      )}
     </Box>
   );
 }
