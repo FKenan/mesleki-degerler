@@ -19,7 +19,7 @@ export default function ValuesExercisePage() {
 
   useEffect(() => {
     async function getValues() {
-      var res = await fetch("https://localhost:44316/api/Degerler/getall");
+      var res = await fetch("https://localhost:44316/api/Degerler");
       var data = await res.json();
       setValues(data);
     }
@@ -57,7 +57,6 @@ export default function ValuesExercisePage() {
   };
 
   const removeValueFromFirst5Value = (value) => {
-    console.log(value);
     setFirst5Value(first5Value.filter((x) => value.id !== x.id));
   };
 

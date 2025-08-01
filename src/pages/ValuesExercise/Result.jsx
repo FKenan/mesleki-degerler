@@ -1,50 +1,46 @@
 import { Paper } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { useEffect } from "react";
-
-const paginationModel = { page: 0, pageSize: 5 };
+import { useEffect, useState } from "react";
+import { trTR } from "@mui/x-data-grid/locales";
 
 const columns = [
-  // Sample data
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "firstName", headerName: "First name", width: 130 },
-  { field: "lastName", headerName: "Last name", width: 130 },
+  { field: "bolumAd", headerName: "Bölüm", width: 250 },
+  { field: "fakulteAd", headerName: "Fakülte", width: 200 },
   {
-    field: "age",
-    headerName: "Age",
-    type: "number",
-    width: 90,
+    field: "fakulteUrl",
+    headerName: "Website",
+    width: 250,
   },
   {
-    field: "fullName",
-    headerName: "Full name",
-    description: "This column has a value getter and is not sortable.",
+    field: "durum",
+    headerName: "Lisans-Önlisans",
+    width: 150,
+  },
+  {
+    field: "degerler",
+    headerName: "Degerler",
     sortable: false,
-    width: 160,
-    valueGetter: (value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
+    width: 300,
+    valueGetter: (value) => {
+      var text = "";
+      value.forEach((element) => {
+        text += element.ad + ",";
+      });
+      return text;
+    },
   },
-];
-
-const rows = [
-  { id: 1, lastName: "asdf", firstName: "dsfsd", age: 35 },
-  { id: 2, lastName: "asdf", firstName: "dfsa", age: 42 },
-  // tablo satırları
 ];
 
 export default function ResultPage({ selectedValues }) {
+  const [tableData, setTableData] = useState([]);
   useEffect(() => {
     const getTableData = async (values) => {
       const ids = values.map((item) => item.id).join(",");
-      const url = `https://localhost:44316/api/Degerler/sendlist?ids=${ids}`;
+      const url = `https://localhost:44316/api/Bolumler?ids=${ids}`;
       try {
-        const response = await fetch(url, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(url);
         const result = await response.json();
-        console.log(result);
+        setTableData(await result);
       } catch (error) {
         console.error("API gönderim hatası:", error);
       }
@@ -55,11 +51,11 @@ export default function ResultPage({ selectedValues }) {
   return (
     <Paper sx={{ height: 400, width: "100%" }}>
       <DataGrid
-        rows={rows}
+        rows={tableData}
         columns={columns}
-        initialState={{ pagination: { paginationModel } }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
+        localeText={trTR.components.MuiDataGrid.defaultProps.localeText}
+        initialState={{ pagination: { paginationModel: { pageSize: 25 } } }}
+        pageSizeOptions={[10, 25, 50, { value: -1, label: "All" }]}
         sx={{ border: 0 }}
       />
     </Paper>
