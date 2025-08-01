@@ -7,15 +7,16 @@ const columns = [
   { field: "bolumAd", headerName: "Bölüm", width: 250 },
   { field: "fakulteAd", headerName: "Fakülte", width: 200 },
   {
-    field: "fakulteUrl",
-    headerName: "Website",
-    width: 250,
-  },
-  {
     field: "durum",
     headerName: "Lisans-Önlisans",
     width: 150,
   },
+  {
+    field: "fakulteUrl",
+    headerName: "Website",
+    width: 250,
+  },
+
   {
     field: "degerler",
     headerName: "Degerler",
@@ -24,9 +25,9 @@ const columns = [
     valueGetter: (value) => {
       var text = "";
       value.forEach((element) => {
-        text += element.ad + ",";
+        text += element.ad + ", ";
       });
-      return text;
+      return text.trim().slice(0, -1);
     },
   },
 ];

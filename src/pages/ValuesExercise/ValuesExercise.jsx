@@ -70,8 +70,17 @@ export default function ValuesExercisePage() {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
+
   const handleReset = () => {
     setActiveStep(0);
+  };
+
+  const toText = () => {
+    var text = "";
+    first5Value.forEach((element) => {
+      text += element.ad + ", ";
+    });
+    return text.trim().slice(0, -1);
   };
 
   return (
@@ -111,7 +120,7 @@ export default function ValuesExercisePage() {
               <ExercisePageTypography
                 title="Uygun Bölümler"
                 subtitle1="Seçimlerinize uygun bölümler aşağıda listelendi."
-                subtitle2={`Seçimleriniz: ${null}`}
+                subtitle2={`Seçimleriniz: ${toText()}`}
               />
             )}
             <Button
