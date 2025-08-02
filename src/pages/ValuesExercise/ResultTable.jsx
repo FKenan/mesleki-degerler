@@ -16,7 +16,6 @@ const columns = [
     headerName: "Website",
     width: 250,
   },
-
   {
     field: "degerler",
     headerName: "Degerler",
@@ -34,16 +33,21 @@ const columns = [
 
 export default function ResultTable({ selectedValues }) {
   const [tableData, setTableData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const getTableData = async (values) => {
       const ids = values.map((item) => item.id).join(",");
       const url = `https://localhost:44316/api/Bolumler?ids=${ids}`;
       try {
+        setLoading(true);
         const response = await fetch(url);
         const result = await response.json();
-        setTableData(await result);
+        setTableData(result);
       } catch (error) {
         console.error("API gönderim hatası:", error);
+      } finally {
+        setLoading(false);
       }
     };
     getTableData(selectedValues);
@@ -52,6 +56,13 @@ export default function ResultTable({ selectedValues }) {
   return (
     <Paper sx={{ height: 400, width: "100%" }}>
       <DataGrid
+        loading={loading}
+        slotProps={{
+          loadingOverlay: {
+            variant: "skeleton",
+            noRowsVariant: "skeleton",
+          },
+        }}
         rows={tableData}
         columns={columns}
         localeText={trTR.components.MuiDataGrid.defaultProps.localeText}
