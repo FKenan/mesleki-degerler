@@ -54,9 +54,10 @@ export default function ResultTable({ selectedValues }) {
   }, []);
 
   return (
-    <Paper sx={{ height: 400, width: "100%" }}>
+    <Paper sx={{ width: "100%", my: 4 }}>
       <DataGrid
         loading={loading}
+        hideFooter
         slotProps={{
           loadingOverlay: {
             variant: "skeleton",
@@ -66,8 +67,6 @@ export default function ResultTable({ selectedValues }) {
         rows={tableData}
         columns={columns}
         localeText={trTR.components.MuiDataGrid.defaultProps.localeText}
-        initialState={{ pagination: { paginationModel: { pageSize: 25 } } }}
-        pageSizeOptions={[10, 25, 50, { value: -1, label: "All" }]}
         sx={{ border: 0 }}
       />
     </Paper>
