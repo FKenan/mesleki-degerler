@@ -56,7 +56,7 @@ export default function ResultTable({ selectedValues }) {
       }
     };
     getTableData(selectedValues);
-  }, []);
+  }, [selectedValues]);
 
   return (
     <Paper sx={{ width: "100%", my: 4 }}>

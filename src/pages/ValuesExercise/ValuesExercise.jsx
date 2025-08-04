@@ -10,6 +10,7 @@ const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
 export default function ValuesExercisePage() {
   const [activeStep, setActiveStep] = useState(0);
   const [values, setValues] = useState([]);
+  const [valueStack, setValueStack] = useState([]);
   const [keepPile, setKeepPile] = useState([]);
   const [discardPile, setDiscardPile] = useState([]);
   const [first5Value, setFirst5Value] = useState([]);
@@ -19,6 +20,7 @@ export default function ValuesExercisePage() {
       var res = await fetch("https://localhost:44316/api/Degerler");
       var data = await res.json();
       setValues(data);
+      setValueStack(data);
     }
     getValues();
   }, []);
@@ -42,7 +44,7 @@ export default function ValuesExercisePage() {
   };
 
   const removeValue = (value) => {
-    setValues(values.filter((x) => value.id !== x.id));
+    setValueStack(valueStack.filter((x) => value.id !== x.id));
   };
 
   const removeValueFromKeepPile = (value) => {
@@ -70,6 +72,10 @@ export default function ValuesExercisePage() {
 
   const handleReset = () => {
     setActiveStep(0);
+    setKeepPile([]);
+    setDiscardPile([]);
+    setFirst5Value([]);
+    setValueStack(values);
   };
 
   return (
@@ -81,7 +87,7 @@ export default function ValuesExercisePage() {
           addToDiscardPile={addToDiscardPile}
           handleNext={handleNext}
           handleBack={handleBack}
-          values={values}
+          values={valueStack}
           activeStep={activeStep}
           keepPile={keepPile}
           discardPile={discardPile}
