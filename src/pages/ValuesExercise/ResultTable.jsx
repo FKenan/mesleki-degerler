@@ -15,6 +15,11 @@ const columns = [
     field: "fakulteUrl",
     headerName: "Website",
     width: 250,
+    renderCell: (params) => (
+      <a href={params.value} target="_blank">
+        {params.value}
+      </a>
+    ),
   },
   {
     field: "degerler",
