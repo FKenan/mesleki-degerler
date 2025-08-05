@@ -12,7 +12,11 @@ export default function Value({ value, action }) {
           borderColor: "primary.light",
         }}
       >
-        <CardActionArea sx={{ height: "100%" }} onClick={() => action(value)}>
+        <CardActionArea
+          disabled={action === null}
+          sx={{ height: "100%" }}
+          onClick={() => action(value)}
+        >
           <Typography
             p={0.5}
             variant="body2"

@@ -14,7 +14,10 @@ export default function PilesStep2({
         <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
           Seçilen Değerler
         </Typography>
-        <ValuesPile values={keepPile} action={addtoFirst5Value} />
+        <ValuesPile
+          values={keepPile}
+          action={first5Value.length === 5 ? null : addtoFirst5Value}
+        />
       </Grid>
       <Grid size="grow" px={1}>
         <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
