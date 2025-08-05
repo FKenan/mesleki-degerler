@@ -11,16 +11,16 @@ import { useEffect, useState } from "react";
 import Value from "./Value";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import { Link } from "react-router";
 
 export default function HomePage() {
   const [values, setValues] = useState([]);
 
   useEffect(() => {
     async function getValues() {
-      const res = await fetch("https://localhost:44316/api/Degerler/getall");
+      const res = await fetch("https://localhost:44316/api/Degerler");
       const data = await res.json();
       setValues(data);
-      await console.log(data);
     }
     getValues();
   }, []);
@@ -41,7 +41,12 @@ export default function HomePage() {
             <Typography variant="h6" color="text.primary">
               Mesleki değerlerinize uygun bölümleri keşfedin!
             </Typography>
-            <Button variant="contained" endIcon={<StartIcon />}>
+            <Button
+              component={Link}
+              to="/exercise"
+              variant="contained"
+              endIcon={<StartIcon />}
+            >
               Başla
             </Button>
           </Stack>
@@ -78,7 +83,12 @@ export default function HomePage() {
             <Typography variant="body1" color="text.primary" fontWeight="500">
               Değerlerinize uygun bölümleri bulmaya başlayın.
             </Typography>
-            <Button variant="contained" endIcon={<StartIcon />}>
+            <Button
+              component={Link}
+              to="/exercise"
+              variant="contained"
+              endIcon={<StartIcon />}
+            >
               Başla
             </Button>
           </Stack>

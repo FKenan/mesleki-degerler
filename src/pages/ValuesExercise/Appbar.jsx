@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import HomeIcon from "@mui/icons-material/Home";
+import { Link } from "react-router";
 
 export default function Appbar({ handleReset, activeStep, steps }) {
   return (
@@ -53,7 +54,7 @@ export default function Appbar({ handleReset, activeStep, steps }) {
             <Button size="small" onClick={handleReset} sx={{ mr: 1, p: 0 }}>
               Baştan başla
             </Button>
-            <IconButton color="primary" size="large">
+            <IconButton color="primary" size="large" component={Link} to="/">
               <CloseIcon />
             </IconButton>
           </Grid>
