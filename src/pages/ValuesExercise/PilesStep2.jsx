@@ -1,5 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import ValuesPile from "./ValuesPile";
+import ValuesPileWithPlaceholder from "./ValuesPileWithPlaceholder";
 
 export default function PilesStep2({
   addToKeepPile,
@@ -19,7 +20,10 @@ export default function PilesStep2({
         <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
           Öncelikli 5 değeriniz
         </Typography>
-        <ValuesPile values={first5Value} action={addToKeepPile} />
+        <ValuesPileWithPlaceholder
+          values={first5Value}
+          action={addToKeepPile}
+        />
       </Grid>
     </>
   );
