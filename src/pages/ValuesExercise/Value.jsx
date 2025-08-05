@@ -7,6 +7,7 @@ export default function Value({ value, action }) {
         variant="outlined"
         sx={{
           borderRadius: 3,
+          minHeight: 40,
           height: "100%",
           borderColor: "primary.light",
         }}

@@ -61,7 +61,6 @@ export default function ValuesExercisePage() {
 
   const handleNext = () => {
     if (activeStep === 0) {
-      setDiscardPile([]);
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
