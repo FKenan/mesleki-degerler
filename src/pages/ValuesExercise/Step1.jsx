@@ -30,6 +30,9 @@ export default function Step1({
             variant="contained"
             disabled={activeStep === 0}
             onClick={handleBack}
+            sx={{
+              visibility: "hidden",
+            }}
           >
             Geri
           </Button>

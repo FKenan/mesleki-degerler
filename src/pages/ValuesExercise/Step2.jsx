@@ -41,9 +41,12 @@ export default function Step2({
             endIcon={<ArrowForwardIcon />}
             variant="contained"
             onClick={handleNext}
-            disabled={
-              activeStep === steps.length - 1 || first5Value.length !== 5
-            }
+            sx={{
+              visibility:
+                activeStep === steps.length - 1 || first5Value.length !== 5
+                  ? "hidden"
+                  : "visible",
+            }}
           >
             İleri
           </Button>

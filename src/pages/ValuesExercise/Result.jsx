@@ -44,7 +44,7 @@ export default function ResultPage({
             endIcon={<ArrowForwardIcon />}
             variant="contained"
             onClick={handleNext}
-            disabled
+            sx={{ visibility: "hidden" }}
           >
             İleri
           </Button>
