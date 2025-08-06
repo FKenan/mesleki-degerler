@@ -4,25 +4,22 @@ import Appbar from "./Appbar";
 import ResultPage from "./Result";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
+import { fetchValues } from "./ValueSlice";
+import { useSelector } from "react-redux";
 
 const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
 
 export default function ValuesExercisePage() {
+  const { values } = useSelector((state) => state.value);
   const [activeStep, setActiveStep] = useState(0);
-  const [values, setValues] = useState([]);
   const [valueStack, setValueStack] = useState([]);
   const [keepPile, setKeepPile] = useState([]);
   const [discardPile, setDiscardPile] = useState([]);
   const [first5Value, setFirst5Value] = useState([]);
 
   useEffect(() => {
-    async function getValues() {
-      var res = await fetch("https://localhost:44316/api/Degerler");
-      var data = await res.json();
-      setValues(data);
-      setValueStack(data);
-    }
-    getValues();
+    const data = fetchValues();
+    setValueStack(data);
   }, []);
 
   const addToKeepPile = (value) => {
