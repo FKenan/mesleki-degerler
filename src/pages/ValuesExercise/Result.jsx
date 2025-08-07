@@ -3,13 +3,13 @@ import ResultTable from "./ResultTable";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ExercisePageTypography from "./ExercisePageTypography";
+import { useDispatch, useSelector } from "react-redux";
+import { handleBack, handleNext } from "./ValueSlice";
 
-export default function ResultPage({
-  selectedValues,
-  activeStep,
-  handleBack,
-  handleNext,
-}) {
+export default function ResultPage({ selectedValues }) {
+  const { activeStep } = useSelector((state) => state.value);
+  const dispatch = useDispatch();
+
   const toText = () => {
     var text = "";
     selectedValues.forEach((element) => {
@@ -31,7 +31,7 @@ export default function ResultPage({
             startIcon={<ArrowBackIcon />}
             variant="contained"
             disabled={activeStep === 0}
-            onClick={handleBack}
+            onClick={() => dispatch(handleBack())}
           >
             Geri
           </Button>
@@ -43,7 +43,7 @@ export default function ResultPage({
           <Button
             endIcon={<ArrowForwardIcon />}
             variant="contained"
-            onClick={handleNext}
+            onClick={() => dispatch(handleNext())}
             sx={{ visibility: "hidden" }}
           >
             İleri

@@ -1,14 +1,16 @@
 import { Box, Grid, Typography } from "@mui/material";
 import ValuesPile from "./ValuesPile";
 import ValueStack from "./ValueStack";
+import { useSelector } from "react-redux";
 
 export default function Piles({
-  values,
   addToKeepPile,
   addToDiscardPile,
   keepPile,
   discardPile,
 }) {
+  const { valueStack } = useSelector((state) => state.value);
+
   return (
     <Grid size={12} container spacing={2} alignItems="stretch">
       <Grid size="grow" px={1}>
@@ -19,7 +21,7 @@ export default function Piles({
       </Grid>
       <Grid size={2} minWidth={215}>
         <Box position="relative" display="flex" height="100%">
-          {values.map((value, ind) => (
+          {valueStack.map((value, ind) => (
             <ValueStack
               value={value}
               addToKeepPile={addToKeepPile}
@@ -29,7 +31,7 @@ export default function Piles({
           ))}
         </Box>
         <Typography variant="subtitle2" align="center">
-          {`Kalan Değerler: ${values.length}`}
+          {`Kalan Değerler: ${valueStack.length}`}
         </Typography>
       </Grid>
       <Grid size="grow" px={1}>

@@ -16,6 +16,17 @@ export const valueSlice = createSlice({
     values: [],
     valueStack: [],
     isLoaded: false,
+    activeStep: 0,
+  },
+  reducers: {
+    handleNext: (state) => {
+      if (state.activeStep === 0) {
+        state.activeStep += 1;
+      }
+    },
+    handleBack: (state) => {
+      state.activeStep -= 1;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchValues.fulfilled, (state, action) => {
@@ -30,3 +41,5 @@ export const valueSlice = createSlice({
     });
   },
 });
+
+export const { handleNext, handleBack } = valueSlice.actions;

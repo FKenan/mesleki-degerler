@@ -10,9 +10,11 @@ import { useDispatch, useSelector } from "react-redux";
 const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
 
 export default function ValuesExercisePage() {
-  const { values, valueStack, isLoaded } = useSelector((state) => state.value);
+  const { values, valueStack, isLoaded, activeStep } = useSelector(
+    (state) => state.value
+  );
   const dispatch = useDispatch();
-  const [activeStep, setActiveStep] = useState(0);
+
   const [keepPile, setKeepPile] = useState([]);
   const [discardPile, setDiscardPile] = useState([]);
   const [first5Value, setFirst5Value] = useState([]);
@@ -55,16 +57,6 @@ export default function ValuesExercisePage() {
     setFirst5Value(first5Value.filter((x) => value.id !== x.id));
   };
 
-  const handleNext = () => {
-    if (activeStep === 0) {
-    }
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
   const handleReset = () => {
     setActiveStep(0);
     setKeepPile([]);
@@ -80,10 +72,6 @@ export default function ValuesExercisePage() {
         <Step1
           addToKeepPile={addToKeepPile}
           addToDiscardPile={addToDiscardPile}
-          handleNext={handleNext}
-          handleBack={handleBack}
-          values={valueStack}
-          activeStep={activeStep}
           keepPile={keepPile}
           discardPile={discardPile}
         />
@@ -92,21 +80,11 @@ export default function ValuesExercisePage() {
         <Step2
           addToKeepPile={addToKeepPile}
           addtoFirst5Value={addtoFirst5Value}
-          handleNext={handleNext}
-          handleBack={handleBack}
-          activeStep={activeStep}
           keepPile={keepPile}
           first5Value={first5Value}
         />
       )}
-      {activeStep === 2 && (
-        <ResultPage
-          selectedValues={first5Value}
-          activeStep={activeStep}
-          handleBack={handleBack}
-          handleNext={handleNext}
-        />
-      )}
+      {activeStep === 2 && <ResultPage selectedValues={first5Value} />}
     </Box>
   );
 }

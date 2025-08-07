@@ -3,18 +3,20 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ExercisePageTypography from "./ExercisePageTypography";
 import PilesStep2 from "./PilesStep2";
+import { useDispatch, useSelector } from "react-redux";
+import { handleBack } from "./ValueSlice";
 
 const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
 
 export default function Step2({
   addToKeepPile,
   addtoFirst5Value,
-  handleNext,
-  handleBack,
-  activeStep,
   keepPile,
   first5Value,
 }) {
+  const { activeStep } = useSelector((state) => state.value);
+  const dispatch = useDispatch();
+
   return (
     <Grid container spacing={1} alignItems="center">
       <Grid size={12} sx={{ my: 2 }}>
@@ -28,7 +30,7 @@ export default function Step2({
             startIcon={<ArrowBackIcon />}
             variant="contained"
             disabled={activeStep === 0}
-            onClick={handleBack}
+            onClick={() => dispatch(handleBack())}
           >
             Geri
           </Button>
@@ -40,7 +42,7 @@ export default function Step2({
           <Button
             endIcon={<ArrowForwardIcon />}
             variant="contained"
-            onClick={handleNext}
+            onClick={() => dispatch(handleNext())}
             sx={{
               visibility:
                 activeStep === steps.length - 1 || first5Value.length !== 5
