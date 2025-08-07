@@ -8,14 +8,10 @@ import { handleBack, handleNext } from "./ValueSlice";
 
 const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
 
-export default function Step1({
-  addToKeepPile,
-  addToDiscardPile,
-  keepPile,
-  discardPile,
-}) {
-  const { activeStep } = useSelector((state) => state.value);
+export default function Step1() {
+  const { activeStep, valueStack } = useSelector((state) => state.value);
   const dispatch = useDispatch();
+
   return (
     <Grid container spacing={1} alignItems="center">
       <Grid size={12} sx={{ my: 2 }}>
@@ -44,18 +40,16 @@ export default function Step1({
           <Button
             endIcon={<ArrowForwardIcon />}
             variant="contained"
+            disabled={
+              activeStep === steps.length - 1 || valueStack.length !== 0
+            }
             onClick={() => dispatch(handleNext())}
           >
             İleri
           </Button>
         </Stack>
       </Grid>
-      <Piles
-        addToKeepPile={addToKeepPile}
-        addToDiscardPile={addToDiscardPile}
-        keepPile={keepPile}
-        discardPile={discardPile}
-      />
+      <Piles />
     </Grid>
   );
 }

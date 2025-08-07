@@ -1,6 +1,8 @@
 import { Card, CardActionArea, Grid, Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
 
 export default function Value({ value, action }) {
+  const dispatch = useDispatch();
   return (
     <Grid size={{ md: 3, l: 4 }}>
       <Card
@@ -15,7 +17,7 @@ export default function Value({ value, action }) {
         <CardActionArea
           disabled={action === null}
           sx={{ height: "100%" }}
-          onClick={() => action(value)}
+          onClick={() => dispatch(action(value))}
         >
           <Typography
             p={0.5}

@@ -1,15 +1,14 @@
 import { Box, Grid, Typography } from "@mui/material";
 import ValuesPile from "./ValuesPile";
 import ValueStack from "./ValueStack";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addToDiscardPile, addToKeepPile } from "./ValueSlice";
 
-export default function Piles({
-  addToKeepPile,
-  addToDiscardPile,
-  keepPile,
-  discardPile,
-}) {
-  const { valueStack } = useSelector((state) => state.value);
+export default function Piles() {
+  const { valueStack, keepPile, discardPile } = useSelector(
+    (state) => state.value
+  );
+  const dispatch = useDispatch();
 
   return (
     <Grid size={12} container spacing={2} alignItems="stretch">
@@ -22,12 +21,7 @@ export default function Piles({
       <Grid size={2} minWidth={215}>
         <Box position="relative" display="flex" height="100%">
           {valueStack.map((value, ind) => (
-            <ValueStack
-              value={value}
-              addToKeepPile={addToKeepPile}
-              addToDiscardPile={addToDiscardPile}
-              key={ind}
-            />
+            <ValueStack value={value} key={ind} />
           ))}
         </Box>
         <Typography variant="subtitle2" align="center">

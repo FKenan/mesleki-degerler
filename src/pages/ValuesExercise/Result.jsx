@@ -6,13 +6,13 @@ import ExercisePageTypography from "./ExercisePageTypography";
 import { useDispatch, useSelector } from "react-redux";
 import { handleBack, handleNext } from "./ValueSlice";
 
-export default function ResultPage({ selectedValues }) {
-  const { activeStep } = useSelector((state) => state.value);
+export default function ResultPage() {
+  const { activeStep, first5Value } = useSelector((state) => state.value);
   const dispatch = useDispatch();
 
   const toText = () => {
     var text = "";
-    selectedValues.forEach((element) => {
+    first5Value.forEach((element) => {
       text += element.ad + ", ";
     });
     return text.trim().slice(0, -1);
@@ -50,7 +50,7 @@ export default function ResultPage({ selectedValues }) {
           </Button>
         </Stack>
       </Grid>
-      <ResultTable selectedValues={selectedValues} />
+      <ResultTable />
     </Grid>
   );
 }

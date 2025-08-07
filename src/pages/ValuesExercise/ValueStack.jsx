@@ -5,8 +5,11 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { addToDiscardPile, addToKeepPile } from "./ValueSlice";
 
-export default function ValueStack({ value, addToKeepPile, addToDiscardPile }) {
+export default function ValueStack({ value }) {
+  const dispatch = useDispatch();
   return (
     <Box position="absolute" top={70}>
       <Card
@@ -19,7 +22,7 @@ export default function ValueStack({ value, addToKeepPile, addToDiscardPile }) {
         }}
       >
         <CardActionArea
-          onClick={() => addToDiscardPile(value)}
+          onClick={() => dispatch(addToDiscardPile(value))}
           sx={{
             borderRadius: 0,
             position: "absolute",
@@ -30,7 +33,7 @@ export default function ValueStack({ value, addToKeepPile, addToDiscardPile }) {
           }}
         ></CardActionArea>
         <CardActionArea
-          onClick={() => addToKeepPile(value)}
+          onClick={() => dispatch(addToKeepPile(value))}
           sx={{
             borderRadius: 0,
             position: "absolute",

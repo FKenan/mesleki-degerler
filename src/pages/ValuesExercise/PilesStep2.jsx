@@ -1,13 +1,11 @@
 import { Grid, Typography } from "@mui/material";
 import ValuesPile from "./ValuesPile";
 import ValuesPileWithPlaceholder from "./ValuesPileWithPlaceholder";
+import { addtoFirst5Value, addToKeepPile } from "./ValueSlice";
+import { useSelector } from "react-redux";
 
-export default function PilesStep2({
-  addToKeepPile,
-  addtoFirst5Value,
-  keepPile,
-  first5Value,
-}) {
+export default function PilesStep2() {
+  const { keepPile, first5Value } = useSelector((state) => state.value);
   return (
     <>
       <Grid size="grow" px={1}>

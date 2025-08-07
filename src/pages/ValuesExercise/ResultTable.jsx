@@ -2,15 +2,12 @@ import { Paper } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { trTR } from "@mui/x-data-grid/locales";
+import { useSelector } from "react-redux";
 
 const columns = [
   { field: "bolumAd", headerName: "Bölüm", width: 250 },
   { field: "fakulteAd", headerName: "Fakülte", width: 200 },
-  {
-    field: "durum",
-    headerName: "Lisans-Önlisans",
-    width: 150,
-  },
+  { field: "durum", headerName: "Lisans-Önlisans", width: 150 },
   {
     field: "fakulteUrl",
     headerName: "Website",
@@ -36,7 +33,8 @@ const columns = [
   },
 ];
 
-export default function ResultTable({ selectedValues }) {
+export default function ResultTable() {
+  const { first5Value } = useSelector((state) => state.value);
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -55,8 +53,8 @@ export default function ResultTable({ selectedValues }) {
         setLoading(false);
       }
     };
-    getTableData(selectedValues);
-  }, [selectedValues]);
+    getTableData(first5Value);
+  }, []);
 
   return (
     <Paper sx={{ width: "100%", my: 4 }}>

@@ -17,15 +17,40 @@ export const valueSlice = createSlice({
     valueStack: [],
     isLoaded: false,
     activeStep: 0,
+    keepPile: [],
+    discardPile: [],
+    first5Value: [],
   },
   reducers: {
     handleNext: (state) => {
-      if (state.activeStep === 0) {
-        state.activeStep += 1;
-      }
+      state.activeStep += 1;
     },
     handleBack: (state) => {
       state.activeStep -= 1;
+    },
+
+    addtoFirst5Value: (state, action) => {
+      state.first5Value = [...state.first5Value, action.payload];
+      removeValueFromKeepPile(state, action);
+    },
+    addToDiscardPile: (state, action) => {
+      state.discardPile = [...state.discardPile, action.payload];
+      removeValue(state, action);
+      removeValueFromKeepPile(state, action);
+    },
+    addToKeepPile: (state, action) => {
+      state.keepPile = [...state.keepPile, action.payload];
+      removeValue(state, action);
+      removeValueFromDiscardPile(state, action);
+      removeValueFromFirst5Value(state, action);
+    },
+
+    handleReset: (state) => {
+      state.activeStep = 0;
+      state.keepPile = [];
+      state.discardPile = [];
+      state.first5Value = [];
+      state.valueStack = state.values;
     },
   },
   extraReducers: (builder) => {
@@ -42,4 +67,31 @@ export const valueSlice = createSlice({
   },
 });
 
-export const { handleNext, handleBack } = valueSlice.actions;
+const removeValue = (state, action) => {
+  state.valueStack = state.valueStack.filter((x) => action.payload.id !== x.id);
+};
+
+const removeValueFromKeepPile = (state, action) => {
+  state.keepPile = state.keepPile.filter((x) => action.payload.id !== x.id);
+};
+
+const removeValueFromDiscardPile = (state, action) => {
+  state.discardPile = state.discardPile.filter(
+    (x) => action.payload.id !== x.id
+  );
+};
+
+const removeValueFromFirst5Value = (state, action) => {
+  state.first5Value = state.first5Value.filter(
+    (x) => action.payload.id !== x.id
+  );
+};
+
+export const {
+  handleNext,
+  handleBack,
+  addToKeepPile,
+  addtoFirst5Value,
+  addToDiscardPile,
+  handleReset,
+} = valueSlice.actions;

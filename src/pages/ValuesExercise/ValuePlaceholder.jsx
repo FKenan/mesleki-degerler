@@ -1,4 +1,4 @@
-import { Card, CardActionArea, Grid } from "@mui/material";
+import { Card, Grid } from "@mui/material";
 
 export default function ValuePlaceholder() {
   return (

@@ -5,16 +5,12 @@ import ExercisePageTypography from "./ExercisePageTypography";
 import PilesStep2 from "./PilesStep2";
 import { useDispatch, useSelector } from "react-redux";
 import { handleBack } from "./ValueSlice";
+import { handleNext } from "./ValueSlice";
 
 const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
 
-export default function Step2({
-  addToKeepPile,
-  addtoFirst5Value,
-  keepPile,
-  first5Value,
-}) {
-  const { activeStep } = useSelector((state) => state.value);
+export default function Step2() {
+  const { activeStep, first5Value } = useSelector((state) => state.value);
   const dispatch = useDispatch();
 
   return (
@@ -54,12 +50,7 @@ export default function Step2({
           </Button>
         </Stack>
       </Grid>
-      <PilesStep2
-        addToKeepPile={addToKeepPile}
-        addtoFirst5Value={addtoFirst5Value}
-        keepPile={keepPile}
-        first5Value={first5Value}
-      />
+      <PilesStep2 />
     </Grid>
   );
 }

@@ -17,9 +17,9 @@ export default function ValuesPileWithPlaceholder({ values, action }) {
       <Grid container spacing={2}>
         {Array.from({ length: 5 }).map((_, idx) =>
           values[idx] ? (
-            <Value value={values[idx]} action={action} />
+            <Value value={values[idx]} action={action} key={idx} />
           ) : (
-            <ValuePlaceholder />
+            <ValuePlaceholder key={idx} />
           )
         )}
       </Grid>
