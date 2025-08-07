@@ -7,28 +7,25 @@ import {
   Typography,
 } from "@mui/material";
 import StartIcon from "@mui/icons-material/Start";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Value from "./Value";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Link } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchValues } from "../ValuesExercise/ValueSlice";
 
 export default function HomePage() {
-  const [values, setValues] = useState([]);
+  const { values, isLoaded } = useSelector((state) => state.value);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    async function getValues() {
-      const res = await fetch("https://localhost:44316/api/Degerler");
-      const data = await res.json();
-      setValues(data);
-    }
-    getValues();
+    if (!isLoaded) dispatch(fetchValues());
   }, []);
 
   return (
     <>
       <Navbar />
-
       <Container sx={{ mt: 5 }}>
         <Stack spacing={12} textAlign="center">
           <Stack
