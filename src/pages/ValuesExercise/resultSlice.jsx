@@ -18,18 +18,18 @@ export const resultSlice = createSlice({
   name: "result",
   initialState: {
     tableData: [],
-    loading: false,
+    isLoading: false,
   },
 
   extraReducers: (builder) => {
     builder.addCase(fetchTableData.fulfilled, (state, action) => {
       state.tableData = action.payload;
-      state.loading = false;
+      state.isLoading = false;
     });
 
     builder.addCase(fetchTableData.pending, (state) => {
       state.tableData = [];
-      state.loading = true;
+      state.isLoading = true;
     });
   },
 });

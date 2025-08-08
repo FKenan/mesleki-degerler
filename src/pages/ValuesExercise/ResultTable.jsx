@@ -36,7 +36,7 @@ const columns = [
 
 export default function ResultTable() {
   const { first5Value } = useSelector((state) => state.value);
-  const { tableData, loading } = useSelector((state) => state.result);
+  const { tableData, isLoading } = useSelector((state) => state.result);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -46,12 +46,12 @@ export default function ResultTable() {
   return (
     <Paper sx={{ width: "100%", my: 4 }}>
       <DataGrid
-        loading={loading}
+        loading={isLoading}
         hideFooter
         slotProps={{
           loadingOverlay: {
-            variant: "skeleton",
-            noRowsVariant: "skeleton",
+            variant: "circular-progress",
+            noRowsVariant: "circular-progress",
           },
         }}
         rows={tableData}
