@@ -1,8 +1,9 @@
 import { Paper } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { trTR } from "@mui/x-data-grid/locales";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTableData } from "./resultSlice";
 
 const columns = [
   { field: "bolumAd", headerName: "Bölüm", width: 250 },
@@ -35,26 +36,12 @@ const columns = [
 
 export default function ResultTable() {
   const { first5Value } = useSelector((state) => state.value);
-  const [tableData, setTableData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const { tableData, loading } = useSelector((state) => state.result);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getTableData = async (values) => {
-      const ids = values.map((item) => item.id).join(",");
-      const url = `https://localhost:44316/api/Bolumler?ids=${ids}`;
-      try {
-        setLoading(true);
-        const response = await fetch(url);
-        const result = await response.json();
-        setTableData(result);
-      } catch (error) {
-        console.error("API gönderim hatası:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getTableData(first5Value);
-  }, []);
+    dispatch(fetchTableData(first5Value));
+  }, [first5Value]);
 
   return (
     <Paper sx={{ width: "100%", my: 4 }}>
