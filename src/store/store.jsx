@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { valueSlice } from "../pages/ValuesExercise/ValueSlice";
+import { valueSlice } from "../pages/ValuesExercise/valueSlice";
 import { resultSlice } from "../pages/ValuesExercise/resultSlice";
 
 export const store = configureStore({
