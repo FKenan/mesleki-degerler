@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import ValuesPile from "./ValuesPile";
 import ValueStack from "./ValueStack";
 import { useDispatch, useSelector } from "react-redux";
-import { addToDiscardPile, addToKeepPile } from "./ValueSlice";
+import { addToDiscardPile, addToKeepPile } from "./valueSlice";
 
 export default function Piles() {
   const { valueStack, keepPile, discardPile } = useSelector(

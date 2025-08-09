@@ -6,7 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { addToDiscardPile, addToKeepPile } from "./ValueSlice";
+import { addToDiscardPile, addToKeepPile } from "./valueSlice";
 
 export default function ValueStack({ value }) {
   const dispatch = useDispatch();

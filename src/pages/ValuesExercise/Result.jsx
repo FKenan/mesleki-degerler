@@ -4,7 +4,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ExercisePageTypography from "./ExercisePageTypography";
 import { useDispatch, useSelector } from "react-redux";
-import { handleBack, handleNext } from "./ValueSlice";
+import { handleBack, handleNext } from "./valueSlice";
 
 export default function ResultPage() {
   const { activeStep, first5Value } = useSelector((state) => state.value);

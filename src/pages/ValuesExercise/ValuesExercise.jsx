@@ -4,7 +4,7 @@ import Appbar from "./Appbar";
 import ResultPage from "./Result";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
-import { fetchValues, handleReset } from "./ValueSlice";
+import { fetchValues, handleReset } from "./valueSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const steps = ["1.Adım", "2.Adım", "Sonuçlar"];

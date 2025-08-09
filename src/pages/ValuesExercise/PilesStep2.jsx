@@ -1,7 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import ValuesPile from "./ValuesPile";
 import ValuesPileWithPlaceholder from "./ValuesPileWithPlaceholder";
-import { addtoFirst5Value, addToKeepPile } from "./ValueSlice";
+import { addtoFirst5Value, addToKeepPile } from "./valueSlice";
 import { useSelector } from "react-redux";
 
 export default function PilesStep2() {

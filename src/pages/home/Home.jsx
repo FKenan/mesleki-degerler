@@ -13,7 +13,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchValues } from "../ValuesExercise/ValueSlice";
+import { fetchValues } from "../ValuesExercise/valueSlice";
 
 export default function HomePage() {
   const { values, isLoaded } = useSelector((state) => state.value);
