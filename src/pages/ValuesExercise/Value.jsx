@@ -14,19 +14,10 @@ export default function Value({ value, action, onDrop }) {
     canDrag: () => action !== null,
   });
 
-  const [, dropRef] = useDrop({
-    accept: "VALUE",
-    drop: (item) => {
-      if (onDrop && item.id !== value.id) {
-        onDrop(item.value, value);
-      }
-    },
-  });
-
   return (
     <Grid size={{ md: 3, l: 4 }}>
       <Card
-        ref={(node) => dragRef(dropRef(node))}
+        ref={(node) => dragRef(node)}
         variant="outlined"
         sx={{
           borderRadius: 3,

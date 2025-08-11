@@ -10,7 +10,7 @@ import { addToDiscardPile, addToKeepPile } from "./valueSlice";
 import { useDrag, useDrop } from "react-dnd";
 
 export default function ValueStack({ value, onDrop }) {
-  const [{ isDragging }, dragRef] = useDrag({
+  const [{}, dragRef] = useDrag({
     type: "VALUE",
     item: { id: value.id, value },
     collect: (monitor) => ({
@@ -18,27 +18,18 @@ export default function ValueStack({ value, onDrop }) {
     }),
   });
 
-  const [, dropRef] = useDrop({
-    accept: "VALUE",
-    drop: (item) => {
-      if (onDrop && item.id !== value.id) {
-        onDrop(item.value, value);
-      }
-    },
-  });
-
   const dispatch = useDispatch();
   return (
     <Box position="absolute" top={70}>
       <Card
-        ref={(node) => dragRef(dropRef(node))}
+        ref={dragRef}
         sx={{
           height: 250,
           width: 215,
           borderRadius: 5,
           textAlign: "center",
           position: "relative",
-          opacity: isDragging ? 0.5 : 1,
+          cursor: "pointer",
         }}
       >
         <CardActionArea
