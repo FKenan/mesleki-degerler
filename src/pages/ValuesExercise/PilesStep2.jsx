@@ -1,11 +1,21 @@
 import { Grid, Typography } from "@mui/material";
 import ValuesPile from "./ValuesPile";
 import ValuesPileWithPlaceholder from "./ValuesPileWithPlaceholder";
-import { addtoFirst5Value, addToKeepPile } from "./valueSlice";
-import { useSelector } from "react-redux";
+import { addToFirst5Value, addToKeepPile } from "./valueSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function PilesStep2() {
   const { keepPile, first5Value } = useSelector((state) => state.value);
+
+  const dispatch = useDispatch();
+
+  const handleDropFirst5Value = (value) => {
+    dispatch(addToFirst5Value(value));
+  };
+
+  const handleDropKeep = (value) => {
+    dispatch(addToKeepPile(value));
+  };
   return (
     <>
       <Grid size="grow" px={1}>
@@ -14,7 +24,8 @@ export default function PilesStep2() {
         </Typography>
         <ValuesPile
           values={keepPile}
-          action={first5Value.length === 5 ? null : addtoFirst5Value}
+          action={first5Value.length === 5 ? null : addToFirst5Value}
+          onDrop={handleDropKeep}
         />
       </Grid>
       <Grid size="grow" px={1}>
@@ -24,6 +35,7 @@ export default function PilesStep2() {
         <ValuesPileWithPlaceholder
           values={first5Value}
           action={addToKeepPile}
+          onDrop={handleDropFirst5Value}
         />
       </Grid>
     </>

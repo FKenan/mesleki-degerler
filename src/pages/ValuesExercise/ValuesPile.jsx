@@ -2,14 +2,12 @@ import { Grid, Paper } from "@mui/material";
 import Value from "./Value";
 import { useDrop } from "react-dnd";
 
-export default function ValuesPile({ values, action, onDrop, dropType }) {
-  // Her kutu için ayrı drop alanı
+export default function ValuesPile({ values, action, onDrop }) {
   const [{ isOver, canDrop }, dropRef] = useDrop({
     accept: "VALUE",
     drop: (item) => {
-      // Aynı kutuya bırakılırsa ekleme!
       if (onDrop && !values.some((v) => v.id === item.value.id)) {
-        onDrop(item.value, dropType);
+        onDrop(item.value);
       }
     },
     collect: (monitor) => ({
@@ -18,7 +16,6 @@ export default function ValuesPile({ values, action, onDrop, dropType }) {
     }),
   });
 
-  // Görsel efektler için stil
   const getBgColor = () => {
     if (isOver && canDrop) return "#e3f2fd";
     if (canDrop) return "#f5f5f5";
@@ -42,8 +39,8 @@ export default function ValuesPile({ values, action, onDrop, dropType }) {
       }}
     >
       <Grid container spacing={2}>
-        {values.map((value, ind) => (
-          <Value key={value.id ?? ind} value={value} action={action} />
+        {values.map((value) => (
+          <Value key={value.id} value={value} action={action} />
         ))}
       </Grid>
     </Paper>

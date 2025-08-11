@@ -29,7 +29,7 @@ export const valueSlice = createSlice({
       state.activeStep -= 1;
     },
 
-    addtoFirst5Value: (state, action) => {
+    addToFirst5Value: (state, action) => {
       state.first5Value = [...state.first5Value, action.payload];
       removeValueFromKeepPile(state, action);
     },
@@ -91,7 +91,7 @@ export const {
   handleNext,
   handleBack,
   addToKeepPile,
-  addtoFirst5Value,
+  addToFirst5Value,
   addToDiscardPile,
   handleReset,
 } = valueSlice.actions;

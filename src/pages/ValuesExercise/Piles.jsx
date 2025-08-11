@@ -10,12 +10,10 @@ export default function Piles() {
   );
   const dispatch = useDispatch();
 
-  // Atılacaklar kutusuna bırakınca
   const handleDropDiscard = (value) => {
     dispatch(addToDiscardPile(value));
   };
 
-  // Tutulacaklar kutusuna bırakınca
   const handleDropKeep = (value) => {
     dispatch(addToKeepPile(value));
   };
@@ -30,13 +28,12 @@ export default function Piles() {
           values={discardPile}
           action={addToKeepPile}
           onDrop={handleDropDiscard}
-          dropType="discard"
         />
       </Grid>
       <Grid size={2} minWidth={215}>
         <Box position="relative" display="flex" height="100%">
-          {valueStack.map((value, ind) => (
-            <ValueStack value={value} key={ind} />
+          {valueStack.map((value) => (
+            <ValueStack value={value} key={value.id} />
           ))}
         </Box>
         <Typography variant="subtitle2" align="center">
@@ -51,7 +48,6 @@ export default function Piles() {
           values={keepPile}
           action={addToDiscardPile}
           onDrop={handleDropKeep}
-          dropType="keep"
         />
       </Grid>
     </Grid>

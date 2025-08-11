@@ -5,16 +5,15 @@ import { useDrag, useDrop } from "react-dnd";
 export default function Value({ value, action, onDrop }) {
   const dispatch = useDispatch();
 
-  // Drag için
   const [{ isDragging }, dragRef] = useDrag({
     type: "VALUE",
     item: { id: value.id, value },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
+    canDrag: () => action !== null,
   });
 
-  // Drop için
   const [, dropRef] = useDrop({
     accept: "VALUE",
     drop: (item) => {
