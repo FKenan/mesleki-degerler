@@ -6,10 +6,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { addToDiscardPile, addToKeepPile } from "./valueSlice";
-import { useDrag, useDrop } from "react-dnd";
+import { addToDiscardPile, addToKeepPile } from "../valueSlice";
+import { useDrag } from "react-dnd";
 
-export default function ValueStack({ value, onDrop }) {
+export default function ValueStack({ value }) {
   const [{}, dragRef] = useDrag({
     type: "VALUE",
     item: { id: value.id, value },

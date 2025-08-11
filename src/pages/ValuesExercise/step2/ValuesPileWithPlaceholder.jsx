@@ -1,7 +1,7 @@
 import { Grid, Paper } from "@mui/material";
-import Value from "./Value";
 import ValuePlaceholder from "./ValuePlaceholder";
 import { useDrop } from "react-dnd";
+import Value from "../Value";
 
 export default function ValuesPileWithPlaceholder({ values, action, onDrop }) {
   const [{ isOver, canDrop }, dropRef] = useDrop({

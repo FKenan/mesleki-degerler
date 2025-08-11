@@ -1,8 +1,8 @@
 import { Card, CardActionArea, Grid, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { useDrag, useDrop } from "react-dnd";
+import { useDrag } from "react-dnd";
 
-export default function Value({ value, action, onDrop }) {
+export default function Value({ value, action }) {
   const dispatch = useDispatch();
 
   const [{ isDragging }, dragRef] = useDrag({
@@ -17,7 +17,7 @@ export default function Value({ value, action, onDrop }) {
   return (
     <Grid size={{ md: 3, l: 4 }}>
       <Card
-        ref={(node) => dragRef(node)}
+        ref={dragRef}
         variant="outlined"
         sx={{
           borderRadius: 3,

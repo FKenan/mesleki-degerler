@@ -1,10 +1,10 @@
 import { Button, Grid, Stack } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ExercisePageTypography from "./ExercisePageTypography";
+import ExercisePageTypography from "../ExercisePageTypography";
 import PilesStep2 from "./PilesStep2";
 import { useDispatch, useSelector } from "react-redux";
-import { handleBack, handleNext } from "./valueSlice";
+import { handleBack, handleNext } from "../valueSlice";
 
 const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
 

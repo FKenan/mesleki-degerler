@@ -1,16 +1,22 @@
 import { Button, Grid, Stack } from "@mui/material";
+import ResultTable from "./ResultTable";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ExercisePageTypography from "./ExercisePageTypography";
-import Piles from "./Piles";
+import ExercisePageTypography from "../ExercisePageTypography";
 import { useDispatch, useSelector } from "react-redux";
-import { handleBack, handleNext } from "./valueSlice";
+import { handleBack, handleNext } from "../valueSlice";
 
-const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
-
-export default function Step1() {
-  const { activeStep, valueStack } = useSelector((state) => state.value);
+export default function ResultPage() {
+  const { activeStep, first5Value } = useSelector((state) => state.value);
   const dispatch = useDispatch();
+
+  const toText = () => {
+    var text = "";
+    first5Value.forEach((element) => {
+      text += element.ad + ", ";
+    });
+    return text.trim().slice(0, -1);
+  };
 
   return (
     <Grid container spacing={1} alignItems="center">
@@ -26,30 +32,25 @@ export default function Step1() {
             variant="contained"
             disabled={activeStep === 0}
             onClick={() => dispatch(handleBack())}
-            sx={{
-              visibility: "hidden",
-            }}
           >
             Geri
           </Button>
           <ExercisePageTypography
-            title="Değerleriniz"
-            subtitle1="Destedeki değerleri 2 kutuya ayırınız."
-            subtitle2="Size uyanlar bir tarafa, uymayanları diğer tarafa ayırınız!"
+            title="Uygun Bölümler"
+            subtitle1="Seçimlerinize uygun bölümler aşağıda listelendi."
+            subtitle2={`Seçimleriniz: ${toText()}`}
           />
           <Button
             endIcon={<ArrowForwardIcon />}
             variant="contained"
-            disabled={
-              activeStep === steps.length - 1 || valueStack.length !== 0
-            }
             onClick={() => dispatch(handleNext())}
+            sx={{ visibility: "hidden" }}
           >
             İleri
           </Button>
         </Stack>
       </Grid>
-      <Piles />
+      <ResultTable />
     </Grid>
   );
 }
