@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import ValuesPile from "../ValuesPile";
 import { addToFirst5Value, addToKeepPile } from "../valueSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,27 +17,23 @@ export default function PilesStep2() {
     dispatch(addToKeepPile(value));
   };
   return (
-    <>
-      <Grid size="grow" px={1}>
-        <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
-          Seçilen Değerler
-        </Typography>
+    <Grid size={12} container spacing={6} alignItems="stretch">
+      <Grid size="grow" px={2}>
         <ValuesPile
+          title="Seçilen Değerler"
           values={keepPile}
           action={first5Value.length === 5 ? null : addToFirst5Value}
           onDrop={handleDropKeep}
         />
       </Grid>
-      <Grid size="grow" px={1}>
-        <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
-          Öncelikli 5 değeriniz
-        </Typography>
+      <Grid size="grow" px={2}>
         <ValuesPileWithPlaceholder
+          title="Öncelikli 5 değeriniz"
           values={first5Value}
           action={addToKeepPile}
           onDrop={handleDropFirst5Value}
         />
       </Grid>
-    </>
+    </Grid>
   );
 }

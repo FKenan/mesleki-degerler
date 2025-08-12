@@ -20,17 +20,15 @@ export default function Piles() {
 
   return (
     <Grid size={12} container spacing={2} alignItems="stretch">
-      <Grid size="grow" px={1}>
-        <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
-          Atılacaklar Kutusu
-        </Typography>
+      <Grid size="grow">
         <ValuesPile
+          title="Atılacaklar Kutusu"
           values={discardPile}
           action={addToKeepPile}
           onDrop={handleDropDiscard}
         />
       </Grid>
-      <Grid size={2} minWidth={215}>
+      <Grid size={2} minWidth={215} minHeight={350}>
         <Box position="relative" display="flex" height="100%">
           {valueStack.map((value) => (
             <ValueStack value={value} key={value.id} />
@@ -40,11 +38,9 @@ export default function Piles() {
           {`Kalan Değerler: ${valueStack.length}`}
         </Typography>
       </Grid>
-      <Grid size="grow" px={1}>
-        <Typography variant="subtitle2" gutterBottom sx={{ ml: 2 }}>
-          Tutulacaklar Kutusu
-        </Typography>
+      <Grid size="grow">
         <ValuesPile
+          title="Tutulacaklar Kutusu"
           values={keepPile}
           action={addToDiscardPile}
           onDrop={handleDropKeep}

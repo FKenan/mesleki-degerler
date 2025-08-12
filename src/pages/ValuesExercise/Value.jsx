@@ -15,16 +15,22 @@ export default function Value({ value, action }) {
   });
 
   return (
-    <Grid size={{ md: 3, l: 4 }}>
+    <Grid size={{ xs: 6, sm: 4, md: 3 }}>
       <Card
         ref={dragRef}
-        variant="outlined"
+        elevation={3}
         sx={{
           borderRadius: 3,
           minHeight: 40,
           height: "100%",
           borderColor: "primary.light",
           opacity: isDragging ? 0.5 : 1,
+          cursor: action ? "grab" : "default",
+          transition: "transform 0.2s, box-shadow 0.2s",
+          "&:hover": {
+            transform: action ? "translateY(-4px)" : "none",
+            boxShadow: action ? "0px 4px 20px rgba(0,0,0,0.1)" : "none",
+          },
         }}
       >
         <CardActionArea
@@ -33,10 +39,9 @@ export default function Value({ value, action }) {
           onClick={() => dispatch(action(value))}
         >
           <Typography
-            p={0.5}
             variant="body2"
             fontSize={12}
-            fontWeight="bold"
+            fontWeight="600"
             color="primary"
             align="center"
           >

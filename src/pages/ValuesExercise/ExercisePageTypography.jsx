@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 
 export default function ExercisePageTypography({
   title,
@@ -6,26 +6,31 @@ export default function ExercisePageTypography({
   subtitle2,
 }) {
   return (
-    <Box sx={{ textAlign: "center", mb: 4 }}>
-      <Typography variant="h4" component="h1" fontWeight="bold" gutterBottom>
+    <Stack
+      spacing={1.5}
+      sx={{
+        textAlign: "center",
+        mb: 4,
+        maxWidth: 600,
+        mx: "auto",
+      }}
+    >
+      <Typography
+        color="primary.main"
+        variant="h4"
+        component="h1"
+        fontWeight="bold"
+      >
         {title}
       </Typography>
-      <Typography
-        variant="h6"
-        component="p"
-        color="text.secondary"
-        gutterBottom
-        sx={{ maxWidth: "75ch", mx: "auto" }}
-      >
+      <Typography variant="h6" component="p" color="text.secondary">
         {subtitle1}
       </Typography>
-      <Typography
-        variant="body1"
-        color="text.secondary"
-        sx={{ maxWidth: "75ch", mx: "auto" }}
-      >
-        {subtitle2}
-      </Typography>
-    </Box>
+      {subtitle2 && (
+        <Typography variant="body1" color="text.secondary">
+          {subtitle2}
+        </Typography>
+      )}
+    </Stack>
   );
 }

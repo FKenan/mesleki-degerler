@@ -25,11 +25,8 @@ const columns = [
     sortable: false,
     width: 300,
     valueGetter: (value) => {
-      var text = "";
-      value.forEach((element) => {
-        text += element.ad + ", ";
-      });
-      return text.trim().slice(0, -1);
+      const degerler = value.map((value) => value.ad).join(", ");
+      return degerler;
     },
   },
 ];

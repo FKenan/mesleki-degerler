@@ -10,13 +10,7 @@ export default function ResultPage() {
   const { activeStep, first5Value } = useSelector((state) => state.value);
   const dispatch = useDispatch();
 
-  const toText = () => {
-    var text = "";
-    first5Value.forEach((element) => {
-      text += element.ad + ", ";
-    });
-    return text.trim().slice(0, -1);
-  };
+  const secilenDegerlerText = first5Value.map((value) => value.ad).join(", ");
 
   return (
     <Grid container spacing={1} alignItems="center">
@@ -36,9 +30,9 @@ export default function ResultPage() {
             Geri
           </Button>
           <ExercisePageTypography
-            title="Uygun Bölümler"
-            subtitle1="Seçimlerinize uygun bölümler aşağıda listelendi."
-            subtitle2={`Seçimleriniz: ${toText()}`}
+            title="Değerlerinize Uygun Bölümler"
+            subtitle1="Belirlediğiniz beş temel mesleki değere dayanarak, sizin için en uygun olabilecek üniversite bölümlerini aşağıda bulabilirsiniz."
+            subtitle2={`Öncelikli Değerleriniz: ${secilenDegerlerText}`}
           />
           <Button
             endIcon={<ArrowForwardIcon />}

@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { useEffect } from "react";
 import Appbar from "./Appbar";
 import ResultPage from "./result/Result";
@@ -18,7 +18,7 @@ export default function ValuesExercisePage() {
   }, []);
 
   return (
-    <Box height="100%" sx={{ mx: 2 }}>
+    <Container maxWidth="xl" sx={{ justifyContent: "center" }}>
       <Appbar
         handleReset={() => dispatch(handleReset())}
         activeStep={activeStep}
@@ -27,6 +27,6 @@ export default function ValuesExercisePage() {
       {activeStep === 0 && <Step1 />}
       {activeStep === 1 && <Step2 />}
       {activeStep === 2 && <ResultPage />}
-    </Box>
+    </Container>
   );
 }
