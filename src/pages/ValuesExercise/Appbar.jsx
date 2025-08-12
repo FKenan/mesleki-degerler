@@ -22,17 +22,16 @@ export default function Appbar({ handleReset, activeStep, steps }) {
         boxShadow: "none",
       }}
     >
-      <Toolbar disableGutters>
+      <Toolbar disableGutters sx={{ px: 2 }}>
         <Grid container spacing={2} width="100%" alignItems="center">
-          <Grid size={3} display="flex">
+          <Grid size={3} display="flex" alignItems="center">
             <HomeIcon color="primary" sx={{ mr: 1 }} />
             <Typography
               variant="h6"
               noWrap
               sx={{
                 color: "primary.main",
-                fontFamily: "monospace",
-                fontWeight: 600,
+                fontWeight: 700,
                 textDecoration: "none",
               }}
             >
@@ -43,7 +42,7 @@ export default function Appbar({ handleReset, activeStep, steps }) {
             <Stepper activeStep={activeStep}>
               {steps.map((label) => {
                 return (
-                  <Step key={label} sx={{ px: 2 }}>
+                  <Step key={label}>
                     <StepLabel>{label}</StepLabel>
                   </Step>
                 );

@@ -6,10 +6,26 @@ export default function ExercisePageTypography({
   subtitle2,
 }) {
   return (
-    <Box justifyItems="center" alignItems="center">
-      <Typography variant="h5">{title}</Typography>
-      <Typography variant="h6">{subtitle1}</Typography>
-      <Typography variant="body2">{subtitle2}</Typography>
+    <Box sx={{ textAlign: "center", mb: 4 }}>
+      <Typography variant="h4" component="h1" fontWeight="bold" gutterBottom>
+        {title}
+      </Typography>
+      <Typography
+        variant="h6"
+        component="p"
+        color="text.secondary"
+        gutterBottom
+        sx={{ maxWidth: "75ch", mx: "auto" }}
+      >
+        {subtitle1}
+      </Typography>
+      <Typography
+        variant="body1"
+        color="text.secondary"
+        sx={{ maxWidth: "75ch", mx: "auto" }}
+      >
+        {subtitle2}
+      </Typography>
     </Box>
   );
 }

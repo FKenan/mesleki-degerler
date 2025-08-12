@@ -33,9 +33,9 @@ export default function Step1() {
             Geri
           </Button>
           <ExercisePageTypography
-            title="Değerleriniz"
-            subtitle1="Destedeki değerleri 2 kutuya ayırınız."
-            subtitle2="Size uyanlar bir tarafa, uymayanları diğer tarafa ayırınız!"
+            title="Değerlerinizi Keşfedin"
+            subtitle1="Aşağıdaki değer kartlarını size en uygun olanları 'Tutulacaklar', diğerlerini ise 'Atılacaklar' kutusuna sürükleyin."
+            subtitle2="Bu adımda istediğiniz kadar değeri 'Tutulacaklar' kutusuna ekleyebilirsiniz."
           />
           <Button
             endIcon={<ArrowForwardIcon />}

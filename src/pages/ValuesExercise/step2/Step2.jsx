@@ -30,9 +30,9 @@ export default function Step2() {
             Geri
           </Button>
           <ExercisePageTypography
-            title="Değerleriniz"
-            subtitle1="Size uyan ilk 5 değerinizi seçiniz."
-            subtitle2="Seçtiğiniz değerlerden öncelikli olan 5 tanesini seçiniz!"
+            title="Önceliklerinizi Belirleyin"
+            subtitle1="Şimdi 'Tutulacaklar' kutusundaki değerler arasından sizin için en önemli olan 5 tanesini seçin."
+            subtitle2="Bu 5 değer, kariyer yolculuğunuzda size rehberlik edecek temel taşlarınız olacak."
           />
           <Button
             endIcon={<ArrowForwardIcon />}
