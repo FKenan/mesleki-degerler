@@ -13,7 +13,7 @@ export default function Step1() {
   const dispatch = useDispatch();
 
   return (
-    <Grid container spacing={1} alignItems="center">
+    <Grid container spacing={2} alignItems="center">
       <Grid size={12} sx={{ my: 2 }}>
         <Stack
           alignItems="center"

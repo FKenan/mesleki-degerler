@@ -19,7 +19,7 @@ export default function Piles() {
   };
 
   return (
-    <Grid size={12} container spacing={2} alignItems="stretch">
+    <Grid size={12} container spacing={3} alignItems="stretch" px={3}>
       <Grid size="grow">
         <ValuesPile
           title="Atılacaklar Kutusu"

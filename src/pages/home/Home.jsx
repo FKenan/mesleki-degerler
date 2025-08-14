@@ -32,10 +32,10 @@ export default function HomePage() {
         sx={{
           minHeight: "100vh",
           background: "linear-gradient(135deg, #e3f2fd 0%, #fff 100%)",
-          py: 6,
+          p: 6,
         }}
       >
-        <Container maxWidth="md">
+        <Container maxWidth="xl">
           <Paper elevation={3} sx={{ p: { xs: 3, md: 5 }, borderRadius: 4 }}>
             <Stack spacing={6} alignItems="center">
               <Stack spacing={2} alignItems="center">

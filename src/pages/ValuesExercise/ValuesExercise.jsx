@@ -18,15 +18,17 @@ export default function ValuesExercisePage() {
   }, []);
 
   return (
-    <Container maxWidth="xl" sx={{ justifyContent: "center" }}>
+    <>
       <Appbar
         handleReset={() => dispatch(handleReset())}
         activeStep={activeStep}
         steps={steps}
       />
-      {activeStep === 0 && <Step1 />}
-      {activeStep === 1 && <Step2 />}
-      {activeStep === 2 && <ResultPage />}
-    </Container>
+      <Container maxWidth="false" sx={{ justifyContent: "center" }}>
+        {activeStep === 0 && <Step1 />}
+        {activeStep === 1 && <Step2 />}
+        {activeStep === 2 && <ResultPage />}
+      </Container>
+    </>
   );
 }

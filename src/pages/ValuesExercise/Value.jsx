@@ -15,7 +15,7 @@ export default function Value({ value, action }) {
   });
 
   return (
-    <Grid size={{ xs: 6, sm: 4, md: 3 }}>
+    <Grid size={{ sm: 12, md: 6, lg: 4, xl: 3 }}>
       <Card
         ref={dragRef}
         elevation={3}

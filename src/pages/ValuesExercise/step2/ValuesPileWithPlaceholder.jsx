@@ -25,7 +25,7 @@ export default function ValuesPileWithPlaceholder({
   const getBgColor = () => {
     if (isOver && canDrop) return "#e3f2fd";
     if (canDrop) return "#f5f5f5";
-    return "#fafafa";
+    return "#f8f8f8f8";
   };
 
   return (
@@ -35,8 +35,9 @@ export default function ValuesPileWithPlaceholder({
       elevation={isOver ? 8 : 1}
       sx={{
         borderRadius: "16px",
-        p: 2,
+        p: 3,
         height: "100%",
+        width: "90%",
         minHeight: 300,
         backgroundColor: getBgColor(),
         border:

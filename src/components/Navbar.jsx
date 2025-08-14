@@ -7,7 +7,7 @@ import HomeIcon from "@mui/icons-material/Home";
 export default function Navbar() {
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container maxWidth="false">
         <Toolbar disableGutters>
           <HomeIcon sx={{ display: { xs: "flex" }, mr: 1 }} />
           <Typography
