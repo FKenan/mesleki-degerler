@@ -5,10 +5,12 @@ import ExercisePageTypography from "../ExercisePageTypography";
 import PilesStep2 from "./PilesStep2";
 import { useDispatch, useSelector } from "react-redux";
 import { handleBack, handleNext } from "../valueSlice";
+import { useDevice } from "../../../context/DeviceContext";
 
 const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
 
 export default function Step2() {
+  const { isMobile } = useDevice();
   const { activeStep, first5Value } = useSelector((state) => state.value);
   const dispatch = useDispatch();
 

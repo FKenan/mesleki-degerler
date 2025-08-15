@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
+import { DeviceProvider } from "./context/DeviceContext";
 import MainLayout from "./layouts/Main";
 import HomePage from "./pages/home/Home";
 import ValuesExercisePage from "./pages/ValuesExercise/ValuesExercise";
@@ -15,7 +16,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <DeviceProvider>
+      <RouterProvider router={router} />
+    </DeviceProvider>
+  );
 }
 
 export default App;
