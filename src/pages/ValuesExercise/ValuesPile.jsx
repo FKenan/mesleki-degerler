@@ -16,28 +16,23 @@ export default function ValuesPile({ values, action, onDrop, title }) {
     }),
   });
 
-  const getBgColor = () => {
-    if (isOver && canDrop) return "#e3f2fd";
-    if (canDrop) return "#f5f5f5";
-    return "#f8f8f8f8";
-  };
-
   return (
     <Paper
       ref={dropRef}
       square={false}
       elevation={isOver ? 8 : 1}
       sx={{
+        position: "relative",
         borderRadius: "16px",
         p: 3,
         height: "100%",
         width: "90%",
         minHeight: 300,
-        backgroundColor: getBgColor(),
+        backgroundColor:
+          isOver && canDrop ? "#e3f2fd" : canDrop ? "#f5f5f5" : "#f8f8f8f8",
         border:
           isOver && canDrop ? "2px dashed #1976d2" : "2px solid transparent",
         transition: "background-color 0.3s, border 0.3s, box-shadow 0.3s",
-        position: "relative",
         boxShadow: isOver
           ? "0px 8px 24px rgba(0,0,0,0.15)"
           : "0px 1px 3px rgba(0,0,0,0.1)",

@@ -8,6 +8,7 @@ export default function Value({ value }) {
         sx={{
           borderRadius: 5,
           height: "100%",
+          px: 1,
         }}
       >
         <CardActionArea sx={{ height: "100%", p: 1 }}>

@@ -32,7 +32,8 @@ export default function HomePage() {
         sx={{
           minHeight: "100vh",
           background: "linear-gradient(135deg, #e3f2fd 0%, #fff 100%)",
-          p: 6,
+          py: 4,
+          px: { xs: 1, sm: 3, md: 8 },
         }}
       >
         <Container maxWidth="xl">

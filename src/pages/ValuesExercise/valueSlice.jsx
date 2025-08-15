@@ -30,11 +30,11 @@ export const valueSlice = createSlice({
     },
 
     addToFirst5Value: (state, action) => {
-      state.first5Value = [...state.first5Value, action.payload];
+      state.first5Value.push(action.payload);
       removeValueFromKeepPile(state, action);
     },
     addToDiscardPile: (state, action) => {
-      state.discardPile = [...state.discardPile, action.payload];
+      state.discardPile.push(action.payload);
       removeValue(state, action);
       removeValueFromKeepPile(state, action);
     },
