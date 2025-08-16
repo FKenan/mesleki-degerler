@@ -4,8 +4,8 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ExercisePageTypography from "../ExercisePageTypography";
 import PilesStep2 from "./PilesStep2";
 import { useDispatch, useSelector } from "react-redux";
-import { handleBack, handleNext } from "../valueSlice";
 import { useDevice } from "../../../context/DeviceContext";
+import { handleBack, handleNext } from "../valueSlice";
 
 const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
 

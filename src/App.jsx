@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
-import { DeviceProvider } from "./context/DeviceContext";
 import MainLayout from "./layouts/Main";
 import HomePage from "./pages/home/Home";
 import ValuesExercisePage from "./pages/ValuesExercise/ValuesExercise";
+import { DeviceProvider } from "./context/DeviceContext";
 
 const router = createBrowserRouter([
   {
