@@ -1,13 +1,11 @@
-import { Box, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import { useEffect } from "react";
 import Appbar from "./Appbar";
 import ResultPage from "./result/Result";
 import Step1 from "./step1/Step1";
 import Step2 from "./step2/Step2";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchValues, handleReset } from "./valueSlice";
-
-const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
+import { fetchValues } from "./valueSlice";
 
 export default function ValuesExercisePage() {
   const { isLoaded, activeStep } = useSelector((state) => state.value);
@@ -19,11 +17,7 @@ export default function ValuesExercisePage() {
 
   return (
     <>
-      <Appbar
-        handleReset={() => dispatch(handleReset())}
-        activeStep={activeStep}
-        steps={steps}
-      />
+      <Appbar />
       <Container maxWidth="false" sx={{ justifyContent: "center" }}>
         {activeStep === 0 && <Step1 />}
         {activeStep === 1 && <Step2 />}

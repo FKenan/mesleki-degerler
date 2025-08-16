@@ -5,9 +5,7 @@ import ExercisePageTypography from "../ExercisePageTypography";
 import Piles from "./Piles";
 import { useDispatch, useSelector } from "react-redux";
 import { useDevice } from "../../../context/DeviceContext";
-import { handleBack, handleNext } from "../valueSlice";
-
-const steps = ["1.Adım", "2.Adım", "Sonuçlar"];
+import { handleBack, handleNext, VALUE_EXERCISE_STEPS } from "../valueSlice";
 
 export default function Step1() {
   const { isMobile } = useDevice();
@@ -43,7 +41,8 @@ export default function Step1() {
             endIcon={<ArrowForwardIcon />}
             variant="contained"
             disabled={
-              activeStep === steps.length - 1 || valueStack.length !== 0
+              activeStep === VALUE_EXERCISE_STEPS.length - 1 ||
+              valueStack.length !== 0
             }
             onClick={() => dispatch(handleNext())}
           >

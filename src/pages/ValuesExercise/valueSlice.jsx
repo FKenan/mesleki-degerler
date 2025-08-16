@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+export const VALUE_EXERCISE_STEPS = ["1.Adım", "2.Adım", "Sonuçlar"];
+
 export const fetchValues = createAsyncThunk("api/Degerler", async () => {
   try {
     const res = await fetch("https://localhost:44316/api/Degerler");
@@ -9,6 +11,26 @@ export const fetchValues = createAsyncThunk("api/Degerler", async () => {
     throw e;
   }
 });
+
+const removeValue = (state, action) => {
+  state.valueStack = state.valueStack.filter((x) => action.payload.id !== x.id);
+};
+
+const removeValueFromKeepPile = (state, action) => {
+  state.keepPile = state.keepPile.filter((x) => action.payload.id !== x.id);
+};
+
+const removeValueFromDiscardPile = (state, action) => {
+  state.discardPile = state.discardPile.filter(
+    (x) => action.payload.id !== x.id
+  );
+};
+
+const removeValueFromFirst5Value = (state, action) => {
+  state.first5Value = state.first5Value.filter(
+    (x) => action.payload.id !== x.id
+  );
+};
 
 export const valueSlice = createSlice({
   name: "value",
@@ -66,26 +88,6 @@ export const valueSlice = createSlice({
     });
   },
 });
-
-const removeValue = (state, action) => {
-  state.valueStack = state.valueStack.filter((x) => action.payload.id !== x.id);
-};
-
-const removeValueFromKeepPile = (state, action) => {
-  state.keepPile = state.keepPile.filter((x) => action.payload.id !== x.id);
-};
-
-const removeValueFromDiscardPile = (state, action) => {
-  state.discardPile = state.discardPile.filter(
-    (x) => action.payload.id !== x.id
-  );
-};
-
-const removeValueFromFirst5Value = (state, action) => {
-  state.first5Value = state.first5Value.filter(
-    (x) => action.payload.id !== x.id
-  );
-};
 
 export const {
   handleNext,

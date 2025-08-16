@@ -12,8 +12,13 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { handleReset, VALUE_EXERCISE_STEPS } from "./valueSlice";
 
-export default function Appbar({ handleReset, activeStep, steps }) {
+export default function Appbar() {
+  const { activeStep } = useSelector((state) => state.value);
+  const dispatch = useDispatch();
+
   return (
     <AppBar
       position="static"
@@ -48,7 +53,7 @@ export default function Appbar({ handleReset, activeStep, steps }) {
             justifyContent={{ xs: "center", sm: "flex-start" }}
           >
             <Stepper activeStep={activeStep}>
-              {steps.map((label) => {
+              {VALUE_EXERCISE_STEPS.map((label) => {
                 return (
                   <Step key={label}>
                     <StepLabel>{label}</StepLabel>
@@ -62,7 +67,11 @@ export default function Appbar({ handleReset, activeStep, steps }) {
             display="flex"
             justifyContent={{ xs: "space-between", sm: "flex-end" }}
           >
-            <Button size="small" onClick={handleReset} sx={{ mr: 1, p: 0 }}>
+            <Button
+              size="small"
+              onClick={() => dispatch(handleReset())}
+              sx={{ mr: 1, p: 0 }}
+            >
               Baştan başla
             </Button>
             <IconButton color="primary" size="large" component={Link} to="/">
