@@ -6,10 +6,15 @@ import Step1 from "./step1/Step1";
 import Step2 from "./step2/Step2";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchValues } from "./valueSlice";
+import { useDevice } from "../../context/DeviceContext";
+import Step1Mobile from "./mobile/step1/Step1Mobile";
+import ResultMobile from "./mobile/result/ResultMobile";
+import Step2Mobile from "./mobile/step2/Step2Mobile";
 
 export default function ValuesExercisePage() {
   const { isLoaded, activeStep } = useSelector((state) => state.value);
   const dispatch = useDispatch();
+  const { isMobile } = useDevice();
 
   useEffect(() => {
     if (!isLoaded) dispatch(fetchValues());
@@ -19,9 +24,9 @@ export default function ValuesExercisePage() {
     <>
       <Appbar />
       <Container maxWidth="false" sx={{ justifyContent: "center" }}>
-        {activeStep === 0 && <Step1 />}
-        {activeStep === 1 && <Step2 />}
-        {activeStep === 2 && <ResultPage />}
+        {activeStep === 0 && (isMobile ? <Step1Mobile /> : <Step1 />)}
+        {activeStep === 1 && (isMobile ? <Step2Mobile /> : <Step2 />)}
+        {activeStep === 2 && (isMobile ? <ResultMobile /> : <ResultPage />)}
       </Container>
     </>
   );
