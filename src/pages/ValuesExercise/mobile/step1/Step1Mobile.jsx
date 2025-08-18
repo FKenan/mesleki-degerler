@@ -1,18 +1,12 @@
 import { Card, CardContent, Button, Typography, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import CheckIcon from "@mui/icons-material/Check";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  addToDiscardPile,
-  addToKeepPile,
-  handleNext,
-  handleBack,
-} from "../../valueSlice";
+import { addToDiscardPile, addToKeepPile } from "../../valueSlice";
+import NextButtonMobile from "../NextButtonMobile";
 
 export default function Step1Mobile() {
-  const { valueStack, activeStep } = useSelector((state) => state.value);
+  const { valueStack } = useSelector((state) => state.value);
   const dispatch = useDispatch();
 
   return (
@@ -124,45 +118,7 @@ export default function Step1Mobile() {
           </Card>
         ))}
       </Box>
-      {valueStack.length === 0 && ( //  Sonradan ayrı componente çıkarılacak
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "100%",
-            maxWidth: 400,
-          }}
-        >
-          <Button
-            variant="outlined"
-            size="large"
-            onClick={() => dispatch(handleBack())}
-            startIcon={<ArrowBackIcon />}
-            sx={{
-              visibility: activeStep === 0 ? "hidden" : "visible",
-              borderRadius: "20px",
-              padding: "10px 30px",
-              fontWeight: "bold",
-            }}
-          >
-            Geri
-          </Button>
-          <Button
-            variant="contained"
-            size="large"
-            onClick={() => dispatch(handleNext())}
-            endIcon={<ArrowForwardIcon />}
-            sx={{
-              borderRadius: "20px",
-              padding: "10px 30px",
-              fontWeight: "bold",
-              alignItems: "center",
-            }}
-          >
-            İleri
-          </Button>
-        </Box>
-      )}
+      <NextButtonMobile />
     </Box>
   );
 }

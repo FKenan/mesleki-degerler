@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Card,
   CardActionArea,
   CardContent,
@@ -10,20 +9,12 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import {
-  addToFirst5Value,
-  addToKeepPile,
-  handleBack,
-  handleNext,
-} from "../../valueSlice";
+import { addToFirst5Value, addToKeepPile } from "../../valueSlice";
+import NextButtonMobile from "../NextButtonMobile";
 
 export default function Step2Mobile() {
   const dispatch = useDispatch();
-  const { keepPile, first5Value, activeStep } = useSelector(
-    (state) => state.value
-  );
+  const { keepPile, first5Value } = useSelector((state) => state.value);
 
   const handleToggle = (value, isSelected) => {
     if (isSelected) {
@@ -61,7 +52,7 @@ export default function Step2Mobile() {
         </Typography>
       </Box>
 
-      <Box sx={{ width: "100%", maxWidth: 500 }}>
+      <Box sx={{ width: "100%", maxWidth: 500, flexGrow: 1 }}>
         {allValues.length > 0 ? (
           allValues.map((value) => {
             const isSelected = first5Value.some((v) => v.id === value.id);
@@ -115,46 +106,7 @@ export default function Step2Mobile() {
           </Typography>
         )}
       </Box>
-
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: "100%",
-          maxWidth: 400,
-          mt: 2,
-          alignItems: "center",
-        }}
-      >
-        <Button
-          variant="outlined"
-          size="large"
-          onClick={() => dispatch(handleBack())}
-          startIcon={<ArrowBackIcon />}
-          sx={{
-            visibility: activeStep === 0 ? "hidden" : "visible",
-            borderRadius: "20px",
-            padding: "10px 30px",
-            fontWeight: "bold",
-          }}
-        >
-          Geri
-        </Button>
-        <Button
-          variant="contained"
-          size="large"
-          onClick={() => dispatch(handleNext())}
-          endIcon={<ArrowForwardIcon />}
-          sx={{
-            borderRadius: "20px",
-            padding: "10px 30px",
-            fontWeight: "bold",
-          }}
-          disabled={first5Value.length !== 5}
-        >
-          İleri
-        </Button>
-      </Box>
+      <NextButtonMobile />
     </Box>
   );
 }
