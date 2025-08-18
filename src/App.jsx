@@ -3,6 +3,7 @@ import MainLayout from "./layouts/Main";
 import HomePage from "./pages/home/Home";
 import ValuesExercisePage from "./pages/ValuesExercise/ValuesExercise";
 import { DeviceProvider } from "./context/DeviceContext";
+import NotFoundPage from "./pages/notFound/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -11,6 +12,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "/exercise", element: <ValuesExercisePage /> },
+      { path: "*", element: <NotFoundPage /> },
     ],
   },
 ]);
