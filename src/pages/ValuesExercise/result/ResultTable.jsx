@@ -8,7 +8,7 @@ import { fetchTableData } from "./resultSlice";
 const columns = [
   { field: "bolumAd", headerName: "Bölüm", width: 250 },
   { field: "fakulteAd", headerName: "Fakülte", width: 200 },
-  { field: "durum", headerName: "Lisans-Önlisans", width: 150 },
+  { field: "durum", headerName: "Öğrenim Düzeyi", width: 150 },
   {
     field: "fakulteUrl",
     headerName: "Website",
