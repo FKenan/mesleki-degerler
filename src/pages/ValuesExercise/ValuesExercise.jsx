@@ -10,6 +10,7 @@ import { useDevice } from "../../context/DeviceContext";
 import Step1Mobile from "./mobile/step1/Step1Mobile";
 import ResultMobile from "./mobile/result/ResultMobile";
 import Step2Mobile from "./mobile/step2/Step2Mobile";
+import AppbarMobile from "./mobile/AppbarMobile";
 
 export default function ValuesExercisePage() {
   const { isLoaded, activeStep } = useSelector((state) => state.value);
@@ -22,7 +23,7 @@ export default function ValuesExercisePage() {
 
   return (
     <>
-      <Appbar />
+      {isMobile ? <AppbarMobile /> : <Appbar />}
       <Container maxWidth="false" sx={{ justifyContent: "center" }}>
         {activeStep === 0 && (isMobile ? <Step1Mobile /> : <Step1 />)}
         {activeStep === 1 && (isMobile ? <Step2Mobile /> : <Step2 />)}

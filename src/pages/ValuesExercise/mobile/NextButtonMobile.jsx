@@ -16,7 +16,7 @@ export default function NextButtonMobile() {
         justifyContent: "flex-end",
         width: "100%",
         maxWidth: 500,
-        my: 1,
+        mb: 1,
       }}
     >
       <Button

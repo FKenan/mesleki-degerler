@@ -1,5 +1,6 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
+import ExercisePageTypography from "../../ExercisePageTypography";
 import NextButtonMobile from "../NextButtonMobile";
 import ValueStackMobile from "./ValueStackMobile";
 
@@ -13,20 +14,15 @@ export default function Step1Mobile() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "space-between",
-        minHeight: "85vh",
+        minHeight: "90vh",
         px: 2,
         gap: 2,
       }}
     >
-      <Box sx={{ textAlign: "center", width: "100%", maxWidth: 500, mb: 2 }}>
-        <Typography variant="h5" gutterBottom>
-          Değerleri İki Gruba Ayırın
-        </Typography>
-        <Typography variant="subtitle1" color="text.secondary">
-          Size en uygun olan değerleri 'Tut' butonuna, diğerlerini ise 'At'
-          butonuna basarak ayırın.
-        </Typography>
-      </Box>
+      <ExercisePageTypography
+        title="Değerleri İki Gruba Ayırın"
+        subtitle1="Size en uygun olan değerleri 'Tut' butonuna, diğerlerini ise 'At' butonuna basarak ayırın."
+      />
       <Box
         sx={{
           position: "relative",

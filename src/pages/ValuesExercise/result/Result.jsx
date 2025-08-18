@@ -30,8 +30,8 @@ export default function ResultPage() {
             Geri
           </Button>
           <ExercisePageTypography
-            title="Değerlerinize Uygun Bölümler"
-            subtitle1="Belirlediğiniz beş temel mesleki değere dayanarak, sizin için en uygun olabilecek üniversite bölümlerini aşağıda bulabilirsiniz."
+            title="Bölüm Önerileri"
+            subtitle1="Seçtiğiniz değerlere göre size uygun bölümler aşağıdadır."
             subtitle2={`Öncelikli Değerleriniz: ${secilenDegerlerText}`}
           />
           <Button

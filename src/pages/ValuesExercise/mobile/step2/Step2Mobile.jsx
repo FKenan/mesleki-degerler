@@ -1,7 +1,7 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-
 import { addToFirst5Value, addToKeepPile } from "../../valueSlice";
+import ExercisePageTypography from "../../ExercisePageTypography";
 import NextButtonMobile from "../NextButtonMobile";
 import ValueCardMobile from "./ValueCardMobile";
 
@@ -33,17 +33,11 @@ export default function Step2Mobile() {
         gap: 2,
       }}
     >
-      <Box sx={{ textAlign: "center", mb: 2, width: "100%", maxWidth: 500 }}>
-        <Typography variant="h5" gutterBottom>
-          En Önemli 5 Değeri Seçin
-        </Typography>
-        <Typography variant="subtitle1" color="text.secondary" sx={{ mb: 2 }}>
-          Sizin için en anlamlı 5 değeri seçerek devam edin.
-        </Typography>
-        <Typography variant="h6" color="primary">
-          {first5Value.length} / 5 Değer Seçildi
-        </Typography>
-      </Box>
+      <ExercisePageTypography
+        title="En Önemli 5 Değeri Seçin"
+        subtitle1="Sizin için en anlamlı 5 değeri seçerek devam edin."
+        subtitle2={`${first5Value.length} / 5 Değer Seçildi`}
+      />
       <Box sx={{ width: "100%", maxWidth: 500, flexGrow: 1 }}>
         {allValues.map((value) => {
           const isSelected = first5Value.some((v) => v.id === value.id);

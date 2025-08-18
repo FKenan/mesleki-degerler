@@ -1,6 +1,6 @@
-import { Grid, Stack } from "@mui/material";
-import ExercisePageTypography from "../../ExercisePageTypography";
+import { Grid, Box } from "@mui/material";
 import { useSelector } from "react-redux";
+import ExercisePageTypography from "../../ExercisePageTypography";
 import ResultTableMobile from "./ResultTableMobile";
 
 export default function ResultMobile() {
@@ -9,20 +9,13 @@ export default function ResultMobile() {
   const secilenDegerlerText = first5Value.map((value) => value.ad).join(", ");
 
   return (
-    <Grid container spacing={1} alignItems="center">
-      <Grid size={12} sx={{ my: 2 }}>
-        <Stack
-          alignItems="center"
-          justifyContent="center"
-          direction="column"
-          spacing={2}
-        >
-          <ExercisePageTypography
-            title="Değerlerinize Uygun Bölümler"
-            subtitle1="Belirlediğiniz beş temel mesleki değere dayanarak, sizin için en uygun olabilecek üniversite bölümlerini aşağıda bulabilirsiniz."
-            subtitle2={`Öncelikli Değerleriniz: ${secilenDegerlerText}`}
-          />
-        </Stack>
+    <Grid container alignItems="center">
+      <Grid size={12}>
+        <ExercisePageTypography
+          title="Bölüm Önerileri"
+          subtitle1="Seçtiğiniz değerlere göre size uygun bölümler aşağıdadır."
+          subtitle2={`Öncelikli Değerleriniz: ${secilenDegerlerText}`}
+        />
       </Grid>
       <Grid size={12}>
         <ResultTableMobile />
