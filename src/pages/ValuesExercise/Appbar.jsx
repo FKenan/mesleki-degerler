@@ -14,10 +14,12 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { handleReset, VALUE_EXERCISE_STEPS } from "./valueSlice";
+import { useDevice } from "../../context/DeviceContext";
 
 export default function Appbar() {
   const { activeStep } = useSelector((state) => state.value);
   const dispatch = useDispatch();
+  const { isMobile } = useDevice();
 
   return (
     <AppBar
@@ -25,10 +27,11 @@ export default function Appbar() {
       sx={{
         background: "transparent",
         boxShadow: "none",
+        mt: { xs: 2, sm: 0 },
       }}
     >
       <Toolbar disableGutters sx={{ px: 2 }}>
-        <Grid container spacing={2} width="100%" alignItems="center">
+        <Grid container spacing={1} width="100%" alignItems="center">
           <Grid
             size={{ xs: 12, sm: 3 }}
             display="flex"
@@ -48,20 +51,22 @@ export default function Appbar() {
               Mesleki Değerler
             </Typography>
           </Grid>
-          <Grid
-            size={{ xs: 12, sm: 6 }}
-            justifyContent={{ xs: "center", sm: "flex-start" }}
-          >
-            <Stepper activeStep={activeStep}>
-              {VALUE_EXERCISE_STEPS.map((label) => {
-                return (
-                  <Step key={label}>
-                    <StepLabel>{label}</StepLabel>
-                  </Step>
-                );
-              })}
-            </Stepper>
-          </Grid>
+          {!isMobile && (
+            <Grid
+              size={{ xs: 12, sm: 6 }}
+              justifyContent={{ xs: "center", sm: "flex-start" }}
+            >
+              <Stepper activeStep={activeStep}>
+                {VALUE_EXERCISE_STEPS.map((label) => {
+                  return (
+                    <Step key={label}>
+                      <StepLabel>{label}</StepLabel>
+                    </Step>
+                  );
+                })}
+              </Stepper>
+            </Grid>
+          )}
           <Grid
             size={{ xs: 12, sm: 3 }}
             display="flex"

@@ -29,6 +29,7 @@ export default function ValueStackMobile({ value, idx }) {
           alignItems: "center",
           padding: 3,
           py: 2,
+          pb: 1,
           gap: 5,
         }}
       >
