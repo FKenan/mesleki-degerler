@@ -3,6 +3,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import HomeIcon from "@mui/icons-material/Home";
+import ThemeSelector from "./ThemeSelector";
 
 export default function Navbar() {
   return (
@@ -26,6 +27,7 @@ export default function Navbar() {
           >
             Mesleki Değerler
           </Typography>
+          <ThemeSelector />
         </Toolbar>
       </Container>
     </AppBar>

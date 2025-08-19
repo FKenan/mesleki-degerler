@@ -3,6 +3,7 @@ import MainLayout from "./layouts/Main";
 import HomePage from "./pages/home/Home";
 import ValuesExercisePage from "./pages/ValuesExercise/ValuesExercise";
 import { DeviceProvider } from "./context/DeviceContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import NotFoundPage from "./pages/notFound/NotFound";
 
 const router = createBrowserRouter([
@@ -20,7 +21,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <DeviceProvider>
-      <RouterProvider router={router} />
+      <ThemeProvider>
+        <RouterProvider router={router} />
+      </ThemeProvider>
     </DeviceProvider>
   );
 }

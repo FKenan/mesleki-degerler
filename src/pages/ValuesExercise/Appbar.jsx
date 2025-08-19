@@ -15,6 +15,7 @@ import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { handleReset, VALUE_EXERCISE_STEPS } from "./valueSlice";
 import { useDevice } from "../../context/DeviceContext";
+import ThemeSelector from "../../components/ThemeSelector";
 
 export default function Appbar() {
   const { activeStep } = useSelector((state) => state.value);
@@ -25,8 +26,6 @@ export default function Appbar() {
     <AppBar
       position="static"
       sx={{
-        background: "transparent",
-        boxShadow: "none",
         mt: { xs: 2, sm: 0 },
       }}
     >
@@ -38,7 +37,7 @@ export default function Appbar() {
             alignItems="center"
             justifyContent={{ xs: "center", sm: "flex-start" }}
           >
-            <HomeIcon color="primary" sx={{ mr: 1 }} />
+            <HomeIcon sx={{ mr: 1 }} />
             <Typography
               variant="h6"
               noWrap
@@ -46,6 +45,7 @@ export default function Appbar() {
                 color: "primary.main",
                 fontWeight: 700,
                 textDecoration: "none",
+                color: "inherit",
               }}
             >
               Mesleki Değerler
@@ -70,18 +70,26 @@ export default function Appbar() {
           <Grid
             size={{ xs: 12, sm: 3 }}
             display="flex"
+            alignItems="center"
             justifyContent={{ xs: "space-between", sm: "flex-end" }}
           >
             <Button
               size="small"
+              color="white"
               onClick={() => dispatch(handleReset())}
               sx={{ mr: 1, p: 0 }}
             >
               Baştan başla
             </Button>
-            <IconButton color="primary" size="large" component={Link} to="/">
+            <IconButton
+              sx={{ color: "white" }}
+              size="large"
+              component={Link}
+              to="/"
+            >
               <CloseIcon />
             </IconButton>
+            <ThemeSelector />
           </Grid>
         </Grid>
       </Toolbar>
