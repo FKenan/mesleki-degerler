@@ -35,14 +35,23 @@ export default function ResultTableMobile() {
           <Grid size={12} key={row.id}>
             <Card
               variant="outlined"
-              sx={{
+              sx={(theme) => ({
                 width: "100%",
                 borderRadius: 2,
-                transition: "box-shadow 0.3s ease-in-out",
+                transition:
+                  "box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out",
+                borderColor:
+                  theme.palette.mode === "dark"
+                    ? "rgba(100, 181, 246, 0.3)"
+                    : "rgba(0, 0, 0, 0.12)",
                 "&:hover": {
-                  boxShadow: "0 4px 20px 0 rgba(0,0,0,0.12)",
+                  boxShadow: theme.custom.cardHoverShadow,
+                  borderColor:
+                    theme.palette.mode === "dark"
+                      ? "rgba(100, 181, 246, 0.5)"
+                      : "rgba(0, 0, 0, 0.2)",
                 },
-              }}
+              })}
             >
               <CardContent>
                 <Stack spacing={1}>

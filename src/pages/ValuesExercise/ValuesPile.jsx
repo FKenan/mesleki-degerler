@@ -21,7 +21,7 @@ export default function ValuesPile({ values, action, onDrop, title }) {
       ref={dropRef}
       square={false}
       elevation={isOver ? 8 : 1}
-      sx={{
+      sx={(theme) => ({
         position: "relative",
         borderRadius: "16px",
         p: 3,
@@ -29,14 +29,20 @@ export default function ValuesPile({ values, action, onDrop, title }) {
         width: "90%",
         minHeight: 300,
         backgroundColor:
-          isOver && canDrop ? "#e3f2fd" : canDrop ? "#f5f5f5" : "#f8f8f8f8",
+          isOver && canDrop
+            ? theme.custom.dropZone.isOver
+            : canDrop
+            ? theme.custom.dropZone.canDrop
+            : theme.custom.dropZone.default,
         border:
-          isOver && canDrop ? "2px dashed #1976d2" : "2px solid transparent",
+          isOver && canDrop
+            ? `2px dashed ${theme.palette.primary.main}`
+            : "2px solid transparent",
         transition: "background-color 0.3s, border 0.3s, box-shadow 0.3s",
         boxShadow: isOver
           ? "0px 8px 24px rgba(0,0,0,0.15)"
           : "0px 1px 3px rgba(0,0,0,0.1)",
-      }}
+      })}
     >
       <Typography
         variant="h6"

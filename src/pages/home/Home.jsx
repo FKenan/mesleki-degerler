@@ -31,7 +31,7 @@ export default function HomePage() {
       <Box
         sx={{
           minHeight: "100vh",
-          background: (theme) => theme.custom.backgroundGradient,
+          background: (theme) => theme.custom.homeBackgroundGradient,
           py: 4,
           px: { xs: 1, sm: 3, md: 8 },
         }}

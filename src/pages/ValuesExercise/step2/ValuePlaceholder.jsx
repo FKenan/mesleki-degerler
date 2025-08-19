@@ -5,13 +5,13 @@ export default function ValuePlaceholder() {
     <Grid size={{ sm: 12, md: 6, lg: 4, xl: 3 }}>
       <Card
         variant="outlined"
-        sx={{
+        sx={(theme) => ({
           borderRadius: 3,
           height: "100%",
-          borderColor: "",
+          borderColor: "transparent",
           minHeight: 40,
-          bgcolor: "#eceff1",
-        }}
+          bgcolor: theme.custom.placeholder.background,
+        })}
       ></Card>
     </Grid>
   );
