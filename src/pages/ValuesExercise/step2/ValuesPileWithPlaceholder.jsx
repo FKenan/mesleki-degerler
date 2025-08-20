@@ -46,8 +46,8 @@ export default function ValuesPileWithPlaceholder({
         transition: "background-color 0.3s, border 0.3s, box-shadow 0.3s",
         position: "relative",
         boxShadow: isOver
-          ? "0px 8px 24px rgba(0,0,0,0.15)"
-          : "0px 1px 3px rgba(0,0,0,0.1)",
+          ? theme.custom.pileShadowHover
+          : theme.custom.pileShadow,
       })}
     >
       <Typography

@@ -24,9 +24,12 @@ export default function Appbar() {
 
   return (
     <AppBar
+      elevation={1}
       position="static"
       sx={{
         mt: { xs: 2, sm: 0 },
+        backgroundColor: "background.paper",
+        color: "text.primary",
       }}
     >
       <Toolbar disableGutters sx={{ px: 2 }}>
@@ -42,10 +45,9 @@ export default function Appbar() {
               variant="h6"
               noWrap
               sx={{
-                color: "primary.main",
                 fontWeight: 700,
                 textDecoration: "none",
-                color: "inherit",
+                color: "primary.main",
               }}
             >
               Mesleki Değerler
@@ -75,18 +77,13 @@ export default function Appbar() {
           >
             <Button
               size="small"
-              color="white"
+              color="primary"
               onClick={() => dispatch(handleReset())}
               sx={{ mr: 1, p: 0 }}
             >
               Baştan başla
             </Button>
-            <IconButton
-              sx={{ color: "white" }}
-              size="large"
-              component={Link}
-              to="/"
-            >
+            <IconButton color="inherit" size="large" component={Link} to="/">
               <CloseIcon />
             </IconButton>
             <ThemeSelector />

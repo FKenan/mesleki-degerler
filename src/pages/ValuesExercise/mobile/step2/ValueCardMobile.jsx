@@ -18,16 +18,16 @@ export default function ValueCardMobile({
     <Card
       key={value.id}
       elevation={isSelected ? 8 : 4}
-      sx={{
+            sx={(theme) => ({
         mb: 2,
         borderRadius: 4,
         transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
         border: "2px solid",
         borderColor: isSelected ? "primary.main" : "transparent",
         backgroundColor: isSelected
-          ? "rgba(33, 150, 243, 0.08)"
+          ? theme.custom.highlight.background
           : "background.paper",
-      }}
+      })}
     >
       <CardActionArea
         onClick={() => handleToggle(value, isSelected)}

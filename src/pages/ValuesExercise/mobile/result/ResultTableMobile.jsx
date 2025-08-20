@@ -40,16 +40,10 @@ export default function ResultTableMobile() {
                 borderRadius: 2,
                 transition:
                   "box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out",
-                borderColor:
-                  theme.palette.mode === "dark"
-                    ? "rgba(100, 181, 246, 0.3)"
-                    : "rgba(0, 0, 0, 0.12)",
+                borderColor: theme.custom.interactiveCard.borderColor,
                 "&:hover": {
                   boxShadow: theme.custom.cardHoverShadow,
-                  borderColor:
-                    theme.palette.mode === "dark"
-                      ? "rgba(100, 181, 246, 0.5)"
-                      : "rgba(0, 0, 0, 0.2)",
+                  borderColor: theme.custom.interactiveCard.borderColorHover,
                 },
               })}
             >

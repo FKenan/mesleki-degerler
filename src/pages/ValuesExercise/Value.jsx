@@ -19,7 +19,7 @@ export default function Value({ value, action }) {
       <Card
         ref={dragRef}
         elevation={3}
-        sx={{
+        sx={(theme) => ({
           borderRadius: 3,
           minHeight: 40,
           height: "100%",
@@ -29,9 +29,9 @@ export default function Value({ value, action }) {
           transition: "transform 0.2s, box-shadow 0.2s",
           "&:hover": {
             transform: action ? "translateY(-4px)" : "none",
-            boxShadow: action ? "0px 4px 20px rgba(0,0,0,0.1)" : "none",
+            boxShadow: action ? theme.custom.cardHoverShadow : "none",
           },
-        }}
+        })}
       >
         <CardActionArea
           disabled={action === null}

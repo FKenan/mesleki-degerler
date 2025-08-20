@@ -22,7 +22,7 @@ export default function ValueStack({ value }) {
   return (
     <Box
       ref={dragRef}
-      sx={{
+      sx={(theme) => ({
         borderRadius: 4,
         width: "90%",
         height: 260,
@@ -36,9 +36,9 @@ export default function ValueStack({ value }) {
         "&:hover": {
           elevation: 10,
           transform: "translate(-50%, -55%)",
-          border: "1px solid rgba(0, 0, 0, 0.5)",
+          border: theme.custom.valueStack.borderHover,
         },
-      }}
+      })}
     >
       <Card
         ref={dragRef}
