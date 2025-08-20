@@ -61,13 +61,31 @@ const getThemeConfig = (mode) => ({
 });
 
 export function ThemeProvider({ children }) {
-  const [mode, setMode] = useState("light");
+  const [mode, setMode] = useState(() => {
+    try {
+      const savedMode = localStorage.getItem("themeMode");
+      return savedMode === "dark" ? "dark" : "light";
+    } catch (error) {
+      console.error(
+        "localStorage'a erişilemiyor. Varsayılan tema kullanılıyor."
+      );
+      return "light";
+    }
+  });
 
   const themeController = useMemo(
     () => ({
       mode,
       toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+        setMode((prevMode) => {
+          const newMode = prevMode === "light" ? "dark" : "light";
+          try {
+            localStorage.setItem("themeMode", newMode);
+          } catch (error) {
+            console.error("Tema kaydedilirken localStorage'a erişilemedi.");
+          }
+          return newMode;
+        });
       },
     }),
     [mode]
