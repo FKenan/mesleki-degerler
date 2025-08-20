@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { trTR } from "@mui/x-data-grid/locales";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTableData } from "./resultSlice";
+import { selectFirst5Value } from "../valueSlice";
 
 const columns = [
   { field: "bolumAd", headerName: "Bölüm", width: 250 },
@@ -32,7 +33,8 @@ const columns = [
 ];
 
 export default function ResultTable() {
-  const { first5Value } = useSelector((state) => state.value);
+  const first5Value = useSelector(selectFirst5Value);
+
   const { tableData, isLoading } = useSelector((state) => state.result);
   const dispatch = useDispatch();
 

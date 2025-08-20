@@ -14,7 +14,8 @@ import {
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 export default function ResultTableMobile() {
-  const { first5Value } = useSelector((state) => state.value);
+  const first5Value = useSelector(selectFirst5Value);
+
   const { tableData, isLoading } = useSelector((state) => state.result);
   const dispatch = useDispatch();
 

@@ -1,13 +1,18 @@
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { handleNext } from "../valueSlice";
+import {
+  handleNext,
+  selectActiveStep,
+  selectFirst5Value,
+  selectValueStack,
+} from "../valueSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Button } from "@mui/material";
 
 export default function NextButtonMobile() {
   const dispatch = useDispatch();
-  const { first5Value, valueStack, activeStep } = useSelector(
-    (state) => state.value
-  );
+  const first5Value = useSelector(selectFirst5Value);
+  const activeStep = useSelector(selectActiveStep);
+  const valueStack = useSelector(selectValueStack);
 
   return (
     <Box

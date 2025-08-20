@@ -4,10 +4,17 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ExercisePageTypography from "../ExercisePageTypography";
 import { useDispatch, useSelector } from "react-redux";
-import { handleBack, handleNext } from "../valueSlice";
+import {
+  handleBack,
+  handleNext,
+  selectActiveStep,
+  selectFirst5Value,
+} from "../valueSlice";
 
 export default function ResultPage() {
-  const { activeStep, first5Value } = useSelector((state) => state.value);
+  const activeStep = useSelector(selectActiveStep);
+  const first5Value = useSelector(selectFirst5Value);
+
   const dispatch = useDispatch();
 
   const secilenDegerlerText = first5Value.map((value) => value.ad).join(", ");

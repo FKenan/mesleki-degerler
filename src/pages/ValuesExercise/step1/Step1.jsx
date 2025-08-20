@@ -4,10 +4,18 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ExercisePageTypography from "../ExercisePageTypography";
 import Piles from "./Piles";
 import { useDispatch, useSelector } from "react-redux";
-import { handleBack, handleNext, VALUE_EXERCISE_STEPS } from "../valueSlice";
+import {
+  handleBack,
+  handleNext,
+  selectActiveStep,
+  selectValueStack,
+  VALUE_EXERCISE_STEPS,
+} from "../valueSlice";
 
 export default function Step1() {
-  const { activeStep, valueStack } = useSelector((state) => state.value);
+  const activeStep = useSelector(selectActiveStep);
+  const valueStack = useSelector(selectValueStack);
+
   const dispatch = useDispatch();
 
   return (

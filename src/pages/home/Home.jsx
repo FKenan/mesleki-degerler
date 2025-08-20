@@ -15,10 +15,15 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchValues } from "../ValuesExercise/valueSlice";
+import {
+  fetchValues,
+  selectIsLoaded,
+  selectValues,
+} from "../ValuesExercise/valueSlice";
 
 export default function HomePage() {
-  const { values, isLoaded } = useSelector((state) => state.value);
+  const isLoaded = useSelector(selectIsLoaded);
+  const values = useSelector(selectValues);
   const dispatch = useDispatch();
 
   useEffect(() => {

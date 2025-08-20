@@ -4,12 +4,18 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ExercisePageTypography from "../ExercisePageTypography";
 import PilesStep2 from "./PilesStep2";
 import { useDispatch, useSelector } from "react-redux";
-import { useDevice } from "../../../context/DeviceContext";
-import { handleBack, handleNext, VALUE_EXERCISE_STEPS } from "../valueSlice";
+import {
+  handleBack,
+  handleNext,
+  selectActiveStep,
+  selectFirst5Value,
+  VALUE_EXERCISE_STEPS,
+} from "../valueSlice";
 
 export default function Step2() {
-  const { isMobile } = useDevice();
-  const { activeStep, first5Value } = useSelector((state) => state.value);
+  const first5Value = useSelector(selectFirst5Value);
+  const activeStep = useSelector(selectActiveStep);
+
   const dispatch = useDispatch();
 
   return (

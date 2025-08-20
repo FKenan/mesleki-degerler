@@ -2,10 +2,10 @@ import { Grid, Box } from "@mui/material";
 import { useSelector } from "react-redux";
 import ExercisePageTypography from "../../ExercisePageTypography";
 import ResultTableMobile from "./ResultTableMobile";
+import { selectFirst5Value } from "../../valueSlice";
 
 export default function ResultMobile() {
-  const { first5Value } = useSelector((state) => state.value);
-
+  const first5Value = useSelector(selectFirst5Value);
   const secilenDegerlerText = first5Value.map((value) => value.ad).join(", ");
 
   return (

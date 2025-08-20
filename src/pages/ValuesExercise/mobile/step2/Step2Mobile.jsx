@@ -1,13 +1,19 @@
 import { Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { addToFirst5Value, addToKeepPile } from "../../valueSlice";
+import {
+  addToFirst5Value,
+  addToKeepPile,
+  selectFirst5Value,
+  selectKeepPile,
+} from "../../valueSlice";
 import ExercisePageTypography from "../../ExercisePageTypography";
 import NextButtonMobile from "../NextButtonMobile";
 import ValueCardMobile from "./ValueCardMobile";
 
 export default function Step2Mobile() {
   const dispatch = useDispatch();
-  const { keepPile, first5Value } = useSelector((state) => state.value);
+  const keepPile = useSelector(selectKeepPile);
+  const first5Value = useSelector(selectFirst5Value);
 
   const handleToggle = (value, isSelected) => {
     if (isSelected) {

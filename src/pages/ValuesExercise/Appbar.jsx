@@ -13,12 +13,16 @@ import CloseIcon from "@mui/icons-material/Close";
 import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { handleReset, VALUE_EXERCISE_STEPS } from "./valueSlice";
+import {
+  handleReset,
+  selectActiveStep,
+  VALUE_EXERCISE_STEPS,
+} from "./valueSlice";
 import { useDevice } from "../../context/DeviceContext";
 import ThemeSelector from "../../components/ThemeSelector";
 
 export default function Appbar() {
-  const { activeStep } = useSelector((state) => state.value);
+  const activeStep = useSelector(selectActiveStep);
   const dispatch = useDispatch();
   const { isMobile } = useDevice();
 

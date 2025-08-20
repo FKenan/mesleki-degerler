@@ -1,10 +1,16 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSelector,
+  createSlice,
+} from "@reduxjs/toolkit";
 
 export const VALUE_EXERCISE_STEPS = ["1.Adım", "2.Adım", "Sonuçlar"];
 
-export const fetchValues = createAsyncThunk("api/Degerler", async () => {
+const API_URL = "https://localhost:44316/api/Degerler";
+
+export const fetchValues = createAsyncThunk("values/fetchValues", async () => {
   try {
-    const res = await fetch("https://localhost:44316/api/Degerler");
+    const res = await fetch(API_URL);
     return await res.json();
   } catch (e) {
     console.error("API gönderim hatası:", e);
@@ -12,25 +18,7 @@ export const fetchValues = createAsyncThunk("api/Degerler", async () => {
   }
 });
 
-const removeValue = (state, action) => {
-  state.valueStack = state.valueStack.filter((x) => action.payload.id !== x.id);
-};
-
-const removeValueFromKeepPile = (state, action) => {
-  state.keepPile = state.keepPile.filter((x) => action.payload.id !== x.id);
-};
-
-const removeValueFromDiscardPile = (state, action) => {
-  state.discardPile = state.discardPile.filter(
-    (x) => action.payload.id !== x.id
-  );
-};
-
-const removeValueFromFirst5Value = (state, action) => {
-  state.first5Value = state.first5Value.filter(
-    (x) => action.payload.id !== x.id
-  );
-};
+const removeById = (array, id) => array.filter((item) => item.id !== id);
 
 export const valueSlice = createSlice({
   name: "value",
@@ -50,23 +38,21 @@ export const valueSlice = createSlice({
     handleBack: (state) => {
       state.activeStep -= 1;
     },
-
     addToFirst5Value: (state, action) => {
       state.first5Value.push(action.payload);
-      removeValueFromKeepPile(state, action);
+      state.keepPile = removeById(state.keepPile, action.payload.id);
     },
     addToDiscardPile: (state, action) => {
       state.discardPile.push(action.payload);
-      removeValue(state, action);
-      removeValueFromKeepPile(state, action);
+      state.valueStack = removeById(state.valueStack, action.payload.id);
+      state.keepPile = removeById(state.keepPile, action.payload.id);
     },
     addToKeepPile: (state, action) => {
-      state.keepPile = [...state.keepPile, action.payload];
-      removeValue(state, action);
-      removeValueFromDiscardPile(state, action);
-      removeValueFromFirst5Value(state, action);
+      state.keepPile.push(action.payload);
+      state.valueStack = removeById(state.valueStack, action.payload.id);
+      state.discardPile = removeById(state.discardPile, action.payload.id);
+      state.first5Value = removeById(state.first5Value, action.payload.id);
     },
-
     handleReset: (state) => {
       state.activeStep = 0;
       state.keepPile = [];
@@ -97,3 +83,34 @@ export const {
   addToDiscardPile,
   handleReset,
 } = valueSlice.actions;
+
+const selectValueState = (state) => state.value;
+
+export const selectValues = createSelector(
+  [selectValueState],
+  (value) => value.values
+);
+export const selectValueStack = createSelector(
+  [selectValueState],
+  (value) => value.valueStack
+);
+export const selectKeepPile = createSelector(
+  [selectValueState],
+  (value) => value.keepPile
+);
+export const selectDiscardPile = createSelector(
+  [selectValueState],
+  (value) => value.discardPile
+);
+export const selectFirst5Value = createSelector(
+  [selectValueState],
+  (value) => value.first5Value
+);
+export const selectActiveStep = createSelector(
+  [selectValueState],
+  (value) => value.activeStep
+);
+export const selectIsLoaded = createSelector(
+  [selectValueState],
+  (value) => value.isLoaded
+);

@@ -2,10 +2,16 @@ import { Grid } from "@mui/material";
 import ValuesPile from "../ValuesPile";
 import { useDispatch, useSelector } from "react-redux";
 import ValuesPileWithPlaceholder from "./ValuesPileWithPlaceholder";
-import { addToFirst5Value, addToKeepPile } from "../valueSlice";
+import {
+  addToFirst5Value,
+  addToKeepPile,
+  selectFirst5Value,
+  selectKeepPile,
+} from "../valueSlice";
 
 export default function PilesStep2() {
-  const { keepPile, first5Value } = useSelector((state) => state.value);
+  const keepPile = useSelector(selectKeepPile);
+  const first5Value = useSelector(selectFirst5Value);
 
   const dispatch = useDispatch();
 

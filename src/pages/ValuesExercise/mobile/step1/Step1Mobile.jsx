@@ -3,9 +3,10 @@ import { useSelector } from "react-redux";
 import ExercisePageTypography from "../../ExercisePageTypography";
 import NextButtonMobile from "../NextButtonMobile";
 import ValueStackMobile from "./ValueStackMobile";
+import { selectValueStack } from "../../valueSlice";
 
 export default function Step1Mobile() {
-  const { valueStack } = useSelector((state) => state.value);
+  const valueStack = useSelector(selectValueStack);
 
   return (
     <Box
