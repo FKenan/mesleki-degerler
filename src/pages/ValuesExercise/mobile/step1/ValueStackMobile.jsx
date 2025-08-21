@@ -16,10 +16,12 @@ export default function ValueStackMobile({ value, idx }) {
         top: idx * -1,
         left: idx * 1,
         width: "100%",
-        height: "95%",
+        height: "100%",
         borderRadius: 5,
         display: "flex",
         flexDirection: "column",
+        minHeight: 320,
+        maxHeight: 400,
       }}
     >
       <Box

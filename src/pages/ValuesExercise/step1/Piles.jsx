@@ -1,13 +1,26 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import ValuesPile from "../ValuesPile";
 import ValueStack from "../step1/ValueStack";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  addToDiscardPile,
+  addToKeepPile,
+  selectDiscardPile,
+  selectIsLoaded,
+  selectKeepPile,
+  selectValueStack,
+} from "../valueSlice";
+import React, { useCallback } from "react";
+
+function Piles() {
 import { addToDiscardPile, addToKeepPile } from "../valueSlice";
 
 export default function Piles() {
   const { valueStack, keepPile, discardPile } = useSelector(
     (state) => state.value
   );
+  const isloaded = useSelector(selectIsLoaded);
+
   const dispatch = useDispatch();
 
   const handleDropDiscard = (value) => {
@@ -28,11 +41,37 @@ export default function Piles() {
           onDrop={handleDropDiscard}
         />
       </Grid>
-      <Grid size={2} minWidth={215} minHeight={350}>
-        <Box position="relative" display="flex" height="100%">
+      <Grid
+        size={2}
+        minWidth={215}
+        minHeight={350}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          textAlign: "center",
+        }}
+      >
+        <Box
+          sx={{
+            flexGrow: 1,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {!isloaded ? (
+            <CircularProgress />
+          ) : valueStack.length > 0 ? (
+            <Box position="relative" display="flex" height="100%" width="100%">
           {valueStack.map((value) => (
             <ValueStack value={value} key={value.id} />
           ))}
+            </Box>
+          ) : (
+            <Typography variant="h6" color="text.secondary">
+              Tüm değerleri grupladınız. <br /> Sonraki adıma geçebilirsiniz.
+            </Typography>
+          )}
         </Box>
         <Typography variant="subtitle2" align="center">
           {`Kalan Değerler: ${valueStack.length}`}
