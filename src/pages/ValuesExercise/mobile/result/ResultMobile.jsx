@@ -1,4 +1,4 @@
-import { Grid, Box } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useSelector } from "react-redux";
 import ExercisePageTypography from "../../ExercisePageTypography";
 import ResultTableMobile from "./ResultTableMobile";

@@ -12,6 +12,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { selectFirst5Value } from "../../valueSlice";
 
 export default function ResultTableMobile() {
   const first5Value = useSelector(selectFirst5Value);
@@ -72,6 +73,7 @@ export default function ResultTableMobile() {
                     sx={{
                       display: "inline-flex",
                       alignItems: "center",
+                      width: "fit-content",
                       fontWeight: "bold",
                       mt: 2,
                     }}
