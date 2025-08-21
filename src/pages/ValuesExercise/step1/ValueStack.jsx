@@ -35,7 +35,7 @@ export default function ValueStack({ value }) {
         transition: "all 0.3s ease",
         "&:hover": {
           elevation: 10,
-          transform: "translate(-50%, -55%)",
+          transform: "translate(-50%, -53%)",
           border: theme.custom.valueStack.borderHover,
         },
       })}

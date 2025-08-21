@@ -26,7 +26,7 @@ export default function ValuesPile({ values, action, onDrop, title }) {
         borderRadius: "16px",
         p: 3,
         height: "100%",
-        width: "90%",
+        width: "100%",
         minHeight: 300,
         backgroundColor:
           isOver && canDrop

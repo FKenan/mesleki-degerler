@@ -6,7 +6,7 @@ import {
 
 export const VALUE_EXERCISE_STEPS = ["1.Adım", "2.Adım", "Sonuçlar"];
 
-const API_URL = "https://localhost:44316/api/Degerler";
+const API_URL = `${import.meta.env.VITE_API_BASEURL}/Degerler`;
 
 export const fetchValues = createAsyncThunk("values/fetchValues", async () => {
   try {

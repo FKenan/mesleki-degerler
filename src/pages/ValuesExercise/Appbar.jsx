@@ -28,7 +28,7 @@ export default function Appbar() {
 
   return (
     <AppBar
-      elevation={1}
+      elevation={0}
       position="static"
       sx={{
         mt: { xs: 2, sm: 0 },
@@ -44,7 +44,7 @@ export default function Appbar() {
             alignItems="center"
             justifyContent={{ xs: "center", sm: "flex-start" }}
           >
-            <HomeIcon sx={{ mr: 1 }} />
+            <HomeIcon color="primary" sx={{ mr: 1 }} />
             <Typography
               variant="h6"
               noWrap

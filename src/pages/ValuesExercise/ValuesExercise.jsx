@@ -1,5 +1,5 @@
 import { Container } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import Appbar from "./Appbar";
 import ResultPage from "./result/Result";
 import Step1 from "./step1/Step1";
@@ -22,13 +22,20 @@ export default function ValuesExercisePage() {
     if (!isLoaded) dispatch(fetchValues());
   }, []);
 
+  const steps = useMemo(
+    () => ({
+      0: isMobile ? <Step1Mobile /> : <Step1 />,
+      1: isMobile ? <Step2Mobile /> : <Step2 />,
+      2: isMobile ? <ResultMobile /> : <ResultPage />,
+    }),
+    [isMobile]
+  );
+
   return (
     <>
       {isMobile ? <AppbarMobile /> : <Appbar />}
       <Container maxWidth="false" sx={{ justifyContent: "center" }}>
-        {activeStep === 0 && (isMobile ? <Step1Mobile /> : <Step1 />)}
-        {activeStep === 1 && (isMobile ? <Step2Mobile /> : <Step2 />)}
-        {activeStep === 2 && (isMobile ? <ResultMobile /> : <ResultPage />)}
+        {steps[activeStep]}
       </Container>
     </>
   );

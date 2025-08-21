@@ -4,7 +4,7 @@ export const fetchTableData = createAsyncThunk(
   "result/fetchTableData",
   async (values) => {
     const ids = values.map((item) => item.id).join(",");
-    const url = `https://localhost:44316/api/Bolumler?ids=${ids}`;
+    const url = `${import.meta.env.VITE_API_BASEURL}/Bolumler?ids=${ids}`;
     try {
       const response = await fetch(url);
       return response.json();
