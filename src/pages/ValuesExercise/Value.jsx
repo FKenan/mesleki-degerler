@@ -1,8 +1,9 @@
 import { Card, CardActionArea, Grid, Typography } from "@mui/material";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useDrag } from "react-dnd";
 
-export default function Value({ value, action }) {
+function Value({ value, action }) {
   const dispatch = useDispatch();
 
   const [{ isDragging }, dragRef] = useDrag({
@@ -52,3 +53,5 @@ export default function Value({ value, action }) {
     </Grid>
   );
 }
+
+export default React.memo(Value);

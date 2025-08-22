@@ -11,12 +11,32 @@ import {
   selectFirst5Value,
   VALUE_EXERCISE_STEPS,
 } from "../valueSlice";
+import { memo, useCallback, useMemo } from "react";
 
-export default function Step2() {
+function Step2() {
   const first5Value = useSelector(selectFirst5Value);
   const activeStep = useSelector(selectActiveStep);
 
   const dispatch = useDispatch();
+
+  const handleBackClick = useCallback(() => {
+    dispatch(handleBack());
+  }, [dispatch]);
+
+  const handleNextClick = useCallback(() => {
+    dispatch(handleNext());
+  }, [dispatch]);
+
+  const nextButtonSx = useMemo(
+    () => ({
+      visibility:
+        activeStep === VALUE_EXERCISE_STEPS.length - 1 ||
+        first5Value.length !== 5
+          ? "hidden"
+          : "visible",
+    }),
+    [activeStep, first5Value.length]
+  );
 
   return (
     <Grid container spacing={2} alignItems="center">
@@ -31,7 +51,7 @@ export default function Step2() {
             startIcon={<ArrowBackIcon />}
             variant="contained"
             disabled={activeStep === 0}
-            onClick={() => dispatch(handleBack())}
+              onClick={handleBackClick}
           >
             Geri
           </Button>
@@ -43,14 +63,8 @@ export default function Step2() {
           <Button
             endIcon={<ArrowForwardIcon />}
             variant="contained"
-            onClick={() => dispatch(handleNext())}
-            sx={{
-              visibility:
-                activeStep === VALUE_EXERCISE_STEPS.length - 1 ||
-                first5Value.length !== 5
-                  ? "hidden"
-                  : "visible",
-            }}
+              onClick={handleNextClick}
+              sx={nextButtonSx}
           >
             İleri
           </Button>
@@ -60,3 +74,5 @@ export default function Step2() {
     </Grid>
   );
 }
+
+export default memo(Step2);

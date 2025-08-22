@@ -1,20 +1,24 @@
 import { Grid, Paper, Typography } from "@mui/material";
 import Value from "./Value";
 import { useDrop } from "react-dnd";
+import React from "react";
 
-export default function ValuesPile({ values, action, onDrop, title }) {
-  const [{ isOver, canDrop }, dropRef] = useDrop({
-    accept: "VALUE",
-    drop: (item) => {
-      if (onDrop && !values.some((v) => v.id === item.value.id)) {
-        onDrop(item.value);
-      }
-    },
-    collect: (monitor) => ({
-      isOver: monitor.isOver(),
-      canDrop: monitor.canDrop(),
+function ValuesPile({ values, action, onDrop, title }) {
+  const [{ isOver, canDrop }, dropRef] = useDrop(
+    () => ({
+      accept: "VALUE",
+      drop: (item) => {
+        if (onDrop && !values.some((v) => v.id === item.value.id)) {
+          onDrop(item.value);
+        }
+      },
+      collect: (monitor) => ({
+        isOver: monitor.isOver(),
+        canDrop: monitor.canDrop(),
+      }),
     }),
-  });
+    [onDrop, values]
+  );
 
   return (
     <Paper
@@ -61,3 +65,5 @@ export default function ValuesPile({ values, action, onDrop, title }) {
     </Paper>
   );
 }
+
+export default React.memo(ValuesPile);

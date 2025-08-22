@@ -1,3 +1,4 @@
+import React, { useCallback } from "react";
 import {
   AppBar,
   Button,
@@ -21,10 +22,14 @@ import {
 import { useDevice } from "../../context/DeviceContext";
 import ThemeSelector from "../../components/ThemeSelector";
 
-export default function Appbar() {
+function Appbar() {
   const activeStep = useSelector(selectActiveStep);
   const dispatch = useDispatch();
   const { isMobile } = useDevice();
+
+  const handleResetClick = useCallback(() => {
+    dispatch(handleReset());
+  }, [dispatch]);
 
   return (
     <AppBar
@@ -82,7 +87,7 @@ export default function Appbar() {
             <Button
               size="small"
               color="primary"
-              onClick={() => dispatch(handleReset())}
+              onClick={handleResetClick}
               sx={{ mr: 1, p: 0 }}
             >
               Baştan başla
@@ -97,3 +102,5 @@ export default function Appbar() {
     </AppBar>
   );
 }
+
+export default React.memo(Appbar);

@@ -11,12 +11,21 @@ import {
   selectValueStack,
   VALUE_EXERCISE_STEPS,
 } from "../valueSlice";
+import React, { useCallback } from "react";
 
-export default function Step1() {
+function Step1() {
   const activeStep = useSelector(selectActiveStep);
   const valueStack = useSelector(selectValueStack);
 
   const dispatch = useDispatch();
+
+  const handleBackClick = useCallback(() => {
+    dispatch(handleBack());
+  }, [dispatch]);
+
+  const handleNextClick = useCallback(() => {
+    dispatch(handleNext());
+  }, [dispatch]);
 
   return (
     <Grid container spacing={2} alignItems="center">
@@ -31,7 +40,7 @@ export default function Step1() {
             startIcon={<ArrowBackIcon />}
             variant="contained"
             disabled={activeStep === 0}
-            onClick={() => dispatch(handleBack())}
+              onClick={handleBackClick}
             sx={{
               visibility: "hidden",
             }}
@@ -50,7 +59,7 @@ export default function Step1() {
               activeStep === VALUE_EXERCISE_STEPS.length - 1 ||
               valueStack.length !== 0
             }
-            onClick={() => dispatch(handleNext())}
+              onClick={handleNextClick}
           >
             İleri
           </Button>
@@ -60,3 +69,5 @@ export default function Step1() {
     </Grid>
   );
 }
+
+export default React.memo(Step1);

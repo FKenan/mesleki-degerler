@@ -8,6 +8,7 @@ import {
   selectFirst5Value,
   selectKeepPile,
 } from "../valueSlice";
+import { useCallback } from "react";
 
 export default function PilesStep2() {
   const keepPile = useSelector(selectKeepPile);
@@ -15,15 +16,21 @@ export default function PilesStep2() {
 
   const dispatch = useDispatch();
 
-  const handleDropFirst5Value = (value) => {
-    dispatch(addToFirst5Value(value));
-  };
+  const handleDropFirst5Value = useCallback(
+    (value) => {
+      dispatch(addToFirst5Value(value));
+    },
+    [dispatch]
+  );
 
-  const handleDropKeep = (value) => {
-    dispatch(addToKeepPile(value));
-  };
+  const handleDropKeep = useCallback(
+    (value) => {
+      dispatch(addToKeepPile(value));
+    },
+    [dispatch]
+  );
   return (
-    <Grid size={12} container spacing={6} alignItems="stretch">
+    <Grid container spacing={6} alignItems="stretch" justifyContent="center">
       <Grid size="grow" px={2}>
         <ValuesPile
           title="Seçilen Değerler"

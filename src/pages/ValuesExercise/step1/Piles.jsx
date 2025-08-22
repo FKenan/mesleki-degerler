@@ -13,23 +13,26 @@ import {
 import React, { useCallback } from "react";
 
 function Piles() {
-import { addToDiscardPile, addToKeepPile } from "../valueSlice";
-
-export default function Piles() {
-  const { valueStack, keepPile, discardPile } = useSelector(
-    (state) => state.value
-  );
+  const valueStack = useSelector(selectValueStack);
+  const keepPile = useSelector(selectKeepPile);
+  const discardPile = useSelector(selectDiscardPile);
   const isloaded = useSelector(selectIsLoaded);
 
   const dispatch = useDispatch();
 
-  const handleDropDiscard = (value) => {
-    dispatch(addToDiscardPile(value));
-  };
+  const handleDropDiscard = useCallback(
+    (value) => {
+      dispatch(addToDiscardPile(value));
+    },
+    [dispatch]
+  );
 
-  const handleDropKeep = (value) => {
-    dispatch(addToKeepPile(value));
-  };
+  const handleDropKeep = useCallback(
+    (value) => {
+      dispatch(addToKeepPile(value));
+    },
+    [dispatch]
+  );
 
   return (
     <Grid size={12} container spacing={3} alignItems="stretch" px={3}>
@@ -63,9 +66,9 @@ export default function Piles() {
             <CircularProgress />
           ) : valueStack.length > 0 ? (
             <Box position="relative" display="flex" height="100%" width="100%">
-          {valueStack.map((value) => (
-            <ValueStack value={value} key={value.id} />
-          ))}
+              {valueStack.map((value) => (
+                <ValueStack value={value} key={value.id} />
+              ))}
             </Box>
           ) : (
             <Typography variant="h6" color="text.secondary">
@@ -88,3 +91,5 @@ export default function Piles() {
     </Grid>
   );
 }
+
+export default React.memo(Piles);

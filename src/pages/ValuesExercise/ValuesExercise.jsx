@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { useEffect, useMemo } from "react";
 import Appbar from "./Appbar";
 import ResultPage from "./result/Result";
@@ -32,11 +32,11 @@ export default function ValuesExercisePage() {
   );
 
   return (
-    <>
+    <Box>
       {isMobile ? <AppbarMobile /> : <Appbar />}
       <Container maxWidth="false" sx={{ justifyContent: "center" }}>
         {steps[activeStep]}
       </Container>
-    </>
+    </Box>
   );
 }
