@@ -9,6 +9,7 @@ import {
 import ExercisePageTypography from "../../ExercisePageTypography";
 import NextButtonMobile from "../NextButtonMobile";
 import ValueCardMobile from "./ValueCardMobile";
+import BackButtonMobile from "../BackButtonMobile";
 
 export default function Step2Mobile() {
   const dispatch = useDispatch();
@@ -58,7 +59,12 @@ export default function Step2Mobile() {
           );
         })}
       </Box>
-      <NextButtonMobile />
+      <Box
+        sx={{ display: "flex", width: "100%", justifyContent: "space-between" }}
+      >
+        <BackButtonMobile />
+        <NextButtonMobile />
+      </Box>
     </Box>
   );
 }
