@@ -1,6 +1,6 @@
 # Mesleki Değerler Egzersizi ve Kariyer Rehberi
 
-Bu web uygulaması, kullanıcıların kariyer hedeflerine ve kişisel tatminlerine en uygun meslekleri keşfetmelerine yardımcı olmak amacıyla tasarlanmıştır. Kullanıcılar, interaktif bir egzersiz aracılığıyla kendi mesleki değerlerini belirler ve bu değerlere göre kendilerine en uygun üniversite bölümlerini öneri olarak alırlar. Bu proje, özellikle kariyer yolculuğunun başındaki bireyler için bir rehber niteliği taşımaktadır.
+Bu web uygulaması, kullanıcıların mesleki değerlerini keşfederek kariyer hedeflerine en uygun üniversite bölümlerini bulmalarına yardımcı olmak amacıyla geliştirilmiş bir bitirme projesidir. İnteraktif bir egzersizle kullanıcılar, kendileri için önemli olan değerleri belirler ve bu doğrultuda kişiselleştirilmiş bölüm önerileri alırlar. Proje, kariyer yolculuğunun başındaki bireylere rehberlik etmeyi amaçlamaktadır.
 
 ## ✨ Özellikler
 
@@ -64,7 +64,7 @@ Projenin temel klasör yapısı, kodun modüler ve anlaşılır olmasını sağl
 
 ```
 src/
-├── assets/         # Resimler, fontlar vb. statik dosyalar
+├── context/        # React Context API'si için kullanılan dosyalar
 ├── components/     # Proje genelinde kullanılan ortak component'ler (Navbar, Footer vb.)
 ├── pages/          # Her bir sayfa için ana component'ler ve alt component'leri
 │   ├── home/       # Ana sayfa
