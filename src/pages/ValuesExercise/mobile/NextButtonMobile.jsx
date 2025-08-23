@@ -3,6 +3,7 @@ import {
   handleNext,
   selectActiveStep,
   selectFirst5Value,
+  selectKeepPile,
   selectValueStack,
 } from "../valueSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +14,7 @@ export default function NextButtonMobile() {
   const first5Value = useSelector(selectFirst5Value);
   const activeStep = useSelector(selectActiveStep);
   const valueStack = useSelector(selectValueStack);
+  const keepPile = useSelector(selectKeepPile);
 
   return (
     <Box
@@ -36,7 +38,7 @@ export default function NextButtonMobile() {
         }}
         {...(activeStep === 0
           ? { disabled: valueStack.length !== 0 }
-          : { disabled: first5Value.length !== 5 })}
+          : { disabled: first5Value.length !== 5 && keepPile.length !== 0 })}
       >
         İleri
       </Button>

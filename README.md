@@ -1,12 +1,82 @@
-# React + Vite
+# Mesleki Değerler Egzersizi ve Kariyer Rehberi
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bu web uygulaması, kullanıcıların kariyer hedeflerine ve kişisel tatminlerine en uygun meslekleri keşfetmelerine yardımcı olmak amacıyla tasarlanmıştır. Kullanıcılar, interaktif bir egzersiz aracılığıyla kendi mesleki değerlerini belirler ve bu değerlere göre kendilerine en uygun üniversite bölümlerini öneri olarak alırlar. Bu proje, özellikle kariyer yolculuğunun başındaki bireyler için bir rehber niteliği taşımaktadır.
 
-Currently, two official plugins are available:
+## ✨ Özellikler
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **İnteraktif Değer Egzersizi:** Kullanıcılar, masaüstünde sürükle-bırak, mobilde ise butonlar aracılığıyla değer kartlarını "Önemli" ve "Önemsiz" olarak iki gruba ayırır.
+- **Değerleri Önceliklendirme:** "Önemli" olarak gruplanan değerler arasından en önemli 5 tanesini seçerek kişisel önceliklerini belirler.
+- **Kişiselleştirilmiş Bölüm Önerileri:** Belirlenen öncelikli değerlere göre kullanıcıya en uygun üniversite bölümleri listelenir.
+- **Duyarlı (Responsive) Tasarım:** Hem masaüstü hem de mobil cihazlarda sorunsuz bir kullanıcı deneyimi sunar.
+- **Modern ve Kullanıcı Dostu Arayüz:** [Material-UI](https://mui.com/) kullanılarak oluşturulmuş temiz ve sezgisel bir arayüz.
+- **Merkezi Durum Yönetimi:** [Redux Toolkit](https://redux-toolkit.js.org/) ile tüm uygulama durumu verimli bir şekilde yönetilir.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Kullanılan Teknolojiler
+
+| Teknoloji                                                    | Açıklama                                                              |
+| ------------------------------------------------------------ | --------------------------------------------------------------------- |
+| **[React](https://reactjs.org/)**                            | Kullanıcı arayüzü oluşturmak için kullanılan JavaScript kütüphanesi.  |
+| **[Redux Toolkit](https://redux-toolkit.js.org/)**           | Uygulama genelinde state yönetimi için.                               |
+| **[React Router](https://reactrouter.com/)**                 | Sayfalar arası geçiş ve yönlendirme (routing) için.                   |
+| **[Material-UI (MUI)](https://mui.com/)**                    | Hızlı ve şık bir tasarım için hazır UI component'leri.                |
+| **[React-DND](https://react-dnd.github.io/react-dnd/about)** | Masaüstü görünümünde sürükle-bırak (drag-and-drop) işlevselliği için. |
+| **[Vite](https://vitejs.dev/)**                              | Hızlı ve modern bir geliştirme ortamı ve build aracı.                 |
+
+---
+
+## 🛠️ Kurulum ve Başlatma
+
+Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
+
+1.  **Depoyu klonlayın:**
+
+    ```bash
+    git clone https://github.com/FKenan/mesleki-degerler.git
+    ```
+
+2.  **Proje dizinine gidin:**
+
+    ```bash
+    cd mesleki-degerler
+    ```
+
+3.  **Gerekli paketleri yükleyin:**
+
+    ```bash
+    npm install
+    ```
+
+4.  **Geliştirme sunucusunu başlatın:**
+
+    ```bash
+    npm run dev
+    ```
+
+5.  Uygulamayı tarayıcıda görüntülemek için `http://localhost:5173` (veya terminalde belirtilen port) adresini ziyaret edin.
+
+---
+
+## 📂 Proje Yapısı
+
+Projenin temel klasör yapısı, kodun modüler ve anlaşılır olmasını sağlamak amacıyla aşağıdaki gibi düzenlenmiştir:
+
+```
+src/
+├── assets/         # Resimler, fontlar vb. statik dosyalar
+├── components/     # Proje genelinde kullanılan ortak component'ler (Navbar, Footer vb.)
+├── pages/          # Her bir sayfa için ana component'ler ve alt component'leri
+│   ├── home/       # Ana sayfa
+│   └── ValuesExercise/ # Değer egzersizinin yapıldığı sayfa ve adımları
+│       ├── mobile/ # Egzersizin mobil görünümleri
+│       ├── step1/  # 1. Adım component'leri
+│       ├── step2/  # 2. Adım component'leri
+│       ├── step3/  # 3. Adım component'leri
+│       └── result/ # Sonuç sayfası
+├── store/          # Redux store konfigürasyonu
+├── theme/          # Material-UI tema ayarları
+└── App.jsx         # Ana uygulama component'i ve yönlendirme (routing) mantığı
+```
+
+---

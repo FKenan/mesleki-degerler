@@ -4,7 +4,11 @@ import {
   createSlice,
 } from "@reduxjs/toolkit";
 
-export const VALUE_EXERCISE_STEPS = ["1.Adım", "2.Adım", "Sonuçlar"];
+export const VALUE_EXERCISE_STEPS = [
+  "Değerleri Ayır",
+  "Önceliklendir",
+  "Sonuç",
+];
 
 const API_URL = `${import.meta.env.VITE_API_BASEURL}/Degerler`;
 

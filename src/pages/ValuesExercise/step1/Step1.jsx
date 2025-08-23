@@ -23,8 +23,6 @@ function Step1() {
   const [direction, setDirection] = useState("right");
 
   useEffect(() => {
-    // Sonraki adıma geçerken (activeStep artarken) sola,
-    // önceki adıma dönerken (activeStep azalırken) sağa kaydır.
     if (prevStepRef.current < activeStep) {
       setDirection("left");
     } else if (prevStepRef.current > activeStep) {

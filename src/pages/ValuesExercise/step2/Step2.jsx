@@ -9,13 +9,14 @@ import {
   handleNext,
   selectActiveStep,
   selectFirst5Value,
-  VALUE_EXERCISE_STEPS,
+  selectKeepPile,
 } from "../valueSlice";
 import { memo, useCallback, useMemo } from "react";
 
 function Step2() {
   const first5Value = useSelector(selectFirst5Value);
   const activeStep = useSelector(selectActiveStep);
+  const keepPile = useSelector(selectKeepPile);
 
   const dispatch = useDispatch();
 
@@ -30,8 +31,7 @@ function Step2() {
   const nextButtonSx = useMemo(
     () => ({
       visibility:
-        activeStep === VALUE_EXERCISE_STEPS.length - 1 ||
-        first5Value.length !== 5
+        first5Value.length !== 5 && keepPile.length !== 0
           ? "hidden"
           : "visible",
     }),

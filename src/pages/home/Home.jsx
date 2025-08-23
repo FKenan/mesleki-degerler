@@ -7,6 +7,7 @@ import {
   Typography,
   Box,
   Paper,
+  CircularProgress,
 } from "@mui/material";
 import StartIcon from "@mui/icons-material/Start";
 import { useEffect } from "react";
@@ -72,12 +73,10 @@ export default function HomePage() {
                   Hemen Başla
                 </Button>
               </Stack>
-
               <Divider
                 flexItem
                 sx={{ borderBottomWidth: "3px", width: "80%" }}
               />
-
               <Stack spacing={2} alignItems="center">
                 <Typography variant="h4" color="primary.main" fontWeight={700}>
                   Mesleki Değerlerim
@@ -93,18 +92,22 @@ export default function HomePage() {
                   eder.”
                 </Typography>
               </Stack>
-
-              <Grid container spacing={3} justifyContent="center">
-                {values.map((value) => (
-                  <Value key={value.id} value={value} />
-                ))}
+              <Grid
+                container
+                spacing={3}
+                justifyContent="center"
+                sx={{ minHeight: 160, alignItems: "center" }}
+              >
+                {!isLoaded ? (
+                  <CircularProgress />
+                ) : (
+                  values.map((value) => <Value key={value.id} value={value} />)
+                )}
               </Grid>
-
               <Divider
                 flexItem
                 sx={{ borderBottomWidth: "2px", width: "70%" }}
               />
-
               <Stack spacing={2} alignItems="center">
                 <Typography
                   variant="h5"
