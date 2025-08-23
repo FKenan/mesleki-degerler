@@ -49,18 +49,26 @@ function Appbar() {
             alignItems="center"
             justifyContent={{ xs: "center", sm: "flex-start" }}
           >
-            <HomeIcon color="primary" sx={{ mr: 1 }} />
-            <Typography
-              variant="h6"
-              noWrap
-              sx={{
-                fontWeight: 700,
+            <Link
+              to="/"
+              style={{
                 textDecoration: "none",
-                color: "primary.main",
+                display: "flex",
+                alignItems: "center",
               }}
             >
-              Mesleki Değerler
-            </Typography>
+              <HomeIcon color="primary" sx={{ mr: 1 }} />
+              <Typography
+                variant="h6"
+                noWrap
+                sx={{
+                  fontWeight: 700,
+                  color: "primary.main",
+                }}
+              >
+                Mesleki Değerler
+              </Typography>
+            </Link>
           </Grid>
           {!isMobile && (
             <Grid
@@ -68,13 +76,11 @@ function Appbar() {
               justifyContent={{ xs: "center", sm: "flex-start" }}
             >
               <Stepper activeStep={activeStep}>
-                {VALUE_EXERCISE_STEPS.map((label) => {
-                  return (
-                    <Step key={label}>
-                      <StepLabel>{label}</StepLabel>
-                    </Step>
-                  );
-                })}
+                {VALUE_EXERCISE_STEPS.map((label) => (
+                  <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
               </Stepper>
             </Grid>
           )}

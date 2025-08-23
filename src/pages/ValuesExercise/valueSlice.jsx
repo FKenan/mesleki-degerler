@@ -18,7 +18,12 @@ export const fetchValues = createAsyncThunk("values/fetchValues", async () => {
   }
 });
 
-const removeById = (array, id) => array.filter((item) => item.id !== id);
+const removeItemById = (array, id) => {
+  const index = array.findIndex((item) => item.id === id);
+  if (index !== -1) {
+    array.splice(index, 1);
+  }
+};
 
 export const valueSlice = createSlice({
   name: "value",
@@ -39,19 +44,22 @@ export const valueSlice = createSlice({
       state.activeStep -= 1;
     },
     addToFirst5Value: (state, action) => {
+      const { id } = action.payload;
       state.first5Value.push(action.payload);
-      state.keepPile = removeById(state.keepPile, action.payload.id);
+      removeItemById(state.keepPile, id);
     },
     addToDiscardPile: (state, action) => {
+      const { id } = action.payload;
       state.discardPile.push(action.payload);
-      state.valueStack = removeById(state.valueStack, action.payload.id);
-      state.keepPile = removeById(state.keepPile, action.payload.id);
+      removeItemById(state.valueStack, id);
+      removeItemById(state.keepPile, id);
     },
     addToKeepPile: (state, action) => {
+      const { id } = action.payload;
       state.keepPile.push(action.payload);
-      state.valueStack = removeById(state.valueStack, action.payload.id);
-      state.discardPile = removeById(state.discardPile, action.payload.id);
-      state.first5Value = removeById(state.first5Value, action.payload.id);
+      removeItemById(state.valueStack, id);
+      removeItemById(state.discardPile, id);
+      removeItemById(state.first5Value, id);
     },
     handleReset: (state) => {
       state.activeStep = 0;
@@ -69,6 +77,7 @@ export const valueSlice = createSlice({
     });
 
     builder.addCase(fetchValues.pending, (state) => {
+      state.isLoaded = false;
       state.values = [];
       state.valueStack = [];
     });

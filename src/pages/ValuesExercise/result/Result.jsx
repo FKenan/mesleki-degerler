@@ -4,6 +4,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ExercisePageTypography from "../ExercisePageTypography";
 import { useDispatch, useSelector } from "react-redux";
+import { memo } from "react";
 import {
   handleBack,
   handleNext,
@@ -11,11 +12,14 @@ import {
   selectFirst5Value,
 } from "../valueSlice";
 
-export default function ResultPage() {
+function ResultPage() {
   const activeStep = useSelector(selectActiveStep);
   const first5Value = useSelector(selectFirst5Value);
 
   const dispatch = useDispatch();
+
+  const handleBackClick = () => dispatch(handleBack());
+  const handleNextClick = () => dispatch(handleNext());
 
   const secilenDegerlerText = first5Value.map((value) => value.ad).join(", ");
 
@@ -32,7 +36,7 @@ export default function ResultPage() {
             startIcon={<ArrowBackIcon />}
             variant="contained"
             disabled={activeStep === 0}
-            onClick={() => dispatch(handleBack())}
+              onClick={handleBackClick}
           >
             Geri
           </Button>
@@ -44,7 +48,7 @@ export default function ResultPage() {
           <Button
             endIcon={<ArrowForwardIcon />}
             variant="contained"
-            onClick={() => dispatch(handleNext())}
+              onClick={handleNextClick}
             sx={{ visibility: "hidden" }}
           >
             İleri
@@ -55,3 +59,5 @@ export default function ResultPage() {
     </Grid>
   );
 }
+
+export default memo(ResultPage);

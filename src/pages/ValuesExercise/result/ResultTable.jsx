@@ -1,6 +1,6 @@
 import { Paper } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { trTR } from "@mui/x-data-grid/locales";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTableData } from "./resultSlice";
@@ -32,7 +32,7 @@ const columns = [
   },
 ];
 
-export default function ResultTable() {
+function ResultTable() {
   const first5Value = useSelector(selectFirst5Value);
 
   const { tableData, isLoading } = useSelector((state) => state.result);
@@ -61,3 +61,5 @@ export default function ResultTable() {
     </Paper>
   );
 }
+
+export default memo(ResultTable);

@@ -1,20 +1,16 @@
 import { Stack, Typography } from "@mui/material";
+import { memo } from "react";
 
-export default function ExercisePageTypography({
-  title,
-  subtitle1,
-  subtitle2,
-}) {
+const stackSx = {
+  textAlign: "center",
+  mb: 4,
+  maxWidth: 600,
+  mx: "auto",
+};
+
+function ExercisePageTypography({ title, subtitle1, subtitle2 }) {
   return (
-    <Stack
-      spacing={1.5}
-      sx={{
-        textAlign: "center",
-        mb: 4,
-        maxWidth: 600,
-        mx: "auto",
-      }}
-    >
+    <Stack spacing={1.5} sx={stackSx}>
       <Typography
         color="primary.main"
         variant="h4"
@@ -34,3 +30,5 @@ export default function ExercisePageTypography({
     </Stack>
   );
 }
+
+export default memo(ExercisePageTypography);

@@ -1,5 +1,5 @@
 import { Card, CardActionArea, Grid, Typography } from "@mui/material";
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { useDrag } from "react-dnd";
 
@@ -15,29 +15,36 @@ function Value({ value, action }) {
     canDrag: () => action !== null,
   });
 
+  const handleClick = useCallback(() => {
+    if (action) {
+      dispatch(action(value));
+    }
+  }, [dispatch, action, value]);
+
+  const cardSx = useMemo(
+    () => (theme) => ({
+      borderRadius: 3,
+      minHeight: 40,
+      height: "100%",
+      borderColor: "primary.light",
+      opacity: isDragging ? 0.5 : 1,
+      cursor: action ? "grab" : "default",
+      transition: "transform 0.2s, box-shadow 0.2s",
+      "&:hover": {
+        transform: action ? "translateY(-4px)" : "none",
+        boxShadow: action ? theme.custom.cardHoverShadow : "none",
+      },
+    }),
+    [isDragging, action]
+  );
+
   return (
     <Grid size={{ xs: 12, sm: 12, md: 6, lg: 4, xl: 3 }}>
-      <Card
-        ref={dragRef}
-        elevation={3}
-        sx={(theme) => ({
-          borderRadius: 3,
-          minHeight: 40,
-          height: "100%",
-          borderColor: "primary.light",
-          opacity: isDragging ? 0.5 : 1,
-          cursor: action ? "grab" : "default",
-          transition: "transform 0.2s, box-shadow 0.2s",
-          "&:hover": {
-            transform: action ? "translateY(-4px)" : "none",
-            boxShadow: action ? theme.custom.cardHoverShadow : "none",
-          },
-        })}
-      >
+      <Card ref={dragRef} elevation={3} sx={cardSx}>
         <CardActionArea
           disabled={action === null}
           sx={{ height: "100%" }}
-          onClick={() => dispatch(action(value))}
+          onClick={handleClick}
         >
           <Typography
             variant="body2"

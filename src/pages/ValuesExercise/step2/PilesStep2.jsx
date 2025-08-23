@@ -30,7 +30,13 @@ export default function PilesStep2() {
     [dispatch]
   );
   return (
-    <Grid container spacing={6} alignItems="stretch" justifyContent="center">
+    <Grid
+      size={12}
+      container
+      spacing={6}
+      alignItems="stretch"
+      justifyContent="center"
+    >
       <Grid size="grow" px={2}>
         <ValuesPile
           title="Seçilen Değerler"
