@@ -1,4 +1,4 @@
-import { Button, Grid, Stack } from "@mui/material";
+import { Button, Grid, Slide, Stack } from "@mui/material";
 import ResultTable from "./ResultTable";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -24,39 +24,41 @@ function ResultPage() {
   const secilenDegerlerText = first5Value.map((value) => value.ad).join(", ");
 
   return (
-    <Grid container spacing={1} alignItems="center">
-      <Grid size={12} sx={{ my: 2 }}>
-        <Stack
-          alignItems="center"
-          justifyContent="center"
-          direction="row"
-          spacing={5}
-        >
-          <Button
-            startIcon={<ArrowBackIcon />}
-            variant="contained"
-            disabled={activeStep === 0}
+    <Slide direction="left" in={true} mountOnEnter unmountOnExit>
+      <Grid container spacing={1} alignItems="center">
+        <Grid size={12} sx={{ my: 2 }}>
+          <Stack
+            alignItems="center"
+            justifyContent="center"
+            direction="row"
+            spacing={5}
+          >
+            <Button
+              startIcon={<ArrowBackIcon />}
+              variant="contained"
+              disabled={activeStep === 0}
               onClick={handleBackClick}
-          >
-            Geri
-          </Button>
-          <ExercisePageTypography
-            title="Bölüm Önerileri"
-            subtitle1="Seçtiğiniz değerlere göre size uygun bölümler aşağıdadır."
-            subtitle2={`Öncelikli Değerleriniz: ${secilenDegerlerText}`}
-          />
-          <Button
-            endIcon={<ArrowForwardIcon />}
-            variant="contained"
+            >
+              Geri
+            </Button>
+            <ExercisePageTypography
+              title="Bölüm Önerileri"
+              subtitle1="Seçtiğiniz değerlere göre size uygun bölümler aşağıdadır."
+              subtitle2={`Öncelikli Değerleriniz: ${secilenDegerlerText}`}
+            />
+            <Button
+              endIcon={<ArrowForwardIcon />}
+              variant="contained"
               onClick={handleNextClick}
-            sx={{ visibility: "hidden" }}
-          >
-            İleri
-          </Button>
-        </Stack>
+              sx={{ visibility: "hidden" }}
+            >
+              İleri
+            </Button>
+          </Stack>
+        </Grid>
+        <ResultTable />
       </Grid>
-      <ResultTable />
-    </Grid>
+    </Slide>
   );
 }
 

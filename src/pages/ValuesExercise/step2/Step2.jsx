@@ -1,4 +1,4 @@
-import { Button, Grid, Stack } from "@mui/material";
+import { Button, Grid, Slide, Stack } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ExercisePageTypography from "../ExercisePageTypography";
@@ -39,39 +39,41 @@ function Step2() {
   );
 
   return (
-    <Grid container spacing={2} alignItems="center">
-      <Grid size={12} sx={{ my: 2 }}>
-        <Stack
-          alignItems="center"
-          justifyContent="center"
-          direction="row"
-          spacing={5}
-        >
-          <Button
-            startIcon={<ArrowBackIcon />}
-            variant="contained"
-            disabled={activeStep === 0}
-              onClick={handleBackClick}
+    <Slide direction="left" in={true} mountOnEnter unmountOnExit>
+      <Grid container spacing={2} alignItems="center">
+        <Grid size={12} sx={{ my: 2 }}>
+          <Stack
+            alignItems="center"
+            justifyContent="center"
+            direction="row"
+            spacing={5}
           >
-            Geri
-          </Button>
-          <ExercisePageTypography
-            title="Önceliklerinizi Belirleyin"
-            subtitle1="Şimdi 'Tutulacaklar' kutusundaki değerler arasından sizin için en önemli olan 5 tanesini seçin."
-            subtitle2="Bu 5 değer, kariyer yolculuğunuzda size rehberlik edecek temel taşlarınız olacak."
-          />
-          <Button
-            endIcon={<ArrowForwardIcon />}
-            variant="contained"
+            <Button
+              startIcon={<ArrowBackIcon />}
+              variant="contained"
+              disabled={activeStep === 0}
+              onClick={handleBackClick}
+            >
+              Geri
+            </Button>
+            <ExercisePageTypography
+              title="Önceliklerinizi Belirleyin"
+              subtitle1="Şimdi 'Tutulacaklar' kutusundaki değerler arasından sizin için en önemli olan 5 tanesini seçin."
+              subtitle2="Bu 5 değer, kariyer yolculuğunuzda size rehberlik edecek temel taşlarınız olacak."
+            />
+            <Button
+              endIcon={<ArrowForwardIcon />}
+              variant="contained"
               onClick={handleNextClick}
               sx={nextButtonSx}
-          >
-            İleri
-          </Button>
-        </Stack>
+            >
+              İleri
+            </Button>
+          </Stack>
+        </Grid>
+        <PilesStep2 />
       </Grid>
-      <PilesStep2 />
-    </Grid>
+    </Slide>
   );
 }
 
