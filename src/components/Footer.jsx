@@ -17,32 +17,32 @@ export default function Footer() {
     <Box sx={{ my: 6, mx: 2 }} alignContent="center">
       <List>
         <ListSubheader>
-          KARİYER PLANLAMA VE MEZUNLARLA İLİŞKİLER KOORDİNATÖRLÜĞÜ
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit
         </ListSubheader>
         <Divider />
         <ListItem>
           <ListItemIcon sx={{ minWidth: 30, pb: 0 }}>
             <PhoneIcon fontSize="medium" />
           </ListItemIcon>
-          <ListItemText secondary="0232 301 78 92" />
+          <ListItemText secondary="(000) 000 00 00" />
         </ListItem>
         <ListItem>
           <ListItemIcon sx={{ minWidth: 30, pb: 0 }}>
             <MailOutlineIcon />
           </ListItemIcon>
-          <ListItemText secondary="kariyerplanlama@deu.edu.tr" />
+          <ListItemText secondary="info@example.com" />
         </ListItem>
         <ListItem>
           <ListItemIcon sx={{ minWidth: 30, pb: 0 }}>
             <InstagramIcon />
           </ListItemIcon>
-          <ListItemText secondary="deu_kariyer" />
+          <ListItemText secondary="Instagram" />
         </ListItem>
         <ListItem>
           <ListItemIcon sx={{ minWidth: 30, pb: 0 }}>
             <PlaceIcon />
           </ListItemIcon>
-          <ListItemText secondary="Dokuz Eylül Üniversitesi Tınaztepe Yerleşkesi, Buca - İzmir / Türkiye 35390" />
+          <ListItemText secondary="Lorem Street No:123, Ipsum City" />
         </ListItem>
       </List>
     </Box>
