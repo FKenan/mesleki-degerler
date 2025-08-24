@@ -35,7 +35,7 @@ const columns = [
 function ResultTable() {
   const first5Value = useSelector(selectFirst5Value);
 
-  const { tableData, isLoading } = useSelector((state) => state.result);
+  const { filteredTableData, isLoading } = useSelector((state) => state.result);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -53,9 +53,10 @@ function ResultTable() {
             noRowsVariant: "circular-progress",
           },
         }}
-        rows={tableData}
+        rows={filteredTableData}
         columns={columns}
         localeText={trTR.components.MuiDataGrid.defaultProps.localeText}
+        disableRowSelectionOnClick
         sx={{ border: 0 }}
       />
     </Paper>

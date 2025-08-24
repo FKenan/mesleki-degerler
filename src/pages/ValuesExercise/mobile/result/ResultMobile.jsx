@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import ExercisePageTypography from "../../ExercisePageTypography";
 import ResultTableMobile from "./ResultTableMobile";
 import { selectFirst5Value } from "../../valueSlice";
+import ResultFilter from "../../result/filter";
 import BackButtonMobile from "../BackButtonMobile";
 
 export default function ResultMobile() {
@@ -27,6 +28,9 @@ export default function ResultMobile() {
           subtitle1="Seçtiğiniz değerlere göre size uygun bölümler aşağıdadır."
           subtitle2={`Öncelikli Değerleriniz: ${secilenDegerlerText}`}
         />
+      </Box>
+      <Box sx={{ width: "100%" }}>
+        <ResultFilter first5Value={first5Value} />
       </Box>
       <Box sx={{ width: "100%", flexGrow: 1, mt: 2 }}>
         <ResultTableMobile />

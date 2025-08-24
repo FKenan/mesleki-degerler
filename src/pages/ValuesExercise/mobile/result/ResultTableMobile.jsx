@@ -17,7 +17,7 @@ import { selectFirst5Value } from "../../valueSlice";
 export default function ResultTableMobile() {
   const first5Value = useSelector(selectFirst5Value);
 
-  const { tableData, isLoading } = useSelector((state) => state.result);
+  const { filteredTableData, isLoading } = useSelector((state) => state.result);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,13 +37,13 @@ export default function ResultTableMobile() {
     >
       {isLoading ? (
         <CircularProgress sx={{ mt: 4 }} />
-      ) : tableData.length === 0 ? (
+      ) : filteredTableData.length === 0 ? (
         <Typography sx={{ mt: 4 }}>
           Seçtiğiniz değerlere uygun bölüm bulunamadı.
         </Typography>
       ) : (
         <Grid container spacing={2} sx={{ width: "100%", maxWidth: "md" }}>
-          {tableData.map((row) => (
+          {filteredTableData.map((row) => (
             <Grid size={12} key={row.id}>
               <Card
                 variant="outlined"
@@ -60,22 +60,46 @@ export default function ResultTableMobile() {
                 })}
               >
                 <CardContent>
-                  <Stack spacing={1}>
-                    <Typography variant="h6" component="div" fontWeight="bold">
-                      {row.bolumAd}
-                    </Typography>
-                    <Typography color="text.secondary">
-                      {row.fakulteAd}
-                    </Typography>
-                    <Box sx={{ pt: 1 }}>
-                      <Typography variant="body2" gutterBottom>
-                        <strong>Öğrenim Düzeyi:</strong> {row.durum}
+                  <Stack spacing={2}>
+                    <Box>
+                      <Typography
+                        variant="h6"
+                        component="div"
+                        fontWeight="bold"
+                      >
+                        {row.bolumAd}
                       </Typography>
-                      <Typography variant="body2">
-                        <strong>İlgili Değerler:</strong>{" "}
-                        {row.degerler.map((deger) => deger.ad).join(", ")}
+                      <Typography color="text.secondary">
+                        {row.fakulteAd}
                       </Typography>
                     </Box>
+                    <Stack spacing={1.5}>
+                      <Box>
+                        <Typography
+                          variant="caption"
+                          color="text.secondary"
+                          display="block"
+                        >
+                          Öğrenim Düzeyi
+                        </Typography>
+                        <Typography variant="body2" fontWeight={500}>
+                          {row.durum}
+                        </Typography>
+                      </Box>
+                      <Box>
+                        <Typography
+                          variant="caption"
+                          color="text.secondary"
+                          display="block"
+                        >
+                          İlgili Değerler
+                        </Typography>
+                        <Typography variant="body2">
+                          {row.degerler.map((deger) => deger.ad).join(", ")}
+                        </Typography>
+                      </Box>
+                    </Stack>
+
                     <Link
                       href={row.fakulteUrl}
                       target="_blank"
@@ -83,9 +107,9 @@ export default function ResultTableMobile() {
                       sx={{
                         display: "inline-flex",
                         alignItems: "center",
-                        width: "fit-content",
+                        alignSelf: "flex-start",
                         fontWeight: "bold",
-                        mt: 2,
+                        pt: 1,
                       }}
                     >
                       Bölüm Websitesi
