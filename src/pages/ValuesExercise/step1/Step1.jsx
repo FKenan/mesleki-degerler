@@ -1,24 +1,11 @@
-import { Button, Grid, Slide, Stack } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ExercisePageTypography from "../ExercisePageTypography";
+import { Container, Grid, Slide } from "@mui/material";
 import Piles from "./Piles";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  handleBack,
-  handleNext,
-  selectActiveStep,
-  selectValueStack,
-  VALUE_EXERCISE_STEPS,
-} from "../valueSlice";
-import React, { useCallback, useState, useRef, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { selectActiveStep, selectValueStack } from "../valueSlice";
+import React, { useState, useRef, useEffect } from "react";
+import Step1Header from "./Step1Header";
 
-function Step1() {
-  const activeStep = useSelector(selectActiveStep);
-  const valueStack = useSelector(selectValueStack);
-
-  const dispatch = useDispatch();
-
+const useStepDirection = (activeStep) => {
   const prevStepRef = useRef(activeStep);
   const [direction, setDirection] = useState("right");
 
@@ -31,13 +18,12 @@ function Step1() {
     prevStepRef.current = activeStep;
   }, [activeStep]);
 
-  const handleBackClick = useCallback(() => {
-    dispatch(handleBack());
-  }, [dispatch]);
+  return direction;
+};
 
-  const handleNextClick = useCallback(() => {
-    dispatch(handleNext());
-  }, [dispatch]);
+function Step1() {
+  const activeStep = useSelector(selectActiveStep);
+  const direction = useStepDirection(activeStep);
 
   return (
     <Slide
@@ -46,45 +32,13 @@ function Step1() {
       mountOnEnter
       unmountOnExit
     >
-      <Grid container spacing={2} alignItems="center">
-        <Grid size={12} sx={{ my: 2 }}>
-          <Stack
-            alignItems="center"
-            justifyContent="center"
-            direction="row"
-            spacing={5}
-          >
-            <Button
-              startIcon={<ArrowBackIcon />}
-              variant="contained"
-              disabled={activeStep === 0}
-              onClick={handleBackClick}
-              sx={{
-                visibility: "hidden",
-              }}
-            >
-              Geri
-            </Button>
-            <ExercisePageTypography
-              title="Değerlerinizi Keşfedin"
-              subtitle1="Aşağıdaki değer kartlarını size en uygun olanları 'Tutulacaklar', diğerlerini ise 'Atılacaklar' kutusuna sürükleyin."
-              subtitle2="Bu adımda istediğiniz kadar değeri 'Tutulacaklar' kutusuna ekleyebilirsiniz."
-            />
-            <Button
-              endIcon={<ArrowForwardIcon />}
-              variant="contained"
-              disabled={
-                activeStep === VALUE_EXERCISE_STEPS.length - 1 ||
-                valueStack.length !== 0
-              }
-              onClick={handleNextClick}
-            >
-              İleri
-            </Button>
-          </Stack>
+      <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 4 } }}>
+        <Grid container spacing={2} alignItems="center" justifyContent="center">
+          <Step1Header />
+
+          <Piles />
         </Grid>
-        <Piles />
-      </Grid>
+      </Container>
     </Slide>
   );
 }

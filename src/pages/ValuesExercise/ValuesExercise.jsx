@@ -32,11 +32,9 @@ export default function ValuesExercisePage() {
   );
 
   return (
-    <Box>
+    <Container maxWidth="xl" disableGutters sx={{ justifyContent: "center" }}>
       {isMobile ? <AppbarMobile /> : <Appbar />}
-      <Container maxWidth="false" sx={{ justifyContent: "center" }}>
-        {steps[activeStep]}
-      </Container>
-    </Box>
+      {steps[activeStep]}
+    </Container>
   );
 }
