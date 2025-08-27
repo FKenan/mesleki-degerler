@@ -2,10 +2,10 @@ import { memo, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Slide, Container, Box } from "@mui/material";
 import ResultTable from "./ResultTable";
-import ResultPageHeader from "./resultPageHeader";
 import ResultFilter from "./filter";
 import { selectFirst5Value } from "../valueSlice";
 import { applyFilter } from "./resultSlice";
+import ResultPageHeader from "./ResultPageHeader";
 
 function ResultPage() {
   const dispatch = useDispatch();

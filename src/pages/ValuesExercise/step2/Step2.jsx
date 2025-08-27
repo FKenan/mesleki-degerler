@@ -1,7 +1,7 @@
 import { Container, Grid, Slide } from "@mui/material";
 import PilesStep2 from "./PilesStep2";
 import { memo } from "react";
-import Step2Header from "./step2Header";
+import Step2Header from "./Step2Header";
 
 function Step2() {
   return (
