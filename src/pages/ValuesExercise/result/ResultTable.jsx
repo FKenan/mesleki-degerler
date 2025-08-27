@@ -8,23 +8,23 @@ import { selectFirst5Value } from "../valueSlice";
 
 const columns = [
   { field: "bolumAd", headerName: "Bölüm", width: 250 },
-  { field: "fakulteAd", headerName: "Fakülte", width: 200 },
-  { field: "durum", headerName: "Öğrenim Düzeyi", width: 150 },
-  {
-    field: "fakulteUrl",
-    headerName: "Website",
-    width: 250,
-    renderCell: (params) => (
-      <a href={params.value} target="_blank">
-        {params.value}
-      </a>
-    ),
-  },
+  // { field: "fakulteAd", headerName: "Fakülte", width: 200 },
+  // { field: "durum", headerName: "Öğrenim Düzeyi", width: 150 },
+  // {
+  //   field: "fakulteUrl",
+  //   headerName: "Website",
+  //   width: 250,
+  //   renderCell: (params) => (
+  //     <a href={params.value} target="_blank">
+  //       {params.value}
+  //     </a>
+  //   ),
+  // },
   {
     field: "degerler",
     headerName: "Degerler",
     sortable: false,
-    width: 300,
+    width: 600,
     valueGetter: (value) => {
       const degerler = value.map((value) => value.ad).join(", ");
       return degerler;

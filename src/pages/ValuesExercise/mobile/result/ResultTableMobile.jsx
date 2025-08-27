@@ -69,12 +69,12 @@ export default function ResultTableMobile() {
                       >
                         {row.bolumAd}
                       </Typography>
-                      <Typography color="text.secondary">
+                      {/* <Typography color="text.secondary">
                         {row.fakulteAd}
-                      </Typography>
+                      </Typography> */}
                     </Box>
                     <Stack spacing={1.5}>
-                      <Box>
+                      {/* <Box>
                         <Typography
                           variant="caption"
                           color="text.secondary"
@@ -85,7 +85,7 @@ export default function ResultTableMobile() {
                         <Typography variant="body2" fontWeight={500}>
                           {row.durum}
                         </Typography>
-                      </Box>
+                      </Box> */}
                       <Box>
                         <Typography
                           variant="caption"
@@ -100,7 +100,7 @@ export default function ResultTableMobile() {
                       </Box>
                     </Stack>
 
-                    <Link
+                    {/* <Link
                       href={row.fakulteUrl}
                       target="_blank"
                       rel="noopener"
@@ -114,7 +114,7 @@ export default function ResultTableMobile() {
                     >
                       Bölüm Websitesi
                       <ArrowForwardIcon sx={{ ml: 0.5, fontSize: "1rem" }} />
-                    </Link>
+                    </Link> */}
                   </Stack>
                 </CardContent>
               </Card>

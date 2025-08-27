@@ -15,7 +15,7 @@ export default function ValueStackMobile({ value, idx }) {
         position: "absolute",
         top: idx * -1,
         left: idx * 1,
-        width: "100%",
+        width: "95%",
         height: "100%",
         borderRadius: 5,
         display: "flex",

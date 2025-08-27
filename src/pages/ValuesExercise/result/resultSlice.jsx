@@ -11,6 +11,7 @@ export const fetchTableData = createAsyncThunk(
     } catch (error) {
       console.error("API gönderim hatası:", error);
       return [];
+    } finally {
     }
   }
 );
@@ -57,6 +58,7 @@ export const resultSlice = createSlice({
       state.tableData = [];
       state.filteredTableData = [];
       state.isLoading = true;
+      state.matchFilter = 1;
     });
 
     builder.addCase(fetchTableData.fulfilled, (state, action) => {
