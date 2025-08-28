@@ -1,10 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
+import { memo } from "react";
 import MainLayout from "./layouts/Main";
 import { DeviceProvider } from "./context/DeviceContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import { Box, CircularProgress } from "@mui/material";
 
-const LoadingFallback = () => (
+const LoadingFallback = memo(() => (
   <Box
     sx={{
       display: "flex",
@@ -15,7 +16,8 @@ const LoadingFallback = () => (
   >
     <CircularProgress />
   </Box>
-);
+));
+LoadingFallback.displayName = "LoadingFallback";
 
 const router = createBrowserRouter([
   {
@@ -61,4 +63,4 @@ function App() {
   );
 }
 
-export default App;
+export default memo(App);

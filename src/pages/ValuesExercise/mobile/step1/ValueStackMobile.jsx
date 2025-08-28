@@ -1,11 +1,27 @@
-import { Box, Button, Card, CardContent, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Grid,
+  Typography,
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import CheckIcon from "@mui/icons-material/Check";
 import { addToDiscardPile, addToKeepPile } from "../../valueSlice";
 import { useDispatch } from "react-redux";
+import { memo, useCallback } from "react";
 
-export default function ValueStackMobile({ value, idx }) {
+const ValueStackMobile = ({ value, idx }) => {
   const dispatch = useDispatch();
+
+  const handleAddToDiscardPile = useCallback(() => {
+    dispatch(addToDiscardPile(value));
+  }, [dispatch, value]);
+
+  const handleAddToKeepPile = useCallback(() => {
+    dispatch(addToKeepPile(value));
+  }, [dispatch, value]);
 
   return (
     <Card
@@ -24,54 +40,48 @@ export default function ValueStackMobile({ value, idx }) {
         maxHeight: 400,
       }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-          padding: 3,
-          py: 2,
-          pb: 1,
-          gap: 5,
-        }}
-      >
-        <Button
-          onClick={() => dispatch(addToDiscardPile(value))}
-          variant="contained"
-          startIcon={<CloseIcon />}
-          sx={{
-            backgroundColor: "#e53935",
-            "&:hover": {
-              backgroundColor: "#d32f2f",
-            },
-            color: "white",
-            flexGrow: 1,
-            fontWeight: "bold",
-            borderRadius: 5,
-            padding: "10px 0",
-          }}
-        >
-          At
-        </Button>
-        <Button
-          onClick={() => dispatch(addToKeepPile(value))}
-          variant="contained"
-          startIcon={<CheckIcon />}
-          sx={{
-            backgroundColor: "#43a047",
-            "&:hover": {
-              backgroundColor: "#388e3c",
-            },
-            color: "white",
-            flexGrow: 1,
-            fontWeight: "bold",
-            borderRadius: 5,
-            padding: "10px 0",
-          }}
-        >
-          Tut
-        </Button>
-      </Box>
+      <Grid container spacing={5} sx={{ p: 2 }}>
+        <Grid size={6}>
+          <Button
+            onClick={handleAddToDiscardPile}
+            variant="contained"
+            startIcon={<CloseIcon />}
+            fullWidth
+            sx={{
+              backgroundColor: "#e53935",
+              "&:hover": {
+                backgroundColor: "#d32f2f",
+              },
+              color: "white",
+              fontWeight: "bold",
+              borderRadius: 5,
+              padding: "10px 0",
+            }}
+          >
+            At
+          </Button>
+        </Grid>
+        <Grid size={6}>
+          <Button
+            onClick={handleAddToKeepPile}
+            variant="contained"
+            startIcon={<CheckIcon />}
+            fullWidth
+            sx={{
+              backgroundColor: "#43a047",
+              "&:hover": {
+                backgroundColor: "#388e3c",
+              },
+              color: "white",
+              fontWeight: "bold",
+              borderRadius: 5,
+              padding: "10px 0",
+            }}
+          >
+            Tut
+          </Button>
+        </Grid>
+      </Grid>
       <CardContent
         sx={{
           flexGrow: 1,
@@ -96,4 +106,6 @@ export default function ValueStackMobile({ value, idx }) {
       </CardContent>
     </Card>
   );
-}
+};
+
+export default memo(ValueStackMobile);
