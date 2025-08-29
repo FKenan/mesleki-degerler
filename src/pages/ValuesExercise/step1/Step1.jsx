@@ -1,7 +1,7 @@
 import { Container, Grid, Slide } from "@mui/material";
 import Piles from "./Piles";
 import { useSelector } from "react-redux";
-import { selectActiveStep, selectValueStack } from "../valueSlice";
+import { selectActiveStep } from "../valueSlice";
 import React, { useState, useRef, useEffect } from "react";
 import Step1Header from "./Step1Header";
 

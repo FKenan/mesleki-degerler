@@ -67,7 +67,7 @@ function ValueStack({ value }) {
       top: "50%",
       left: "50%",
       transform: "translate(-50%, -50%)",
-      opacity: isDragging ? 0.9 : 1,
+      opacity: 1,
       cursor: "grab",
       transition: "all 0.3s ease",
       "&:hover": {
@@ -84,6 +84,7 @@ function ValueStack({ value }) {
       <Card sx={cardSx}>
         <CardActionArea
           onClick={handleDiscard}
+          aria-label="Bu değeri at"
           sx={discardActionSx}
         ></CardActionArea>
         <CardActionArea onClick={handleKeep} sx={keepActionSx}></CardActionArea>

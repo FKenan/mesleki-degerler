@@ -57,6 +57,7 @@ const ValueStackMobile = ({ value, idx }) => {
               borderRadius: 5,
               padding: "10px 0",
             }}
+            aria-label="Bu değeri at"
           >
             At
           </Button>
@@ -77,6 +78,7 @@ const ValueStackMobile = ({ value, idx }) => {
               borderRadius: 5,
               padding: "10px 0",
             }}
+            aria-label="Bu değeri tut"
           >
             Tut
           </Button>
@@ -94,7 +96,8 @@ const ValueStackMobile = ({ value, idx }) => {
         }}
       >
         <Typography
-          variant="h4"
+          variant="h6"
+          component="h2"
           gutterBottom
           sx={{ fontWeight: "bold", color: "#1a237e" }}
         >

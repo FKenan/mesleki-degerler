@@ -28,7 +28,7 @@ export default function AppbarMobile() {
           <Grid size={6} display="flex" alignItems="center">
             <HomeIcon color="primary" sx={{ mr: 1 }} />
             <Typography
-              variant="h6"
+              variant="body1"
               noWrap
               sx={{
                 color: "primary.main",
@@ -48,7 +48,13 @@ export default function AppbarMobile() {
             >
               Baştan başla
             </Button>
-            <IconButton color="primary" size="medium" component={Link} to="/">
+            <IconButton
+              color="primary"
+              size="medium"
+              component={Link}
+              to="/"
+              aria-label="Kapat"
+            >
               <CloseIcon />
             </IconButton>
           </Grid>

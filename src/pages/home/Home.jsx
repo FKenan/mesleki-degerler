@@ -156,7 +156,7 @@ export default function HomePage() {
                       <Box sx={{ mb: 2, color: "primary.main" }}>
                         {step.icon}
                       </Box>
-                      <Typography variant="h6" fontWeight={600} gutterBottom>
+                      <Typography variant="h3" component="h3" fontWeight={600} gutterBottom>
                         {step.title}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
