@@ -1,4 +1,12 @@
-import { Card, CardActionArea, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardActionArea,
+  Grid,
+  Tooltip,
+  Typography,
+} from "@mui/material";
+import InfoOutlined from "@mui/icons-material/InfoOutlined";
 import React, { useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { useDrag } from "react-dnd";
@@ -46,15 +54,60 @@ function Value({ value, action }) {
           sx={{ height: "100%" }}
           onClick={handleClick}
         >
-          <Typography
-            variant="body2"
-            fontSize={12}
-            fontWeight="600"
-            color="primary"
-            align="center"
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100%",
+              p: 1,
+            }}
           >
-            {value.ad}
-          </Typography>
+            <Typography
+              variant="body2"
+              fontSize={12}
+              fontWeight="600"
+              color="primary"
+              align="center"
+              sx={{ flexGrow: 1, mr: 0.5 }}
+            >
+              {value.ad}
+            </Typography>
+            <Tooltip
+              title={value.aciklama}
+              arrow
+              slotProps={{
+                tooltip: {
+                  sx: (theme) => ({
+                    backgroundColor:
+                      theme.palette.mode === "dark"
+                        ? theme.palette.grey[700]
+                        : theme.palette.grey[800],
+                    color: theme.palette.common.white,
+                    fontSize: "13px",
+                    padding: "8px",
+                    borderRadius: "8px",
+                  }),
+                },
+                arrow: {
+                  sx: (theme) => ({
+                    color:
+                      theme.palette.mode === "dark"
+                        ? theme.palette.grey[700]
+                        : theme.palette.grey[800],
+                  }),
+                },
+              }}
+            >
+              <InfoOutlined
+                fontSize="small"
+                sx={{ color: "action.active", cursor: "pointer" }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              />
+            </Tooltip>
+          </Box>
         </CardActionArea>
       </Card>
     </Grid>
