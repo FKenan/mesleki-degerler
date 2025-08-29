@@ -77,6 +77,9 @@ export default function ValueCardMobile({
                 aria-label="info"
                 onClick={handleOpen}
                 sx={{ ml: 0.5, p: "6px" }}
+                component="span"
+                role="button"
+                tabIndex="0"
               >
                 <InfoOutlinedIcon fontSize="medium" />
               </IconButton>

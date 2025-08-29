@@ -1,7 +1,7 @@
-import { Box } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import { useSelector } from "react-redux";
 import ExercisePageTypography from "../../ExercisePageTypography";
-import ResultTableMobile from "./ResultTableMobile";
+import ResultTable from "../../result/ResultTable";
 import { selectFirst5Value } from "../../valueSlice";
 import ResultFilter from "../../result/filter";
 import BackButtonMobile from "../BackButtonMobile";
@@ -17,7 +17,6 @@ export default function ResultMobile() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "space-between",
-        minHeight: "65vh",
         padding: 2,
         gap: 2,
       }}
@@ -28,14 +27,26 @@ export default function ResultMobile() {
           subtitle1="Seçtiğiniz değerlere göre size uygun bölümler aşağıdadır."
           subtitle2={`Öncelikli Değerleriniz: ${secilenDegerlerText}`}
         />
-      </Box>
-      <Box sx={{ width: "100%" }}>
         <ResultFilter first5Value={first5Value} />
+        <Divider />
       </Box>
-      <Box sx={{ width: "100%", flexGrow: 1, mt: 2 }}>
-        <ResultTableMobile />
+      <Box
+        sx={{
+          width: "100%",
+          mt: 1,
+          overflowY: "auto",
+          height: "calc(100vh - 250px)",
+        }}
+      >
+        <ResultTable />
       </Box>
-      <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <BackButtonMobile />
       </Box>
     </Box>

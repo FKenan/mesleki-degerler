@@ -1,69 +1,101 @@
-import { Paper } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import {
+  Box,
+  Card,
+  CardContent,
+  Chip,
+  CircularProgress,
+  Grid,
+  Paper,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { memo, useEffect } from "react";
-import { trTR } from "@mui/x-data-grid/locales";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTableData } from "./resultSlice";
 import { selectFirst5Value } from "../valueSlice";
-
-const columns = [
-  { field: "bolumAd", headerName: "Bölüm", width: 250 },
-  {
-    field: "bolumAciklama",
-    headerName: "Açıklama",
-    flex: 1,
-    minWidth: 200,
-  },
-  // { field: "durum", headerName: "Öğrenim Düzeyi", width: 150 },
-  // {
-  //   field: "fakulteUrl",
-  //   headerName: "Website",
-  //   width: 250,
-  //   renderCell: (params) => (
-  //     <a href={params.value} target="_blank">
-  //       {params.value}
-  //     </a>
-  //   ),
-  // },
-  {
-    field: "degerler",
-    headerName: "Degerler",
-    sortable: false,
-    width: 500,
-    valueGetter: (value) => {
-      const degerler = value.map((value) => value.ad).join(", ");
-      return degerler;
-    },
-  },
-];
+import SchoolIcon from "@mui/icons-material/School";
 
 function ResultTable() {
   const first5Value = useSelector(selectFirst5Value);
-
   const { filteredTableData, isLoading } = useSelector((state) => state.result);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchTableData(first5Value));
-  }, [first5Value]);
+  }, [dispatch, first5Value]);
+
+  if (isLoading) {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", my: 4 }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
 
   return (
-    <Paper sx={{ width: "100%", my: 4 }}>
-      <DataGrid
-        loading={isLoading}
-        hideFooter
-        slotProps={{
-          loadingOverlay: {
-            variant: "circular-progress",
-            noRowsVariant: "circular-progress",
-          },
-        }}
-        rows={filteredTableData}
-        columns={columns}
-        localeText={trTR.components.MuiDataGrid.defaultProps.localeText}
-        disableRowSelectionOnClick
-        sx={{ border: 0 }}
-      />
+    <Paper
+      elevation={0}
+      variant="outlined"
+      sx={{
+        width: "100%",
+        my: 4,
+        p: { xs: 1, sm: 2 },
+        border: "none",
+        backgroundColor: "transparent",
+      }}
+    >
+      <Stack spacing={3}>
+        {filteredTableData.map((row) => (
+          <Card key={row.id} variant="outlined" sx={{ borderRadius: 4 }}>
+            <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
+              <Grid container spacing={{ xs: 2, md: 4 }}>
+                <Grid size={{ xs: 12, md: 7 }}>
+                  <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
+                    <SchoolIcon
+                      color="primary"
+                      sx={{ mr: 1.5, fontSize: "2rem" }}
+                    />
+                    <Typography
+                      component="h3"
+                      fontWeight="700"
+                      sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem" } }}
+                    >
+                      {row.bolumAd}
+                    </Typography>
+                  </Box>
+                  <Typography
+                    variant="body1"
+                    color="text.secondary"
+                    sx={{ pl: { md: "44px" } }}
+                  >
+                    {row.bolumAciklama}
+                  </Typography>
+                </Grid>
+                <Grid size={{ xs: 12, md: 5 }}>
+                  <Typography
+                    variant="subtitle1"
+                    fontWeight="bold"
+                    component="h4"
+                    gutterBottom
+                  >
+                    İlgili Değerler
+                  </Typography>
+                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+                    {row.degerler.map((deger) => (
+                      <Chip
+                        key={deger.id}
+                        label={deger.ad}
+                        variant="outlined"
+                        color="primary"
+                      />
+                    ))}
+                  </Box>
+                </Grid>
+              </Grid>
+            </CardContent>
+          </Card>
+        ))}
+      </Stack>
     </Paper>
   );
 }

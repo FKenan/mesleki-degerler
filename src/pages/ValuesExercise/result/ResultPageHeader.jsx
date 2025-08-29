@@ -3,6 +3,7 @@ import { Button, Grid, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { handleBack } from "../valueSlice";
 import { useDispatch } from "react-redux";
+import ExercisePageTypography from "../ExercisePageTypography";
 
 function ResultPageHeader({ secilenDegerlerText }) {
   const dispatch = useDispatch();
@@ -27,15 +28,11 @@ function ResultPageHeader({ secilenDegerlerText }) {
       </Grid>
 
       <Grid size={6}>
-        <Typography variant="h5" component="h1" gutterBottom>
-          Bölüm Önerileri
-        </Typography>
-        <Typography variant="subtitle1" gutterBottom>
-          Seçtiğiniz değerlere göre size uygun bölümler aşağıdadır.
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          <strong>Öncelikli Değerleriniz:</strong> {secilenDegerlerText}
-        </Typography>
+        <ExercisePageTypography
+          title="Bölüm Önerileri"
+          subtitle1="Seçtiğiniz değerlere göre size uygun bölümler aşağıdadır."
+          subtitle2={`Öncelikli Değerleriniz: ${secilenDegerlerText}`}
+        />
       </Grid>
 
       <Grid size={3} />
