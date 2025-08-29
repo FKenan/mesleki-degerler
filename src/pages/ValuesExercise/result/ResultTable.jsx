@@ -8,7 +8,12 @@ import { selectFirst5Value } from "../valueSlice";
 
 const columns = [
   { field: "bolumAd", headerName: "Bölüm", width: 250 },
-  // { field: "fakulteAd", headerName: "Fakülte", width: 200 },
+  {
+    field: "bolumAciklama",
+    headerName: "Açıklama",
+    flex: 1,
+    minWidth: 200,
+  },
   // { field: "durum", headerName: "Öğrenim Düzeyi", width: 150 },
   // {
   //   field: "fakulteUrl",
@@ -24,7 +29,7 @@ const columns = [
     field: "degerler",
     headerName: "Degerler",
     sortable: false,
-    width: 600,
+    width: 500,
     valueGetter: (value) => {
       const degerler = value.map((value) => value.ad).join(", ");
       return degerler;

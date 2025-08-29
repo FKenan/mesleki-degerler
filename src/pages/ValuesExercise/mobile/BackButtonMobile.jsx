@@ -13,7 +13,6 @@ export default function BackButtonMobile() {
         justifyContent: "flex-start",
         width: "100%",
         maxWidth: 500,
-        mb: 1,
       }}
     >
       <Button

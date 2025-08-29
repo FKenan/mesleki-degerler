@@ -18,7 +18,7 @@ export default function Step1Mobile() {
           alignItems: "center",
           justifyContent: "space-between",
           minHeight: "90vh",
-          px: 3,
+          p: 3,
           gap: 2,
         }}
       >

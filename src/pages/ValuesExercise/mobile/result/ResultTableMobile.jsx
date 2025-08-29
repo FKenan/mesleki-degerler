@@ -5,13 +5,12 @@ import {
   Card,
   CardContent,
   Typography,
-  Link,
-  Grid,
+  Chip,
   Stack,
   Box,
   CircularProgress,
 } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import SchoolIcon from "@mui/icons-material/School";
 import { selectFirst5Value } from "../../valueSlice";
 
 export default function ResultTableMobile() {
@@ -27,100 +26,89 @@ export default function ResultTableMobile() {
   return (
     <Box
       sx={{
-        p: 2,
-        height: "calc(100vh - 200px)",
+        height: "100%",
         overflowY: "auto",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
+        p: { xs: 1, sm: 2 },
       }}
     >
       {isLoading ? (
-        <CircularProgress sx={{ mt: 4 }} />
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+          <CircularProgress />
+        </Box>
       ) : filteredTableData.length === 0 ? (
-        <Typography sx={{ mt: 4 }}>
+        <Typography sx={{ mt: 4, textAlign: "center" }}>
           Seçtiğiniz değerlere uygun bölüm bulunamadı.
         </Typography>
       ) : (
-        <Grid container spacing={2} sx={{ width: "100%", maxWidth: "md" }}>
+        <Stack spacing={2}>
           {filteredTableData.map((row) => (
-            <Grid size={12} key={row.id}>
-              <Card
-                variant="outlined"
-                sx={(theme) => ({
-                  width: "100%",
-                  borderRadius: 2,
-                  transition:
-                    "box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out",
-                  borderColor: theme.custom.interactiveCard.borderColor,
-                  "&:hover": {
-                    boxShadow: theme.custom.cardHoverShadow,
-                    borderColor: theme.custom.interactiveCard.borderColorHover,
-                  },
-                })}
-              >
-                <CardContent>
-                  <Stack spacing={2}>
-                    <Box>
+            <Card
+              key={row.id}
+              variant="outlined"
+              sx={(theme) => ({
+                borderRadius: 4,
+                border: "1px solid",
+                borderColor: "divider",
+                transition: "box-shadow 0.3s, border-color 0.3s",
+                "&:hover": {
+                  boxShadow: theme.shadows[4],
+                  borderColor: "primary.main",
+                },
+              })}
+            >
+              <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
+                <Box
+                  sx={{ display: "flex", alignItems: "flex-start", mb: 1.5 }}
+                >
+                  <SchoolIcon
+                    sx={{
+                      mr: 1.5,
+                      mt: 0.5,
+                      color: "primary.main",
+                      fontSize: { xs: "1.5rem", sm: "1.75rem" },
+                    }}
+                  />
+                  <Box>
+                    <Typography variant="h6" component="h3" fontWeight="700">
+                      {row.bolumAd}
+                    </Typography>
+                    {row.bolumAciklama && (
                       <Typography
-                        variant="h6"
-                        component="div"
-                        fontWeight="bold"
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{ mt: 0.5 }}
                       >
-                        {row.bolumAd}
+                        {row.bolumAciklama}
                       </Typography>
-                      {/* <Typography color="text.secondary">
-                        {row.fakulteAd}
-                      </Typography> */}
-                    </Box>
-                    <Stack spacing={1.5}>
-                      {/* <Box>
-                        <Typography
-                          variant="caption"
-                          color="text.secondary"
-                          display="block"
-                        >
-                          Öğrenim Düzeyi
-                        </Typography>
-                        <Typography variant="body2" fontWeight={500}>
-                          {row.durum}
-                        </Typography>
-                      </Box> */}
-                      <Box>
-                        <Typography
-                          variant="caption"
-                          color="text.secondary"
-                          display="block"
-                        >
-                          İlgili Değerler
-                        </Typography>
-                        <Typography variant="body2">
-                          {row.degerler.map((deger) => deger.ad).join(", ")}
-                        </Typography>
-                      </Box>
-                    </Stack>
+                    )}
+                  </Box>
+                </Box>
 
-                    {/* <Link
-                      href={row.fakulteUrl}
-                      target="_blank"
-                      rel="noopener"
-                      sx={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        alignSelf: "flex-start",
-                        fontWeight: "bold",
-                        pt: 1,
-                      }}
-                    >
-                      Bölüm Websitesi
-                      <ArrowForwardIcon sx={{ ml: 0.5, fontSize: "1rem" }} />
-                    </Link> */}
-                  </Stack>
-                </CardContent>
-              </Card>
-            </Grid>
+                <Box sx={{ mt: 2 }}>
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    display="block"
+                    sx={{ mb: 1, fontWeight: "500" }}
+                  >
+                    İlgili Değerler
+                  </Typography>
+                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+                    {row.degerler.map((deger) => (
+                      <Chip
+                        key={deger.id}
+                        label={deger.ad}
+                        size="small"
+                        variant="outlined"
+                        color="primary"
+                      />
+                    ))}
+                  </Box>
+                </Box>
+              </CardContent>
+            </Card>
           ))}
-        </Grid>
+        </Stack>
       )}
     </Box>
   );

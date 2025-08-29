@@ -40,7 +40,7 @@ const ValueStackMobile = ({ value, idx }) => {
         maxHeight: 400,
       }}
     >
-      <Grid container spacing={5} sx={{ p: 2 }}>
+      <Grid container spacing={5} sx={{ p: 3 }}>
         <Grid size={6}>
           <Button
             onClick={handleAddToDiscardPile}
@@ -48,10 +48,7 @@ const ValueStackMobile = ({ value, idx }) => {
             startIcon={<CloseIcon />}
             fullWidth
             sx={{
-              backgroundColor: "#e53935",
-              "&:hover": {
-                backgroundColor: "#d32f2f",
-              },
+              backgroundColor: "error.main",
               color: "white",
               fontWeight: "bold",
               borderRadius: 5,
@@ -69,10 +66,7 @@ const ValueStackMobile = ({ value, idx }) => {
             startIcon={<CheckIcon />}
             fullWidth
             sx={{
-              backgroundColor: "#43a047",
-              "&:hover": {
-                backgroundColor: "#388e3c",
-              },
+              backgroundColor: "success.dark",
               color: "white",
               fontWeight: "bold",
               borderRadius: 5,
@@ -99,7 +93,7 @@ const ValueStackMobile = ({ value, idx }) => {
           variant="h6"
           component="h2"
           gutterBottom
-          sx={{ fontWeight: "bold", color: "#1a237e" }}
+          sx={{ fontWeight: "bold", color: "primary.dark" }}
         >
           {value.ad}
         </Typography>

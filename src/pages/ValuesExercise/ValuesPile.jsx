@@ -1,4 +1,4 @@
-import { Grid, Paper, Typography } from "@mui/material";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 import Value from "./Value";
 import { useDrop } from "react-dnd";
 import React, { useMemo } from "react";
@@ -24,7 +24,6 @@ function ValuesPile({ values, action, onDrop, title }) {
     () => (theme) => ({
       position: "relative",
       borderRadius: "16px",
-      p: 3,
       height: "100%",
       width: "100%",
       minHeight: 300,
@@ -57,11 +56,13 @@ function ValuesPile({ values, action, onDrop, title }) {
       >
         {title}
       </Typography>
-      <Grid container spacing={2}>
-        {values.map((value) => (
-          <Value key={value.id} value={value} action={action} />
-        ))}
-      </Grid>
+      <Box sx={{ maxHeight: 350, overflowY: "auto", p: 3 }}>
+        <Grid container spacing={2}>
+          {values.map((value) => (
+            <Value key={value.id} value={value} action={action} />
+          ))}
+        </Grid>
+      </Box>
     </Paper>
   );
 }
