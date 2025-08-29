@@ -45,7 +45,15 @@ export default function Step2Mobile() {
         subtitle1="Sizin için en anlamlı 5 değeri seçerek devam edin."
         subtitle2={`${first5Value.length} / 5 Değer Seçildi`}
       />
-      <Box sx={{ width: "100%", maxWidth: 500, flexGrow: 1 }}>
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: 500,
+          overflowY: "auto",
+          p: 1,
+          height: "calc(100vh - 200px)",
+        }}
+      >
         {allValues.map((value) => {
           const isSelected = first5Value.some((v) => v.id === value.id);
           return (
