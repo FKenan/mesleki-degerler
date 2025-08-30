@@ -105,9 +105,7 @@ export default function ValueCardMobile({
           <DialogContentText>{value.aciklama}</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} autoFocus>
-            Kapat
-          </Button>
+          <Button onClick={handleClose}>Kapat</Button>
         </DialogActions>
       </Dialog>
     </>
