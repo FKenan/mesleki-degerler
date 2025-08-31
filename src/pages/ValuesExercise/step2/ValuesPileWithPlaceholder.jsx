@@ -3,21 +3,20 @@ import ValuePlaceholder from "./ValuePlaceholder";
 import { useDrop } from "react-dnd";
 import { memo, useMemo } from "react";
 import Value from "../Value";
+import { motion, AnimatePresence } from "framer-motion";
 
 function ValuesPileWithPlaceholder({ values, action, onDrop, title }) {
-  const [{ isOver, canDrop }, dropRef] = useDrop({
-    accept: "VALUE",
-    drop: (item) => {
-      if (onDrop && !values.some((v) => v.id === item.value.id)) {
-        onDrop(item.value);
-      }
+  const [{ isOver, canDrop }, dropRef] = useDrop(
+    {
+      accept: "VALUE",
+      drop: (item) => onDrop?.(item.value),
+      collect: (monitor) => ({
+        isOver: monitor.isOver(),
+        canDrop: monitor.canDrop(),
+      }),
     },
-
-    collect: (monitor) => ({
-      isOver: monitor.isOver(),
-      canDrop: monitor.canDrop(),
-    }),
-  });
+    [onDrop]
+  );
 
   const paperSx = useMemo(
     () => (theme) => ({
@@ -57,13 +56,29 @@ function ValuesPileWithPlaceholder({ values, action, onDrop, title }) {
         {title}
       </Typography>
       <Grid container spacing={2}>
-        {Array.from({ length: 5 }).map((_, idx) =>
-          values[idx] ? (
-            <Value value={values[idx]} action={action} key={values[idx].id} />
-          ) : (
-            <ValuePlaceholder key={`placeholder-${idx}`} />
-          )
-        )}
+        <AnimatePresence>
+          {Array.from({ length: 5 }).map((_, idx) => {
+            const value = values[idx];
+            return (
+              <Grid
+                size={{ sm: 12, md: 6, lg: 4, xl: 3 }}
+                key={value ? value.id : `placeholder-${idx}`}
+                component={motion.div}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              >
+                {value ? (
+                  <Value value={value} action={action} />
+                ) : (
+                  <ValuePlaceholder />
+                )}
+              </Grid>
+            );
+          })}
+        </AnimatePresence>
       </Grid>
     </Paper>
   );

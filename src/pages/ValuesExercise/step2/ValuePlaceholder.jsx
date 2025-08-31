@@ -1,4 +1,4 @@
-import { Card, Grid } from "@mui/material";
+import { Card } from "@mui/material";
 import { memo } from "react";
 
 const cardSx = (theme) => ({
@@ -11,9 +11,7 @@ const cardSx = (theme) => ({
 
 function ValuePlaceholder() {
   return (
-    <Grid size={{ sm: 12, md: 6, lg: 4, xl: 3 }}>
-      <Card variant="outlined" sx={cardSx}></Card>
-    </Grid>
+    <Card variant="outlined" sx={cardSx}></Card>
   );
 }
 

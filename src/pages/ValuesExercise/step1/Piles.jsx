@@ -11,6 +11,7 @@ import {
   selectValueStack,
 } from "../valueSlice";
 import React, { useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 function Piles() {
   const valueStack = useSelector(selectValueStack);
@@ -55,7 +56,7 @@ function Piles() {
         }}
       >
         <Box
-          sx={{
+          sx={{ 
             flexGrow: 1,
             display: "flex",
             alignItems: "center",
@@ -66,9 +67,28 @@ function Piles() {
             <CircularProgress />
           ) : valueStack.length > 0 ? (
             <Box position="relative" display="flex" height="100%" width="100%">
-              {valueStack.map((value) => (
-                <ValueStack value={value} key={value.id} />
-              ))}
+              <AnimatePresence>
+                {valueStack.map((value) => (
+                  <motion.div
+                    key={value.id}
+                    style={{
+                      position: "absolute",
+                      width: "100%",
+                      height: "100%",
+                    }}
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{
+                      y: -40,
+                      opacity: 0,
+                      transition: { duration: 0.3 },
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  >
+                    <ValueStack value={value} />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
             </Box>
           ) : (
             <Typography variant="h6" color="text.secondary">

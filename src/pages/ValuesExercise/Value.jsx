@@ -2,7 +2,6 @@ import {
   Box,
   Card,
   CardActionArea,
-  Grid,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -47,70 +46,68 @@ function Value({ value, action }) {
   );
 
   return (
-    <Grid size={{ xs: 12, sm: 12, md: 6, lg: 4, xl: 3 }}>
-      <Card ref={dragRef} elevation={3} sx={cardSx}>
-        <CardActionArea
-          disabled={action === null}
-          sx={{ height: "100%" }}
-          onClick={handleClick}
+    <Card ref={dragRef} elevation={3} sx={cardSx}>
+      <CardActionArea
+        disabled={action === null}
+        sx={{ height: "100%" }}
+        onClick={handleClick}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+            p: 1,
+          }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "100%",
-              p: 1,
+          <Typography
+            variant="body2"
+            fontSize={12}
+            fontWeight="600"
+            color="primary"
+            align="center"
+            sx={{ flexGrow: 1, mr: 0.5 }}
+          >
+            {value.ad}
+          </Typography>
+          <Tooltip
+            title={value.aciklama}
+            arrow
+            slotProps={{
+              tooltip: {
+                sx: (theme) => ({
+                  backgroundColor:
+                    theme.palette.mode === "dark"
+                      ? theme.palette.grey[700]
+                      : theme.palette.grey[800],
+                  color: theme.palette.common.white,
+                  fontSize: "13px",
+                  padding: "8px",
+                  borderRadius: "8px",
+                }),
+              },
+              arrow: {
+                sx: (theme) => ({
+                  color:
+                    theme.palette.mode === "dark"
+                      ? theme.palette.grey[700]
+                      : theme.palette.grey[800],
+                }),
+              },
             }}
           >
-            <Typography
-              variant="body2"
-              fontSize={12}
-              fontWeight="600"
-              color="primary"
-              align="center"
-              sx={{ flexGrow: 1, mr: 0.5 }}
-            >
-              {value.ad}
-            </Typography>
-            <Tooltip
-              title={value.aciklama}
-              arrow
-              slotProps={{
-                tooltip: {
-                  sx: (theme) => ({
-                    backgroundColor:
-                      theme.palette.mode === "dark"
-                        ? theme.palette.grey[700]
-                        : theme.palette.grey[800],
-                    color: theme.palette.common.white,
-                    fontSize: "13px",
-                    padding: "8px",
-                    borderRadius: "8px",
-                  }),
-                },
-                arrow: {
-                  sx: (theme) => ({
-                    color:
-                      theme.palette.mode === "dark"
-                        ? theme.palette.grey[700]
-                        : theme.palette.grey[800],
-                  }),
-                },
+            <InfoOutlined
+              fontSize="small"
+              sx={{ color: "action.active", cursor: "pointer" }}
+              onClick={(e) => {
+                e.stopPropagation();
               }}
-            >
-              <InfoOutlined
-                fontSize="small"
-                sx={{ color: "action.active", cursor: "pointer" }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-              />
-            </Tooltip>
-          </Box>
-        </CardActionArea>
-      </Card>
-    </Grid>
+            />
+          </Tooltip>
+        </Box>
+      </CardActionArea>
+    </Card>
   );
 }
 

@@ -2,22 +2,19 @@ import { Box, Grid, Paper, Typography } from "@mui/material";
 import Value from "./Value";
 import { useDrop } from "react-dnd";
 import React, { useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 function ValuesPile({ values, action, onDrop, title }) {
   const [{ isOver, canDrop }, dropRef] = useDrop(
     () => ({
       accept: "VALUE",
-      drop: (item) => {
-        if (onDrop && !values.some((v) => v.id === item.value.id)) {
-          onDrop(item.value);
-        }
-      },
+      drop: (item) => onDrop?.(item.value),
       collect: (monitor) => ({
         isOver: monitor.isOver(),
         canDrop: monitor.canDrop(),
       }),
     }),
-    [onDrop, values]
+    [onDrop]
   );
 
   const paperSx = useMemo(
@@ -58,9 +55,22 @@ function ValuesPile({ values, action, onDrop, title }) {
       </Typography>
       <Box sx={{ maxHeight: 350, overflowY: "auto", p: 3 }}>
         <Grid container spacing={2}>
-          {values.map((value) => (
-            <Value key={value.id} value={value} action={action} />
-          ))}
+          <AnimatePresence>
+            {values.map((value) => (
+              <Grid
+                size={{ xs: 12, sm: 12, md: 6, lg: 4, xl: 3 }}
+                key={value.id}
+                component={motion.div}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              >
+                <Value value={value} action={action} />
+              </Grid>
+            ))}
+          </AnimatePresence>
         </Grid>
       </Box>
     </Paper>

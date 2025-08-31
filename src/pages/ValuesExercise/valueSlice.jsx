@@ -49,18 +49,30 @@ export const valueSlice = createSlice({
     },
     addToFirst5Value: (state, action) => {
       const { id } = action.payload;
+      if (state.first5Value.some((v) => v.id === id)) return;
+
       state.first5Value.push(action.payload);
+
       removeItemById(state.keepPile, id);
+      removeItemById(state.discardPile, id);
+      removeItemById(state.valueStack, id);
     },
     addToDiscardPile: (state, action) => {
       const { id } = action.payload;
+      if (state.discardPile.some((v) => v.id === id)) return;
+
       state.discardPile.push(action.payload);
+
       removeItemById(state.valueStack, id);
       removeItemById(state.keepPile, id);
+      removeItemById(state.first5Value, id);
     },
     addToKeepPile: (state, action) => {
       const { id } = action.payload;
+      if (state.keepPile.some((v) => v.id === id)) return;
+
       state.keepPile.push(action.payload);
+
       removeItemById(state.valueStack, id);
       removeItemById(state.discardPile, id);
       removeItemById(state.first5Value, id);
