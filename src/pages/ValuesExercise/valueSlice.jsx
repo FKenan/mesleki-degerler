@@ -36,6 +36,7 @@ export const valueSlice = createSlice({
     valueStack: [],
     isLoaded: false,
     activeStep: 0,
+    direction: "forward",
     keepPile: [],
     discardPile: [],
     first5Value: [],
@@ -43,9 +44,11 @@ export const valueSlice = createSlice({
   reducers: {
     handleNext: (state) => {
       state.activeStep += 1;
+      state.direction = "forward";
     },
     handleBack: (state) => {
       state.activeStep -= 1;
+      state.direction = "backward";
     },
     addToFirst5Value: (state, action) => {
       const { id } = action.payload;
@@ -83,6 +86,7 @@ export const valueSlice = createSlice({
       state.discardPile = [];
       state.first5Value = [];
       state.valueStack = state.values;
+      state.direction = "forward";
     },
   },
   extraReducers: (builder) => {
@@ -138,4 +142,8 @@ export const selectActiveStep = createSelector(
 export const selectIsLoaded = createSelector(
   [selectValueState],
   (value) => value.isLoaded
+);
+export const selectDirection = createSelector(
+  [selectValueState],
+  (value) => value.direction
 );

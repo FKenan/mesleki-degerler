@@ -1,36 +1,37 @@
-import { Container, Grid, Slide } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import Piles from "./Piles";
-import { useSelector } from "react-redux";
-import { selectActiveStep } from "../valueSlice";
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import Step1Header from "./Step1Header";
+import { motion } from "framer-motion";
 
-const useStepDirection = (activeStep) => {
-  const prevStepRef = useRef(activeStep);
-  const [direction, setDirection] = useState("right");
-
-  useEffect(() => {
-    if (prevStepRef.current < activeStep) {
-      setDirection("left");
-    } else if (prevStepRef.current > activeStep) {
-      setDirection("right");
-    }
-    prevStepRef.current = activeStep;
-  }, [activeStep]);
-
-  return direction;
-};
-
-function Step1() {
-  const activeStep = useSelector(selectActiveStep);
-  const direction = useStepDirection(activeStep);
+function Step1({ direction }) {
+  // Define animation variants for Framer Motion
+  const pageVariants = {
+    initial: {
+      opacity: 0,
+      x: direction === "forward" ? 100 : -100, // Start from right for forward, left for backward
+    },
+    in: {
+      opacity: 1,
+      x: 0, // Animate to center
+    },
+    out: {
+      opacity: 0,
+      x: direction === "forward" ? -100 : 100, // Animate to left for forward, right for backward
+    },
+  };
 
   return (
-    <Slide
-      direction={direction}
-      in={activeStep === 0}
-      mountOnEnter
-      unmountOnExit
+    // The 'key' prop is crucial for AnimatePresence to detect when a component is removed/added.
+    // 'initial', 'animate', and 'exit' define the animation states.
+    <motion.div
+      key="step1-page" // Unique key for this page component
+      initial="initial"
+      animate="in" // Always animate in when mounted by AnimatePresence
+      exit="out"
+      variants={pageVariants}
+      transition={{ duration: 0.4 }}
+      style={{ width: "100%" }}
     >
       <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 4 } }}>
         <Grid container spacing={2} alignItems="center" justifyContent="center">
@@ -39,7 +40,7 @@ function Step1() {
           <Piles />
         </Grid>
       </Container>
-    </Slide>
+    </motion.div>
   );
 }
 
