@@ -86,6 +86,6 @@ src/
 
 ## 🌐 Canlı Demo
 
-Projenin canlı demosuna buradan ulaşabilirsiniz: [Canlı Demo Linki](https://mesleki-degerler.vercel.app/)
+Projenin canlı demosuna buradan ulaşabilirsiniz: [https://mesleki-degerler.vercel.app/](https://mesleki-degerler.vercel.app/)
 
 ---

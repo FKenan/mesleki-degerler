@@ -4,6 +4,7 @@ import ExercisePageTypography from "../../ExercisePageTypography";
 import NextButtonMobile from "../NextButtonMobile";
 import ValueStackMobile from "./ValueStackMobile";
 import { selectIsLoaded, selectValueStack } from "../../valueSlice";
+import { AnimatePresence } from "framer-motion";
 
 export default function Step1Mobile() {
   const valueStack = useSelector(selectValueStack);
@@ -40,14 +41,19 @@ export default function Step1Mobile() {
         >
           {!isloaded ? (
             <CircularProgress />
-          ) : valueStack.length > 0 ? (
-            valueStack.map((value, idx) => (
-              <ValueStackMobile key={value.id} value={value} idx={idx} />
-            ))
           ) : (
-            <Typography variant="h6" color="text.secondary">
-              Tüm değerleri grupladınız. <br /> Sonraki adıma geçebilirsiniz.
-            </Typography>
+            <AnimatePresence>
+              {valueStack.length > 0 ? (
+                valueStack.map((value, idx) => (
+                  <ValueStackMobile key={value.id} value={value} idx={idx} />
+                ))
+              ) : (
+                <Typography variant="h6" color="text.secondary">
+                  Tüm değerleri grupladınız. <br /> Sonraki adıma
+                  geçebilirsiniz.
+                </Typography>
+              )}
+            </AnimatePresence>
           )}
         </Box>
         <NextButtonMobile />
