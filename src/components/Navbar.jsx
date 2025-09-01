@@ -3,7 +3,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import HomeIcon from "@mui/icons-material/Home";
-import { Link } from "react-router";
 import ThemeSelector from "./ThemeSelector";
 
 export default function Navbar() {

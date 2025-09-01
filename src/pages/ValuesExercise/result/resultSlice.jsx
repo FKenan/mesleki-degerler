@@ -11,7 +11,6 @@ export const fetchTableData = createAsyncThunk(
     } catch (error) {
       console.error("API gönderim hatası:", error);
       return [];
-    } finally {
     }
   }
 );

@@ -1,9 +1,5 @@
-import { Box, Container } from "@mui/material";
-import { useEffect, useMemo } from "react";
-import Appbar from "./Appbar";
-import ResultPage from "./result/Result";
-import Step1 from "./step1/Step1";
-import Step2 from "./step2/Step2";
+import { Box, Container, CircularProgress } from "@mui/material";
+import { useEffect, useMemo, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchValues,
@@ -11,13 +7,31 @@ import {
   selectIsLoaded,
   selectDirection,
 } from "./valueSlice";
-import { useDevice } from "../../context/DeviceContext";
-import Step1Mobile from "./mobile/step1/Step1Mobile";
-import ResultMobile from "./mobile/result/ResultMobile";
-import Step2Mobile from "./mobile/step2/Step2Mobile";
-import AppbarMobile from "./mobile/AppbarMobile";
 import { AnimatePresence } from "framer-motion";
 import React from "react";
+import { useDevice } from "../../context/DeviceContext";
+
+const Appbar = lazy(() => import("./Appbar"));
+const AppbarMobile = lazy(() => import("./mobile/AppbarMobile"));
+const Step1 = lazy(() => import("./step1/Step1"));
+const Step2 = lazy(() => import("./step2/Step2"));
+const ResultPage = lazy(() => import("./result/Result"));
+const Step1Mobile = lazy(() => import("./mobile/step1/Step1Mobile"));
+const Step2Mobile = lazy(() => import("./mobile/step2/Step2Mobile"));
+const ResultMobile = lazy(() => import("./mobile/result/ResultMobile"));
+
+const LoadingFallback = () => (
+  <Box
+    sx={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "50vh",
+    }}
+  >
+    <CircularProgress />
+  </Box>
+);
 
 export default function ValuesExercisePage() {
   const isLoaded = useSelector(selectIsLoaded);
@@ -28,7 +42,7 @@ export default function ValuesExercisePage() {
 
   useEffect(() => {
     if (!isLoaded) dispatch(fetchValues());
-  }, []);
+  }, [dispatch, isLoaded]);
 
   const steps = useMemo(
     () => ({
@@ -41,15 +55,15 @@ export default function ValuesExercisePage() {
 
   return (
     <Container maxWidth="xl" disableGutters sx={{ mb: 4 }}>
-      {isMobile ? <AppbarMobile /> : <Appbar />}
-      <AnimatePresence mode="wait">
-        {/* Use mode="wait" to ensure exit animations complete before new components enter */}
-        {/* React.cloneElement is used to pass the key prop to the dynamically rendered component */}
-        {React.cloneElement(steps[activeStep], {
-          key: activeStep,
-          direction: direction,
-        })}
-      </AnimatePresence>
+      <Suspense fallback={<LoadingFallback />}>
+        {isMobile ? <AppbarMobile /> : <Appbar />}
+        <AnimatePresence mode="wait">
+          {React.cloneElement(steps[activeStep], {
+            key: activeStep,
+            direction: direction,
+          })}
+        </AnimatePresence>
+      </Suspense>
     </Container>
   );
 }

@@ -40,7 +40,7 @@ const keepActionSx = {
 };
 
 function ValueStack({ value }) {
-  const [{ isDragging }, dragRef] = useDrag({
+  const [, dragRef] = useDrag({
     type: "VALUE",
     item: { id: value.id, value },
     collect: (monitor) => ({
@@ -75,7 +75,7 @@ function ValueStack({ value }) {
         border: theme.custom.valueStack.borderHover,
       },
     }),
-    [isDragging]
+    []
   );
 
   return (

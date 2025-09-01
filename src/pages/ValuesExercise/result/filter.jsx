@@ -16,15 +16,10 @@ function ResultFilter({ first5Value }) {
   );
 
   return (
-    <Box sx={{ width: "auto", my: 2, px: 2 }}>
-      <Stack spacing={1.5} alignItems="center">
+    <Box sx={{ width: "auto", my: 2, px: 4 }}>
+      <Stack spacing={1.5} alignItems="center" textAlign="center">
         <Typography gutterBottom>Eşleşme Filtresi</Typography>
-        <Typography
-          variant="caption"
-          display="block"
-          gutterBottom
-          align="center"
-        >
+        <Typography variant="body2" display="block" gutterBottom align="center">
           Seçtiğiniz 5 öncelikli değerden en az kaç tanesinin bölümde bulunması
           gerektiğini seçin.
         </Typography>
