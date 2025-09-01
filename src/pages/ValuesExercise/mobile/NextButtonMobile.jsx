@@ -1,3 +1,6 @@
+import { memo, useCallback, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Box, Button } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import {
   handleNext,
@@ -6,41 +9,55 @@ import {
   selectKeepPile,
   selectValueStack,
 } from "../valueSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { Box, Button } from "@mui/material";
 
-export default function NextButtonMobile() {
+// Constants for performance optimization
+const boxSx = {
+  display: "flex",
+  justifyContent: "flex-end",
+  width: "100%",
+  maxWidth: 500,
+};
+
+const buttonSx = {
+  borderRadius: "20px",
+  padding: "15px 30px",
+  fontWeight: "bold",
+};
+
+const nextIcon = <ArrowForwardIcon />;
+
+function NextButtonMobile() {
   const dispatch = useDispatch();
-  const first5Value = useSelector(selectFirst5Value);
   const activeStep = useSelector(selectActiveStep);
   const valueStack = useSelector(selectValueStack);
   const keepPile = useSelector(selectKeepPile);
+  const first5Value = useSelector(selectFirst5Value);
+
+  const handleNextClick = useCallback(() => {
+    dispatch(handleNext());
+  }, [dispatch]);
+
+  const isDisabled = useMemo(() => {
+    if (activeStep === 0) {
+      return valueStack.length !== 0;
+    }
+    return first5Value.length !== 5 && keepPile.length !== 0;
+  }, [activeStep, valueStack.length, first5Value.length, keepPile.length]);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "flex-end",
-        width: "100%",
-        maxWidth: 500,
-      }}
-    >
+    <Box sx={boxSx}>
       <Button
         variant="contained"
         size="large"
-        onClick={() => dispatch(handleNext())}
-        endIcon={<ArrowForwardIcon />}
-        sx={{
-          borderRadius: "20px",
-          padding: "15px 30px",
-          fontWeight: "bold",
-        }}
-        {...(activeStep === 0
-          ? { disabled: valueStack.length !== 0 }
-          : { disabled: first5Value.length !== 5 && keepPile.length !== 0 })}
+        onClick={handleNextClick}
+        endIcon={nextIcon}
+        sx={buttonSx}
+        disabled={isDisabled}
       >
         İleri
       </Button>
     </Box>
   );
 }
+
+export default memo(NextButtonMobile);

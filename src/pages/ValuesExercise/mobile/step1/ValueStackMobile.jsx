@@ -1,16 +1,51 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { Button, Card, CardContent, Grid, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import CheckIcon from "@mui/icons-material/Check";
 import { addToDiscardPile, addToKeepPile } from "../../valueSlice";
 import { useDispatch } from "react-redux";
-import { memo, useCallback } from "react";
+import { memo, useCallback, useMemo } from "react";
+
+// SX props as constants for performance
+const staticCardSx = {
+  position: "absolute",
+  width: "95%",
+  height: "100%",
+  borderRadius: 5,
+  display: "flex",
+  flexDirection: "column",
+  minHeight: 320,
+  maxHeight: 400,
+};
+
+const gridContainerSx = { p: 3 };
+
+const discardButtonSx = {
+  backgroundColor: "error.main",
+  color: "white",
+  fontWeight: "bold",
+  borderRadius: 5,
+  padding: "10px 0",
+};
+
+const keepButtonSx = {
+  backgroundColor: "success.dark",
+  color: "white",
+  fontWeight: "bold",
+  borderRadius: 5,
+  padding: "10px 0",
+};
+
+const cardContentSx = {
+  flexGrow: 1,
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "start",
+  alignItems: "center",
+  textAlign: "center",
+  p: 1,
+};
+
+const titleSx = { fontWeight: "bold", color: "primary.dark" };
 
 const ValueStackMobile = ({ value, idx }) => {
   const dispatch = useDispatch();
@@ -23,37 +58,25 @@ const ValueStackMobile = ({ value, idx }) => {
     dispatch(addToKeepPile(value));
   }, [dispatch, value]);
 
+  const cardSx = useMemo(
+    () => ({
+      ...staticCardSx,
+      top: idx * -1,
+      left: idx * 1,
+    }),
+    [idx]
+  );
+
   return (
-    <Card
-      elevation={3}
-      key={value.id}
-      sx={{
-        position: "absolute",
-        top: idx * -1,
-        left: idx * 1,
-        width: "95%",
-        height: "100%",
-        borderRadius: 5,
-        display: "flex",
-        flexDirection: "column",
-        minHeight: 320,
-        maxHeight: 400,
-      }}
-    >
-      <Grid container spacing={5} sx={{ p: 3 }}>
+    <Card elevation={3} sx={cardSx}>
+      <Grid container spacing={5} sx={gridContainerSx}>
         <Grid size={6}>
           <Button
             onClick={handleAddToDiscardPile}
             variant="contained"
             startIcon={<CloseIcon />}
             fullWidth
-            sx={{
-              backgroundColor: "error.main",
-              color: "white",
-              fontWeight: "bold",
-              borderRadius: 5,
-              padding: "10px 0",
-            }}
+            sx={discardButtonSx}
             aria-label="Bu değeri at"
           >
             At
@@ -65,36 +88,15 @@ const ValueStackMobile = ({ value, idx }) => {
             variant="contained"
             startIcon={<CheckIcon />}
             fullWidth
-            sx={{
-              backgroundColor: "success.dark",
-              color: "white",
-              fontWeight: "bold",
-              borderRadius: 5,
-              padding: "10px 0",
-            }}
+            sx={keepButtonSx}
             aria-label="Bu değeri tut"
           >
             Tut
           </Button>
         </Grid>
       </Grid>
-      <CardContent
-        sx={{
-          flexGrow: 1,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "start",
-          alignItems: "center",
-          textAlign: "center",
-          p: 1,
-        }}
-      >
-        <Typography
-          variant="h6"
-          component="h2"
-          gutterBottom
-          sx={{ fontWeight: "bold", color: "primary.dark" }}
-        >
+      <CardContent sx={cardContentSx}>
+        <Typography variant="h6" component="h2" gutterBottom sx={titleSx}>
           {value.ad}
         </Typography>
         <Typography variant="body1" color="text.secondary">

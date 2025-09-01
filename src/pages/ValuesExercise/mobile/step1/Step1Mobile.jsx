@@ -1,49 +1,27 @@
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography, Stack } from "@mui/material";
 import { useSelector } from "react-redux";
-import ExercisePageTypography from "../../ExercisePageTypography";
 import NextButtonMobile from "../NextButtonMobile";
 import ValueStackMobile from "./ValueStackMobile";
 import { selectIsLoaded, selectValueStack } from "../../valueSlice";
-import { AnimatePresence, motion } from "framer-motion";
-import { useState, useEffect } from "react"; // Added useState and useEffect
+import { AnimatePresence } from "framer-motion";
+import { useState, useEffect, memo } from "react";
+import ExercisePageTypography from "../../ExercisePageTypography";
+import AnimatedDiv from "../../../../components/animations/AnimatedDiv";
 
-export default function Step1Mobile({ direction }) {
+function Step1Mobile({ direction }) {
   const valueStack = useSelector(selectValueStack);
   const isloaded = useSelector(selectIsLoaded);
-  const [showCards, setShowCards] = useState(false); // New state for conditional rendering
+  const [showCards, setShowCards] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowCards(true);
-    }, 400); // Delay matches page transition duration (0.4s)
+    }, 400);
     return () => clearTimeout(timer);
   }, []);
 
-  const pageVariants = {
-    initial: {
-      opacity: 0,
-      x: direction === "forward" ? 100 : -100, // Start from right for forward, left for backward
-    },
-    in: {
-      opacity: 1,
-      x: 0, // Animate to center
-    },
-    out: {
-      opacity: 0,
-      x: direction === "forward" ? -100 : 100, // Animate to left for forward, right for backward
-    },
-  };
-
   return (
-    <motion.div
-      key="step1-mobile-page" // Unique key for this page component
-      initial="initial"
-      animate="in" // Always animate in when mounted by AnimatePresence
-      exit="out"
-      variants={pageVariants}
-      transition={{ duration: 0.4 }}
-      style={{ width: "100%" }}
-    >
+    <AnimatedDiv direction={direction}>
       <Box
         sx={{
           display: "flex",
@@ -71,29 +49,27 @@ export default function Step1Mobile({ direction }) {
             textAlign: "center",
           }}
         >
-          {!isloaded ? (
+          {!isloaded || !showCards ? (
             <CircularProgress />
           ) : (
             <AnimatePresence>
-              {showCards ? ( // If showCards is true, then check valueStack.length
-                valueStack.length > 0 ? (
-                  valueStack.map((value, idx) => (
-                    <ValueStackMobile key={value.id} value={value} idx={idx} />
-                  ))
-                ) : (
-                  <Typography variant="h6" color="text.secondary">
-                    Tüm değerleri grupladınız. <br /> Sonraki adıma
-                    geçebilirsiniz.
-                  </Typography>
-                )
+              {valueStack.length > 0 ? (
+                valueStack.map((value, idx) => (
+                  <ValueStackMobile key={value.id} value={value} idx={idx} />
+                ))
               ) : (
-                <CircularProgress /> // Show loader during the delay
+                <Typography variant="h6" color="text.secondary">
+                  Tüm değerleri grupladınız. <br /> Sonraki adıma
+                  geçebilirsiniz.
+                </Typography>
               )}
             </AnimatePresence>
           )}
         </Box>
         <NextButtonMobile />
       </Box>
-    </motion.div>
+    </AnimatedDiv>
   );
 }
+
+export default memo(Step1Mobile);

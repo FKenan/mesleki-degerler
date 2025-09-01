@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { memo } from "react";
 import MainLayout from "./layouts/Main";
-import { DeviceProvider } from "./context/DeviceContext";
-import { ThemeProvider } from "./context/ThemeContext";
 import { Box, CircularProgress } from "@mui/material";
+import ThemeProvider from "./context/ThemeContext";
+import { DeviceProvider } from "./context/DeviceContext";
 
 const LoadingFallback = memo(() => (
   <Box

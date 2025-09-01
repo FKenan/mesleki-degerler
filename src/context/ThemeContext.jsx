@@ -64,12 +64,12 @@ const getThemeConfig = (mode) => ({
   },
 });
 
-export function ThemeProvider({ children }) {
+export default function ThemeProvider({ children }) {
   const [mode, setMode] = useState(() => {
     try {
       const savedMode = localStorage.getItem("themeMode");
       return savedMode === "dark" ? "dark" : "light";
-    } catch (error) {
+    } catch {
       console.error(
         "localStorage'a erişilemiyor. Varsayılan tema kullanılıyor."
       );
@@ -85,7 +85,7 @@ export function ThemeProvider({ children }) {
           const newMode = prevMode === "light" ? "dark" : "light";
           try {
             localStorage.setItem("themeMode", newMode);
-          } catch (error) {
+          } catch {
             console.error("Tema kaydedilirken localStorage'a erişilemedi.");
           }
           return newMode;
